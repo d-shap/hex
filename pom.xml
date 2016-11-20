@@ -4,7 +4,7 @@
 
     <groupId>ru.d_shap</groupId>
     <artifactId>hex</artifactId>
-    <version>1.0.3</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <properties>
