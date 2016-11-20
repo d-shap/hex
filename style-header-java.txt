@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Hex library converts bytes to HEX representation and vice versa.
+// Hex library converts bytes to hex representation and vice versa.
 // Copyright (C) 2016 Dmitry Shapovalov.
 //
 // This file is part of Hex library.
