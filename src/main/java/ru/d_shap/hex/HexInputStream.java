@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Input stream to read hex representation of bytes;
+ * Input stream to read hex representation of bytes.
  *
  * @author Dmitry Shapovalov
  */
@@ -31,6 +31,11 @@ public final class HexInputStream extends InputStream {
 
     private final InputStream _inputStream;
 
+    /**
+     * Create new object.
+     *
+     * @param inputStream input stream to read bytes.
+     */
     public HexInputStream(final InputStream inputStream) {
         super();
         _inputStream = inputStream;

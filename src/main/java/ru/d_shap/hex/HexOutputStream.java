@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Output stream to write hex representation of bytes;
+ * Output stream to write hex representation of bytes.
  *
  * @author Dmitry Shapovalov
  */
@@ -36,7 +36,7 @@ public final class HexOutputStream extends OutputStream {
     /**
      * Create new object.
      *
-     * @param outputStream output stream to write result.
+     * @param outputStream output stream to write bytes.
      */
     public HexOutputStream(final OutputStream outputStream) {
         this(outputStream, true);
@@ -45,7 +45,7 @@ public final class HexOutputStream extends OutputStream {
     /**
      * Create new object.
      *
-     * @param outputStream output stream to write result.
+     * @param outputStream output stream to write bytes.
      * @param upperCase    use upper case symbols or not.
      */
     public HexOutputStream(final OutputStream outputStream, final boolean upperCase) {
