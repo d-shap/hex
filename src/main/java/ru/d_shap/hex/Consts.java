@@ -72,58 +72,44 @@ final class Consts {
         TO_UPPDERCASE_HEX[15] = 'F';
     }
 
-    static final int[] FROM_LOWERCASE_HEX;
+    static final int[] FROM_HEX;
 
     static {
-        FROM_LOWERCASE_HEX = new int['f'];
+        int length = Math.max('f', 'F');
+        FROM_HEX = new int[length];
 
-        for (int i = 0; i < FROM_LOWERCASE_HEX.length; i++) {
-            FROM_LOWERCASE_HEX[i] = -1;
+        for (int i = 0; i < FROM_HEX.length; i++) {
+            FROM_HEX[i] = -1;
         }
 
-        FROM_LOWERCASE_HEX['0'] = 0;
-        FROM_LOWERCASE_HEX['1'] = 1;
-        FROM_LOWERCASE_HEX['2'] = 2;
-        FROM_LOWERCASE_HEX['3'] = 3;
-        FROM_LOWERCASE_HEX['4'] = 4;
-        FROM_LOWERCASE_HEX['5'] = 5;
-        FROM_LOWERCASE_HEX['6'] = 6;
-        FROM_LOWERCASE_HEX['7'] = 7;
-        FROM_LOWERCASE_HEX['8'] = 8;
-        FROM_LOWERCASE_HEX['9'] = 9;
-        FROM_LOWERCASE_HEX['a'] = 10;
-        FROM_LOWERCASE_HEX['b'] = 11;
-        FROM_LOWERCASE_HEX['c'] = 12;
-        FROM_LOWERCASE_HEX['d'] = 13;
-        FROM_LOWERCASE_HEX['e'] = 14;
-        FROM_LOWERCASE_HEX['f'] = 15;
-    }
+        FROM_HEX['0'] = 0;
+        FROM_HEX['1'] = 1;
+        FROM_HEX['2'] = 2;
+        FROM_HEX['3'] = 3;
+        FROM_HEX['4'] = 4;
+        FROM_HEX['5'] = 5;
+        FROM_HEX['6'] = 6;
+        FROM_HEX['7'] = 7;
+        FROM_HEX['8'] = 8;
+        FROM_HEX['9'] = 9;
 
-    static final int[] FROM_UPPERCASE_HEX;
+        FROM_HEX['a'] = 10;
+        FROM_HEX['A'] = 10;
 
-    static {
-        FROM_UPPERCASE_HEX = new int['F'];
+        FROM_HEX['b'] = 11;
+        FROM_HEX['B'] = 11;
 
-        for (int i = 0; i < FROM_UPPERCASE_HEX.length; i++) {
-            FROM_UPPERCASE_HEX[i] = -1;
-        }
+        FROM_HEX['c'] = 12;
+        FROM_HEX['C'] = 12;
 
-        FROM_UPPERCASE_HEX['0'] = 0;
-        FROM_UPPERCASE_HEX['1'] = 1;
-        FROM_UPPERCASE_HEX['2'] = 2;
-        FROM_UPPERCASE_HEX['3'] = 3;
-        FROM_UPPERCASE_HEX['4'] = 4;
-        FROM_UPPERCASE_HEX['5'] = 5;
-        FROM_UPPERCASE_HEX['6'] = 6;
-        FROM_UPPERCASE_HEX['7'] = 7;
-        FROM_UPPERCASE_HEX['8'] = 8;
-        FROM_UPPERCASE_HEX['9'] = 9;
-        FROM_UPPERCASE_HEX['A'] = 10;
-        FROM_UPPERCASE_HEX['B'] = 11;
-        FROM_UPPERCASE_HEX['C'] = 12;
-        FROM_UPPERCASE_HEX['D'] = 13;
-        FROM_UPPERCASE_HEX['E'] = 14;
-        FROM_UPPERCASE_HEX['F'] = 15;
+        FROM_HEX['d'] = 13;
+        FROM_HEX['D'] = 13;
+
+        FROM_HEX['e'] = 14;
+        FROM_HEX['E'] = 14;
+
+        FROM_HEX['f'] = 15;
+        FROM_HEX['F'] = 15;
     }
 
     private Consts() {
