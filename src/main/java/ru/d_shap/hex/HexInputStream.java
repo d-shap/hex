@@ -55,14 +55,14 @@ public final class HexInputStream extends InputStream {
         }
         byte b2 = convertHexToByte(i2);
 
-        return (byte) ((b1 << 4) + b2);
+        return (b1 << 4) + b2;
     }
 
     private byte convertHexToByte(final int value) throws IOException {
-        if (value >= 0 && value < Consts.FROM_HEX.length && Consts.FROM_HEX[value] >= 0) {
+        if (value < Consts.FROM_HEX.length && Consts.FROM_HEX[value] >= 0) {
             return (byte) Consts.FROM_HEX[value];
         }
-        throw new IOException("Wrong symbol obtained" + (byte) value + " (" + value + ")");
+        throw new IOException("Wrong symbol obtained: '" + (char) value + "' (" + value + ")");
     }
 
     @Override
