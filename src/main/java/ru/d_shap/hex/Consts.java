@@ -28,10 +28,10 @@ final class Consts {
 
     static final String ENCODING = "US-ASCII";
 
-    static final byte[] TO_LOWERCASE_HEX;
+    static final char[] TO_LOWERCASE_HEX;
 
     static {
-        TO_LOWERCASE_HEX = new byte[16];
+        TO_LOWERCASE_HEX = new char[16];
 
         TO_LOWERCASE_HEX[0] = '0';
         TO_LOWERCASE_HEX[1] = '1';
@@ -51,10 +51,10 @@ final class Consts {
         TO_LOWERCASE_HEX[15] = 'f';
     }
 
-    static final byte[] TO_UPPDERCASE_HEX;
+    static final char[] TO_UPPDERCASE_HEX;
 
     static {
-        TO_UPPDERCASE_HEX = new byte[16];
+        TO_UPPDERCASE_HEX = new char[16];
 
         TO_UPPDERCASE_HEX[0] = '0';
         TO_UPPDERCASE_HEX[1] = '1';
