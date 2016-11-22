@@ -31,7 +31,7 @@ public final class HexOutputStream extends OutputStream {
 
     private final OutputStream _outputStream;
 
-    private final byte[] _hexes;
+    private final char[] _hexes;
 
     /**
      * Create new object.
@@ -60,10 +60,10 @@ public final class HexOutputStream extends OutputStream {
 
     @Override
     public void write(final int value) throws IOException {
-        byte b1 = (byte) ((value & 0xF0) >> 4);
-        _outputStream.write(_hexes[b1]);
-        byte b2 = (byte) (value & 0x0F);
-        _outputStream.write(_hexes[b2]);
+        char upperByte = _hexes[HexHelper.getUpperByte(value)];
+        _outputStream.write(upperByte);
+        char lowerByte = _hexes[HexHelper.getLowerByte(value)];
+        _outputStream.write(lowerByte);
     }
 
     @Override
