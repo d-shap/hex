@@ -20,11 +20,13 @@
 package ru.d_shap.hex;
 
 /**
- * Predefined values for byte-to-hex conversion and vice versa.
+ * Predefined values for byte-to-hex and hex-to-byte conversions.
  *
  * @author Dmitry Shapovalov
  */
 final class Consts {
+
+    static final String ENCODING = "US-ASCII";
 
     static final byte[] TO_LOWERCASE_HEX;
 
@@ -75,7 +77,7 @@ final class Consts {
     static final int[] FROM_HEX;
 
     static {
-        int length = Math.max('f', 'F');
+        int length = Math.max('f', 'F') + 1;
         FROM_HEX = new int[length];
 
         for (int i = 0; i < FROM_HEX.length; i++) {
