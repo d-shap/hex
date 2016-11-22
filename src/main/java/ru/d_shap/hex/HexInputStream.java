@@ -43,26 +43,25 @@ public final class HexInputStream extends InputStream {
 
     @Override
     public int read() throws IOException {
-        int i1 = _inputStream.read();
-        if (i1 < 0) {
+        int symbol1 = _inputStream.read();
+        if (symbol1 < 0) {
             return -1;
         }
-        byte b1 = convertHexToByte(i1);
+        int upperByte = HexHelper.convertHexToByte(symbol1);
+        if (upperByte < 0) {
+            throw new IOException("Wrong symbol obtained: '" + (char) symbol1 + "' (" + symbol1 + ")");
+        }
 
-        int i2 = _inputStream.read();
-        if (i2 < 0) {
+        int symbol2 = _inputStream.read();
+        if (symbol2 < 0) {
             throw new IOException("Unexpected end of stream");
         }
-        byte b2 = convertHexToByte(i2);
-
-        return (b1 << 4) + b2;
-    }
-
-    private byte convertHexToByte(final int value) throws IOException {
-        if (value < Consts.FROM_HEX.length && Consts.FROM_HEX[value] >= 0) {
-            return (byte) Consts.FROM_HEX[value];
+        int lowerByte = HexHelper.convertHexToByte(symbol2);
+        if (lowerByte < 0) {
+            throw new IOException("Wrong symbol obtained: '" + (char) symbol2 + "' (" + symbol2 + ")");
         }
-        throw new IOException("Wrong symbol obtained: '" + (char) value + "' (" + value + ")");
+
+        return HexHelper.getByte(upperByte, lowerByte);
     }
 
     @Override
