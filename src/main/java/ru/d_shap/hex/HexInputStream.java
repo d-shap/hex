@@ -47,7 +47,7 @@ public final class HexInputStream extends InputStream {
         if (symbol1 < 0) {
             return -1;
         }
-        int upperByte = HexHelper.convertHexToByte(symbol1);
+        int upperByte = HexHelper.convertToBytePart(symbol1);
         if (upperByte < 0) {
             throw new IOException("Wrong symbol obtained: '" + (char) symbol1 + "' (" + symbol1 + ")");
         }
@@ -56,12 +56,12 @@ public final class HexInputStream extends InputStream {
         if (symbol2 < 0) {
             throw new IOException("Unexpected end of stream");
         }
-        int lowerByte = HexHelper.convertHexToByte(symbol2);
+        int lowerByte = HexHelper.convertToBytePart(symbol2);
         if (lowerByte < 0) {
             throw new IOException("Wrong symbol obtained: '" + (char) symbol2 + "' (" + symbol2 + ")");
         }
 
-        return HexHelper.getByte(upperByte, lowerByte);
+        return HexHelper.getFullByte(upperByte, lowerByte);
     }
 
     @Override
