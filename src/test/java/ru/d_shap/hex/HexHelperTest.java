@@ -276,7 +276,33 @@ public final class HexHelperTest {
      */
     @Test
     public void convertToBytePartTest() {
+        Assert.assertEquals(-1, HexHelper.convertToBytePart(-10));
+        Assert.assertEquals(-1, HexHelper.convertToBytePart(250));
+        Assert.assertEquals(-1, HexHelper.convertToBytePart('+'));
+        Assert.assertEquals(-1, HexHelper.convertToBytePart('-'));
 
+        Assert.assertEquals(0, HexHelper.convertToBytePart('0'));
+        Assert.assertEquals(1, HexHelper.convertToBytePart('1'));
+        Assert.assertEquals(2, HexHelper.convertToBytePart('2'));
+        Assert.assertEquals(3, HexHelper.convertToBytePart('3'));
+        Assert.assertEquals(4, HexHelper.convertToBytePart('4'));
+        Assert.assertEquals(5, HexHelper.convertToBytePart('5'));
+        Assert.assertEquals(6, HexHelper.convertToBytePart('6'));
+        Assert.assertEquals(7, HexHelper.convertToBytePart('7'));
+        Assert.assertEquals(8, HexHelper.convertToBytePart('8'));
+        Assert.assertEquals(9, HexHelper.convertToBytePart('9'));
+        Assert.assertEquals(10, HexHelper.convertToBytePart('a'));
+        Assert.assertEquals(10, HexHelper.convertToBytePart('A'));
+        Assert.assertEquals(11, HexHelper.convertToBytePart('b'));
+        Assert.assertEquals(11, HexHelper.convertToBytePart('B'));
+        Assert.assertEquals(12, HexHelper.convertToBytePart('c'));
+        Assert.assertEquals(12, HexHelper.convertToBytePart('C'));
+        Assert.assertEquals(13, HexHelper.convertToBytePart('d'));
+        Assert.assertEquals(13, HexHelper.convertToBytePart('D'));
+        Assert.assertEquals(14, HexHelper.convertToBytePart('e'));
+        Assert.assertEquals(14, HexHelper.convertToBytePart('E'));
+        Assert.assertEquals(15, HexHelper.convertToBytePart('f'));
+        Assert.assertEquals(15, HexHelper.convertToBytePart('F'));
     }
 
     /**
@@ -284,7 +310,13 @@ public final class HexHelperTest {
      */
     @Test
     public void getFullByteTest() {
-
+        Assert.assertEquals(172, HexHelper.getFullByte(10, 12));
+        Assert.assertEquals(17, HexHelper.getFullByte(1, 1));
+        Assert.assertEquals(7, HexHelper.getFullByte(0, 7));
+        Assert.assertEquals(112, HexHelper.getFullByte(7, 0));
+        Assert.assertEquals(227, HexHelper.getFullByte(14, 3));
+        Assert.assertEquals(207, HexHelper.getFullByte(12, 15));
+        Assert.assertEquals(340, HexHelper.getFullByte(20, 20));
     }
 
     /**
