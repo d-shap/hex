@@ -113,7 +113,7 @@ public final class HexHelper {
      */
     public static byte[] toBytes(final String hex) {
         if (hex == null) {
-            return null;
+            return new byte[0];
         }
 
         int hexLength = hex.length();
