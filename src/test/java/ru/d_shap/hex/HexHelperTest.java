@@ -22,8 +22,6 @@ package ru.d_shap.hex;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
-
 /**
  * Tests for {@link HexHelper}.
  *
@@ -42,8 +40,131 @@ public final class HexHelperTest {
      * {@link HexHelper} class test.
      */
     @Test
-    public void toHexTest() throws IOException {
+    public void toHexUpperCaseTest() {
+        Assert.assertNull(HexHelper.toHex(null, true));
+        Assert.assertEquals("01058CFAF2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, true));
+        Assert.assertEquals("111CB3F2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, true));
+        Assert.assertEquals("FFFAB4115E", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, true));
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toHexLowerCaseTest() {
+        Assert.assertNull(HexHelper.toHex(null, false));
+        Assert.assertEquals("01058cfaf2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, false));
+        Assert.assertEquals("111cb3f2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, false));
+        Assert.assertEquals("fffab4115e", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, false));
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toHexDefaultCaseTest() {
+        Assert.assertNull(HexHelper.toHex(null));
         Assert.assertEquals("01058CFAF2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}));
+        Assert.assertEquals("111CB3F2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}));
+        Assert.assertEquals("FFFAB4115E", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}));
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void getUpperByteTest() {
+        Assert.assertEquals(0, HexHelper.getUpperByte(4));
+        Assert.assertEquals(0, HexHelper.getUpperByte(8));
+        Assert.assertEquals(0, HexHelper.getUpperByte(15));
+        Assert.assertEquals(1, HexHelper.getUpperByte(16));
+        Assert.assertEquals(1, HexHelper.getUpperByte(26));
+        Assert.assertEquals(5, HexHelper.getUpperByte(83));
+        Assert.assertEquals(9, HexHelper.getUpperByte(144));
+        Assert.assertEquals(11, HexHelper.getUpperByte(180));
+        Assert.assertEquals(15, HexHelper.getUpperByte(242));
+        Assert.assertEquals(15, HexHelper.getUpperByte(255));
+        Assert.assertEquals(2, HexHelper.getUpperByte(300));
+        Assert.assertEquals(2, HexHelper.getUpperByte(300 % 256));
+        Assert.assertEquals(3, HexHelper.getUpperByte(824));
+        Assert.assertEquals(3, HexHelper.getUpperByte(824 % 256));
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void getLowerByteTest() {
+        Assert.assertEquals(4, HexHelper.getLowerByte(4));
+        Assert.assertEquals(8, HexHelper.getLowerByte(8));
+        Assert.assertEquals(15, HexHelper.getLowerByte(15));
+        Assert.assertEquals(0, HexHelper.getLowerByte(16));
+        Assert.assertEquals(10, HexHelper.getLowerByte(26));
+        Assert.assertEquals(3, HexHelper.getLowerByte(83));
+        Assert.assertEquals(0, HexHelper.getLowerByte(144));
+        Assert.assertEquals(4, HexHelper.getLowerByte(180));
+        Assert.assertEquals(2, HexHelper.getLowerByte(242));
+        Assert.assertEquals(15, HexHelper.getLowerByte(255));
+        Assert.assertEquals(12, HexHelper.getLowerByte(300));
+        Assert.assertEquals(12, HexHelper.getLowerByte(300 % 256));
+        Assert.assertEquals(8, HexHelper.getLowerByte(824));
+        Assert.assertEquals(8, HexHelper.getLowerByte(824 % 256));
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesSpecifiedTest() {
+
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesCreatedTest() {
+
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void convertToBytePartTest() {
+
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void getFullByteTest() {
+
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void isHexUpperCaseStringTest() {
+
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void isHexLowerCaseStringTest() {
+
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void isHexDefaultCaseStringTest() {
+
     }
 
 }
