@@ -184,7 +184,7 @@ public final class HexHelperTest {
     public void toBytesSpecifiedOddHexLengthTest() {
         try {
             HexHelper.toBytes("abc", new byte[8]);
-            Assert.fail("Event check is wrong");
+            Assert.fail("Even check is wrong");
         } catch (HexRuntimeException ex) {
             Assert.assertEquals("Hex string must contain an even number of characters", ex.getMessage());
         }
@@ -209,7 +209,66 @@ public final class HexHelperTest {
      */
     @Test
     public void toBytesCreatedTest() {
+        byte[] bytes;
 
+        bytes = HexHelper.toBytes("AC120F");
+        Assert.assertArrayEquals(new byte[]{(byte) 172, 18, 15}, bytes);
+
+        bytes = HexHelper.toBytes("77A2");
+        Assert.assertArrayEquals(new byte[]{119, (byte) 162}, bytes);
+
+        bytes = HexHelper.toBytes("1234567890");
+        Assert.assertArrayEquals(new byte[]{18, 52, 86, 120, (byte) 144}, bytes);
+
+        bytes = HexHelper.toBytes("AACD2F");
+        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47}, bytes);
+
+        bytes = HexHelper.toBytes("aacd2f");
+        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47}, bytes);
+
+        bytes = HexHelper.toBytes("aAcD2F");
+        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47}, bytes);
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesCreatedEmptyHexTest() {
+        Assert.assertNull(HexHelper.toBytes(null));
+        Assert.assertArrayEquals(new byte[]{}, HexHelper.toBytes(""));
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesCreatedOddHexLengthTTest() {
+        try {
+            HexHelper.toBytes("abc");
+            Assert.fail("Even check is wrong");
+        } catch (HexRuntimeException ex) {
+            Assert.assertEquals("Hex string must contain an even number of characters", ex.getMessage());
+        }
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesWrongSymbolTest() {
+        try {
+            HexHelper.toBytes("defg12");
+            Assert.fail("Wrong symbol processed");
+        } catch (HexRuntimeException ex) {
+            Assert.assertEquals("Wrong symbol obtained: 'g' (103)", ex.getMessage());
+        }
+        try {
+            HexHelper.toBytes("dehf12");
+            Assert.fail("Wrong symbol processed");
+        } catch (HexRuntimeException ex) {
+            Assert.assertEquals("Wrong symbol obtained: 'h' (104)", ex.getMessage());
+        }
     }
 
     /**
