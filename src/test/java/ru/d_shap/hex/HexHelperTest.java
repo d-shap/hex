@@ -22,6 +22,9 @@ package ru.d_shap.hex;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Tests for {@link HexHelper}.
  *
@@ -34,6 +37,34 @@ public final class HexHelperTest {
      */
     public HexHelperTest() {
         super();
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     *
+     * @throws IllegalAccessException exception in test.
+     * @throws InstantiationException exception in test.
+     */
+    @Test(expected = IllegalAccessException.class)
+    public void testConstructorPrivate() throws IllegalAccessException, InstantiationException {
+        HexHelper.class.newInstance();
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     *
+     * @throws IllegalAccessException    exception in test.
+     * @throws InstantiationException    exception in test.
+     * @throws InvocationTargetException exception in test.
+     */
+    @Test
+    public void constructorInaccessibilityTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+        Constructor[] ctors = HexHelper.class.getDeclaredConstructors();
+        Assert.assertEquals(1, ctors.length);
+        Constructor ctor = ctors[0];
+        Assert.assertFalse(ctor.isAccessible());
+        ctor.setAccessible(true);
+        Assert.assertEquals(HexHelper.class, ctor.newInstance().getClass());
     }
 
     /**
@@ -116,7 +147,61 @@ public final class HexHelperTest {
      */
     @Test
     public void toBytesSpecifiedTest() {
+        byte[] bytes = new byte[8];
 
+        Assert.assertEquals(3, HexHelper.toBytes("AC120F", bytes));
+        Assert.assertArrayEquals(new byte[]{(byte) 172, 18, 15, 0, 0, 0, 0, 0}, bytes);
+
+        Assert.assertEquals(2, HexHelper.toBytes("77A2", bytes));
+        Assert.assertArrayEquals(new byte[]{119, (byte) 162, 15, 0, 0, 0, 0, 0}, bytes);
+
+        Assert.assertEquals(5, HexHelper.toBytes("1234567890", bytes));
+        Assert.assertArrayEquals(new byte[]{18, 52, 86, 120, (byte) 144, 0, 0, 0}, bytes);
+
+        Assert.assertEquals(3, HexHelper.toBytes("AACD2F", bytes));
+        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47, 120, (byte) 144, 0, 0, 0}, bytes);
+
+        Assert.assertEquals(3, HexHelper.toBytes("aacd2f", bytes));
+        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47, 120, (byte) 144, 0, 0, 0}, bytes);
+
+        Assert.assertEquals(3, HexHelper.toBytes("aAcD2F", bytes));
+        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47, 120, (byte) 144, 0, 0, 0}, bytes);
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesSpecifiedEmptyHexTest() {
+        Assert.assertEquals(0, HexHelper.toBytes(null, new byte[8]));
+        Assert.assertEquals(0, HexHelper.toBytes("", new byte[8]));
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesSpecifiedOddHexLengthTest() {
+        try {
+            HexHelper.toBytes("abc", new byte[8]);
+            Assert.fail("Event check is wrong");
+        } catch (HexRuntimeException ex) {
+            Assert.assertEquals("Hex string must contain an even number of characters", ex.getMessage());
+        }
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesSpecifiedInsufficientResultLengthTest() {
+        try {
+            byte[] bytes = new byte[3];
+            HexHelper.toBytes("aabc3f72", bytes);
+            Assert.fail("Array size check fail");
+        } catch (HexRuntimeException ex) {
+            Assert.assertEquals("Byte array is too small for hex string", ex.getMessage());
+        }
     }
 
     /**
