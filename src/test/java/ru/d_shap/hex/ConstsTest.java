@@ -46,7 +46,7 @@ public final class ConstsTest {
      * @throws InstantiationException exception in test.
      */
     @Test(expected = IllegalAccessException.class)
-    public void testConstructorPrivate() throws IllegalAccessException, InstantiationException {
+    public void constructorPrivateTest() throws IllegalAccessException, InstantiationException {
         Consts.class.newInstance();
     }
 
