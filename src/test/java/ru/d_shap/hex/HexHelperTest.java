@@ -72,7 +72,7 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexUpperCaseTest() {
-        Assert.assertNull(HexHelper.toHex(null, true));
+        Assert.assertEquals("", HexHelper.toHex(null, true));
         Assert.assertEquals("01058CFAF2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, true));
         Assert.assertEquals("111CB3F2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, true));
         Assert.assertEquals("FFFAB4115E", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, true));
@@ -83,7 +83,7 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexLowerCaseTest() {
-        Assert.assertNull(HexHelper.toHex(null, false));
+        Assert.assertEquals("", HexHelper.toHex(null, false));
         Assert.assertEquals("01058cfaf2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, false));
         Assert.assertEquals("111cb3f2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, false));
         Assert.assertEquals("fffab4115e", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, false));
@@ -94,7 +94,7 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexDefaultCaseTest() {
-        Assert.assertNull(HexHelper.toHex(null));
+        Assert.assertEquals("", HexHelper.toHex(null));
         Assert.assertEquals("01058CFAF2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}));
         Assert.assertEquals("111CB3F2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}));
         Assert.assertEquals("FFFAB4115E", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}));
@@ -235,7 +235,7 @@ public final class HexHelperTest {
      */
     @Test
     public void toBytesCreatedEmptyHexTest() {
-        Assert.assertNull(HexHelper.toBytes(null));
+        Assert.assertArrayEquals(new byte[]{}, HexHelper.toBytes(null));
         Assert.assertArrayEquals(new byte[]{}, HexHelper.toBytes(""));
     }
 

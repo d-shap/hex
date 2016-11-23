@@ -49,7 +49,7 @@ public final class HexHelper {
      */
     public static String toHex(final byte[] bytes, final boolean upperCase) {
         if (bytes == null) {
-            return null;
+            return "";
         }
 
         char[] hex;
