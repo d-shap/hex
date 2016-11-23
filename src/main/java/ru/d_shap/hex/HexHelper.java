@@ -45,7 +45,7 @@ public final class HexHelper {
      *
      * @param bytes     byte array.
      * @param upperCase use upper case symbols or not.
-     * @return
+     * @return hex string.
      */
     public static String toHex(final byte[] bytes, final boolean upperCase) {
         if (bytes == null) {
