@@ -42,20 +42,29 @@ public final class ConstsTest {
     /**
      * {@link Consts} class test.
      *
-     * @throws NoSuchMethodException     Reflective exception.
-     * @throws InstantiationException    Reflective exception.
-     * @throws IllegalAccessException    Reflective exception.
-     * @throws InvocationTargetException Reflective exception.
+     * @throws IllegalAccessException exception in test.
+     * @throws InstantiationException exception in test.
+     */
+    @Test(expected = IllegalAccessException.class)
+    public void testConstructorPrivate() throws IllegalAccessException, InstantiationException {
+        Consts.class.newInstance();
+    }
+
+    /**
+     * {@link Consts} class test.
+     *
+     * @throws IllegalAccessException    exception in test.
+     * @throws InstantiationException    exception in test.
+     * @throws InvocationTargetException exception in test.
      */
     @Test
-    public void constructorUnavailableTest() throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        Class<?> clazz = Consts.class;
-        Constructor<?> constructor = clazz.getDeclaredConstructor();
-        Assert.assertFalse(constructor.isAccessible());
-
-        constructor.setAccessible(true);
-        Consts instance = (Consts) constructor.newInstance();
-        Assert.assertNotNull(instance);
+    public void constructorInaccessibilityTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+        Constructor[] ctors = Consts.class.getDeclaredConstructors();
+        Assert.assertEquals(1, ctors.length);
+        Constructor ctor = ctors[0];
+        Assert.assertFalse(ctor.isAccessible());
+        ctor.setAccessible(true);
+        Assert.assertEquals(Consts.class, ctor.newInstance().getClass());
     }
 
 }
