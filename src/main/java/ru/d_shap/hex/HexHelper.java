@@ -189,6 +189,9 @@ public final class HexHelper {
         if (hex == null) {
             return false;
         }
+        if ("".equals(hex)) {
+            return false;
+        }
 
         int hexLength = hex.length();
         if (evenCheck && hexLength % 2 != 0) {
