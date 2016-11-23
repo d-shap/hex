@@ -200,7 +200,6 @@ public final class HexHelper {
             }
         }
         return true;
-
     }
 
 }
