@@ -19,11 +19,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.hex;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Tests for {@link HexOutputStream}.

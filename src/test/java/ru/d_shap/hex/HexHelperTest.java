@@ -19,11 +19,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.hex;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Tests for {@link HexHelper}.
