@@ -324,7 +324,12 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexUpperCaseStringTest() {
-
+        Assert.assertTrue(HexHelper.isHexString("AB12"));
+        Assert.assertTrue(HexHelper.isHexString("53F15C94E2E4"));
+        Assert.assertTrue(HexHelper.isHexString("1234567890ABCDEF"));
+        Assert.assertFalse(HexHelper.isHexString("12ACEG"));
+        Assert.assertFalse(HexHelper.isHexString("6F4-"));
+        Assert.assertFalse(HexHelper.isHexString("+183"));
     }
 
     /**
@@ -332,15 +337,46 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexLowerCaseStringTest() {
-
+        Assert.assertTrue(HexHelper.isHexString("ab12"));
+        Assert.assertTrue(HexHelper.isHexString("53f15c94e2e4"));
+        Assert.assertTrue(HexHelper.isHexString("1234567890abcdef"));
+        Assert.assertFalse(HexHelper.isHexString("12aceg"));
+        Assert.assertFalse(HexHelper.isHexString("6f4-"));
+        Assert.assertFalse(HexHelper.isHexString("+183"));
     }
 
     /**
      * {@link HexHelper} class test.
      */
     @Test
-    public void isHexDefaultCaseStringTest() {
+    public void isHexBothCaseStringTest() {
+        Assert.assertTrue(HexHelper.isHexString("Ab12"));
+        Assert.assertTrue(HexHelper.isHexString("53F15C94e2e4"));
+        Assert.assertTrue(HexHelper.isHexString("1234567890ABcdEf"));
+        Assert.assertFalse(HexHelper.isHexString("12AceG"));
+        Assert.assertFalse(HexHelper.isHexString("6f4-"));
+        Assert.assertFalse(HexHelper.isHexString("+183"));
+    }
 
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void isHexEmptyStringTest() {
+        Assert.assertFalse(HexHelper.isHexString(null));
+        Assert.assertFalse(HexHelper.isHexString(""));
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void isHexOddLengthStringTest() {
+        Assert.assertFalse(HexHelper.isHexString("123"));
+        Assert.assertFalse(HexHelper.isHexString("123", true));
+        Assert.assertTrue(HexHelper.isHexString("123", false));
+        Assert.assertTrue(HexHelper.isHexString("1234", true));
+        Assert.assertTrue(HexHelper.isHexString("1234", false));
     }
 
 }
