@@ -118,7 +118,7 @@ public final class HexHelper {
 
         int hexLength = hex.length();
         if (hexLength % 2 != 0) {
-            throw new HexRuntimeException("Input string must contain an even number of characters");
+            throw new HexRuntimeException("Hex string must contain an even number of characters");
         }
         int arrLength = hexLength / 2;
         byte[] result = new byte[arrLength];
