@@ -146,7 +146,7 @@ public final class HexHelper {
 
             symbol2 = hex.charAt(hexIndex + 1);
             lowerByte = convertToBytePart(symbol2);
-            if (symbol2 < 0) {
+            if (lowerByte < 0) {
                 throw new HexRuntimeException("Wrong symbol obtained: '" + (char) symbol2 + "' (" + symbol2 + ")");
             }
 
