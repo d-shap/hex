@@ -58,7 +58,7 @@ public final class ConstsTest {
      * @throws InvocationTargetException exception in test.
      */
     @Test
-    public void constructorInaccessibilityTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+    public void constructorInaccessibleTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
         Constructor[] ctors = Consts.class.getDeclaredConstructors();
         Assert.assertEquals(1, ctors.length);
         Constructor ctor = ctors[0];
