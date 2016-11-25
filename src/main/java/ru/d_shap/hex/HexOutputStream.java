@@ -34,7 +34,7 @@ public final class HexOutputStream extends OutputStream {
     private final char[] _hexes;
 
     /**
-     * Create new object.
+     * Create new object. Upper case symbols are used for hex representation.
      *
      * @param outputStream output stream to write bytes.
      */
