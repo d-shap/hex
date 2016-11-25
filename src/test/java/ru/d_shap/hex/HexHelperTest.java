@@ -58,7 +58,7 @@ public final class HexHelperTest {
      * @throws InvocationTargetException exception in test.
      */
     @Test
-    public void constructorInaccessibilityTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+    public void constructorInaccessibleTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
         Constructor[] ctors = HexHelper.class.getDeclaredConstructors();
         Assert.assertEquals(1, ctors.length);
         Constructor ctor = ctors[0];
@@ -243,7 +243,7 @@ public final class HexHelperTest {
      * {@link HexHelper} class test.
      */
     @Test
-    public void toBytesCreatedOddHexLengthTTest() {
+    public void toBytesCreatedOddHexLengthTest() {
         try {
             HexHelper.toBytes("abc");
             Assert.fail("Even check is wrong");
