@@ -21,5 +21,52 @@
  * <p>
  * Package contains classes to convert bytes to hex representation and vice versa.
  * </p>
+ * <p>
+ * {@link ru.d_shap.hex.HexHelper} class contains methods to convert byte array to hex string, to convert
+ * hex string to byte array and to check, if string is a hex representation of bytes.
+ * </p>
+ * <p>
+ * An example, how to convert bytes to hex symbols:
+ * </p>
+ * <pre>{@code
+ * String str1 = HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}); // str1 = "01058CFAF2"
+ * String str2 = HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}); // str2 = "111CB3F2"
+ * String str3 = HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}); // str3 = "FFFAB4115E"
+ * }</pre>
+ * <p>
+ * An example, how to convert hex symbols to bytes:
+ * </p>
+ * <pre>{@code
+ * byte[] bytes1 = HexHelper.toBytes("AC120F"); // bytes1 = new byte[]{(byte) 172, 18, 15}
+ * byte[] bytes2 = HexHelper.toBytes("AACD2F"); // bytes2 = new byte[]{(byte) 170, (byte) 205, 47}
+ * byte[] bytes3 = HexHelper.toBytes("aacd2f"); // bytes3 = new byte[]{(byte) 170, (byte) 205, 47}
+ * }</pre>
+ * <p>
+ * {@link ru.d_shap.hex.HexHelper} class contains all data in memory. For large data (for example, big files)
+ * this is not efficient. In such cases {@link ru.d_shap.hex.HexInputStream} and {@link ru.d_shap.hex.HexOutputStream}
+ * classes could be used. {@link ru.d_shap.hex.HexInputStream} read stream of hex symbols and translates them to bytes.
+ * {@link ru.d_shap.hex.HexOutputStream} writes hex symbols to the stream.
+ * </p>
+ * <p>
+ * An example, how to write hex symbols to the file:
+ * </p>
+ * <pre>{@code
+ * FileInputStream inputStream = new FileInputStream("some input file");
+ * FileOutputStream outputStream = new FileOutputStream("some output file");
+ * HexOutputStream hexOutputStream = new HexOutputStream(outputStream);
+ * int read;
+ * while (true) {
+ *     read = inputStream.read();
+ *     if (read < 0) {
+ *         break;
+ *     }
+ *     hexOutputStream.write(read);
+ * }
+ * outputStream.close();
+ * inputStream.close();
+ * }</pre>
+ * <p>
+ * Each byte is represented with two hex symbols. That is why hex representation doubles the original data size.
+ * </p>
  */
 package ru.d_shap.hex;
