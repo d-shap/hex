@@ -20,7 +20,7 @@
 package ru.d_shap.hex;
 
 /**
- * Class to perform bytes to hex and hex to bytes transformations.
+ * Class to perform bytes to hex and hex to bytes conversions.
  *
  * @author Dmitry Shapovalov
  */
@@ -31,7 +31,7 @@ public final class HexHelper {
     }
 
     /**
-     * Convert byte array to hex string.
+     * Convert byte array to hex string. Upper case symbols are used for hex representation.
      *
      * @param bytes byte array.
      * @return hex string.
@@ -169,7 +169,7 @@ public final class HexHelper {
     }
 
     /**
-     * Define, whether input strign contains only hex symbols or not.
+     * Define, whether input string contains only hex symbols or not. String must contain an even number of symbols.
      *
      * @param hex hex string.
      * @return true, if hex string contains only hex symbols.
@@ -179,7 +179,7 @@ public final class HexHelper {
     }
 
     /**
-     * Define, whether input strign contains only hex symbols or not.
+     * Define, whether input string contains only hex symbols or not.
      *
      * @param hex       hex string.
      * @param evenCheck is hex string contains even number of symbols or not.
