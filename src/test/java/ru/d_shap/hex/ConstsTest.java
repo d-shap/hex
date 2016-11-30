@@ -67,4 +67,25 @@ public final class ConstsTest {
         Assert.assertEquals(Consts.class, ctor.newInstance().getClass());
     }
 
+    /**
+     * {@link Consts} class test.
+     */
+    @Test
+    public void valueConsistencyTest() {
+        for (int i = 0; i < Consts.TO_LOWERCASE_HEX.length; i++) {
+            int lowercaseHex = Consts.TO_LOWERCASE_HEX[i];
+            int value = Consts.FROM_HEX[lowercaseHex];
+            Assert.assertEquals(i, value);
+        }
+        for (int i = 0; i < Consts.TO_UPPDERCASE_HEX.length; i++) {
+            int uppercaseHex = Consts.TO_UPPDERCASE_HEX[i];
+            int value = Consts.FROM_HEX[uppercaseHex];
+            Assert.assertEquals(i, value);
+        }
+        for (int i = 0; i < Consts.FROM_HEX.length; i++) {
+            int value = Consts.FROM_HEX[i];
+            Assert.assertTrue(value == -1 || Consts.TO_LOWERCASE_HEX[value] == i || Consts.TO_UPPDERCASE_HEX[value] == i);
+        }
+    }
+
 }
