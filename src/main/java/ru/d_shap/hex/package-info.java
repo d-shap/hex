@@ -62,7 +62,7 @@
  *     }
  *     hexOutputStream.write(read);
  * }
- * outputStream.close();
+ * hexOutputStream.close();
  * inputStream.close();
  * }</pre>
  * <p>

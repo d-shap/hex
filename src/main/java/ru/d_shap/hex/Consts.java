@@ -26,8 +26,6 @@ package ru.d_shap.hex;
  */
 final class Consts {
 
-    static final String ENCODING = "US-ASCII";
-
     static final char[] TO_LOWERCASE_HEX;
 
     static {
