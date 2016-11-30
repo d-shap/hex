@@ -32,6 +32,8 @@ import org.junit.Test;
  */
 public final class HexOutputStreamTest {
 
+    private static final String ENCODING = "US-ASCII";
+
     /**
      * Test class constructor.
      */
@@ -50,67 +52,67 @@ public final class HexOutputStreamTest {
         HexOutputStream hos = new HexOutputStream(baos, true);
 
         hos.write(0);
-        Assert.assertEquals("00", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00", new String(baos.toByteArray(), ENCODING));
 
         hos.write(1);
-        Assert.assertEquals("0001", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001", new String(baos.toByteArray(), ENCODING));
 
         hos.write(2);
-        Assert.assertEquals("000102", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102", new String(baos.toByteArray(), ENCODING));
 
         hos.write(3);
-        Assert.assertEquals("00010203", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203", new String(baos.toByteArray(), ENCODING));
 
         hos.write(4);
-        Assert.assertEquals("0001020304", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001020304", new String(baos.toByteArray(), ENCODING));
 
         hos.write(5);
-        Assert.assertEquals("000102030405", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405", new String(baos.toByteArray(), ENCODING));
 
         hos.write(6);
-        Assert.assertEquals("00010203040506", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203040506", new String(baos.toByteArray(), ENCODING));
 
         hos.write(7);
-        Assert.assertEquals("0001020304050607", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001020304050607", new String(baos.toByteArray(), ENCODING));
 
         hos.write(8);
-        Assert.assertEquals("000102030405060708", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708", new String(baos.toByteArray(), ENCODING));
 
         hos.write(9);
-        Assert.assertEquals("00010203040506070809", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203040506070809", new String(baos.toByteArray(), ENCODING));
 
         hos.write(10);
-        Assert.assertEquals("000102030405060708090A", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A", new String(baos.toByteArray(), ENCODING));
 
         hos.write(11);
-        Assert.assertEquals("000102030405060708090A0B", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B", new String(baos.toByteArray(), ENCODING));
 
         hos.write(12);
-        Assert.assertEquals("000102030405060708090A0B0C", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C", new String(baos.toByteArray(), ENCODING));
 
         hos.write(13);
-        Assert.assertEquals("000102030405060708090A0B0C0D", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D", new String(baos.toByteArray(), ENCODING));
 
         hos.write(14);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E", new String(baos.toByteArray(), ENCODING));
 
         hos.write(15);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F", new String(baos.toByteArray(), ENCODING));
 
         hos.write(16);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F10", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F10", new String(baos.toByteArray(), ENCODING));
 
         hos.write(123);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107B", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107B", new String(baos.toByteArray(), ENCODING));
 
         hos.write(242);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2", new String(baos.toByteArray(), ENCODING));
 
         hos.write(-14);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), ENCODING));
 
         hos.close();
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), ENCODING));
     }
 
     /**
@@ -124,67 +126,67 @@ public final class HexOutputStreamTest {
         HexOutputStream hos = new HexOutputStream(baos, false);
 
         hos.write(0);
-        Assert.assertEquals("00", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00", new String(baos.toByteArray(), ENCODING));
 
         hos.write(1);
-        Assert.assertEquals("0001", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001", new String(baos.toByteArray(), ENCODING));
 
         hos.write(2);
-        Assert.assertEquals("000102", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102", new String(baos.toByteArray(), ENCODING));
 
         hos.write(3);
-        Assert.assertEquals("00010203", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203", new String(baos.toByteArray(), ENCODING));
 
         hos.write(4);
-        Assert.assertEquals("0001020304", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001020304", new String(baos.toByteArray(), ENCODING));
 
         hos.write(5);
-        Assert.assertEquals("000102030405", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405", new String(baos.toByteArray(), ENCODING));
 
         hos.write(6);
-        Assert.assertEquals("00010203040506", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203040506", new String(baos.toByteArray(), ENCODING));
 
         hos.write(7);
-        Assert.assertEquals("0001020304050607", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001020304050607", new String(baos.toByteArray(), ENCODING));
 
         hos.write(8);
-        Assert.assertEquals("000102030405060708", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708", new String(baos.toByteArray(), ENCODING));
 
         hos.write(9);
-        Assert.assertEquals("00010203040506070809", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203040506070809", new String(baos.toByteArray(), ENCODING));
 
         hos.write(10);
-        Assert.assertEquals("000102030405060708090a", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a", new String(baos.toByteArray(), ENCODING));
 
         hos.write(11);
-        Assert.assertEquals("000102030405060708090a0b", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b", new String(baos.toByteArray(), ENCODING));
 
         hos.write(12);
-        Assert.assertEquals("000102030405060708090a0b0c", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c", new String(baos.toByteArray(), ENCODING));
 
         hos.write(13);
-        Assert.assertEquals("000102030405060708090a0b0c0d", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c0d", new String(baos.toByteArray(), ENCODING));
 
         hos.write(14);
-        Assert.assertEquals("000102030405060708090a0b0c0d0e", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c0d0e", new String(baos.toByteArray(), ENCODING));
 
         hos.write(15);
-        Assert.assertEquals("000102030405060708090a0b0c0d0e0f", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c0d0e0f", new String(baos.toByteArray(), ENCODING));
 
         hos.write(16);
-        Assert.assertEquals("000102030405060708090a0b0c0d0e0f10", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c0d0e0f10", new String(baos.toByteArray(), ENCODING));
 
         hos.write(123);
-        Assert.assertEquals("000102030405060708090a0b0c0d0e0f107b", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c0d0e0f107b", new String(baos.toByteArray(), ENCODING));
 
         hos.write(242);
-        Assert.assertEquals("000102030405060708090a0b0c0d0e0f107bf2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c0d0e0f107bf2", new String(baos.toByteArray(), ENCODING));
 
         hos.write(-14);
-        Assert.assertEquals("000102030405060708090a0b0c0d0e0f107bf2f2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c0d0e0f107bf2f2", new String(baos.toByteArray(), ENCODING));
 
         hos.close();
-        Assert.assertEquals("000102030405060708090a0b0c0d0e0f107bf2f2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090a0b0c0d0e0f107bf2f2", new String(baos.toByteArray(), ENCODING));
     }
 
     /**
@@ -198,67 +200,67 @@ public final class HexOutputStreamTest {
         HexOutputStream hos = new HexOutputStream(baos);
 
         hos.write(0);
-        Assert.assertEquals("00", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00", new String(baos.toByteArray(), ENCODING));
 
         hos.write(1);
-        Assert.assertEquals("0001", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001", new String(baos.toByteArray(), ENCODING));
 
         hos.write(2);
-        Assert.assertEquals("000102", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102", new String(baos.toByteArray(), ENCODING));
 
         hos.write(3);
-        Assert.assertEquals("00010203", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203", new String(baos.toByteArray(), ENCODING));
 
         hos.write(4);
-        Assert.assertEquals("0001020304", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001020304", new String(baos.toByteArray(), ENCODING));
 
         hos.write(5);
-        Assert.assertEquals("000102030405", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405", new String(baos.toByteArray(), ENCODING));
 
         hos.write(6);
-        Assert.assertEquals("00010203040506", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203040506", new String(baos.toByteArray(), ENCODING));
 
         hos.write(7);
-        Assert.assertEquals("0001020304050607", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("0001020304050607", new String(baos.toByteArray(), ENCODING));
 
         hos.write(8);
-        Assert.assertEquals("000102030405060708", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708", new String(baos.toByteArray(), ENCODING));
 
         hos.write(9);
-        Assert.assertEquals("00010203040506070809", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("00010203040506070809", new String(baos.toByteArray(), ENCODING));
 
         hos.write(10);
-        Assert.assertEquals("000102030405060708090A", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A", new String(baos.toByteArray(), ENCODING));
 
         hos.write(11);
-        Assert.assertEquals("000102030405060708090A0B", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B", new String(baos.toByteArray(), ENCODING));
 
         hos.write(12);
-        Assert.assertEquals("000102030405060708090A0B0C", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C", new String(baos.toByteArray(), ENCODING));
 
         hos.write(13);
-        Assert.assertEquals("000102030405060708090A0B0C0D", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D", new String(baos.toByteArray(), ENCODING));
 
         hos.write(14);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E", new String(baos.toByteArray(), ENCODING));
 
         hos.write(15);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F", new String(baos.toByteArray(), ENCODING));
 
         hos.write(16);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F10", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F10", new String(baos.toByteArray(), ENCODING));
 
         hos.write(123);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107B", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107B", new String(baos.toByteArray(), ENCODING));
 
         hos.write(242);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2", new String(baos.toByteArray(), ENCODING));
 
         hos.write(-14);
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), ENCODING));
 
         hos.close();
-        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), Consts.ENCODING));
+        Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), ENCODING));
     }
 
 }

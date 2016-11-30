@@ -32,6 +32,8 @@ import org.junit.Test;
  */
 public final class HexInputStreamTest {
 
+    private static final String ENCODING = "US-ASCII";
+
     /**
      * Test class constructor.
      */
@@ -47,7 +49,7 @@ public final class HexInputStreamTest {
     @Test
     public void readEmptyTest() throws IOException {
         String hex = "";
-        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
 
         Assert.assertEquals(-1, his.read());
@@ -63,7 +65,7 @@ public final class HexInputStreamTest {
     @Test
     public void readUpperCaseTest() throws IOException {
         String hex = "0F21DA471CF2";
-        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
 
         Assert.assertEquals(15, his.read());
@@ -85,7 +87,7 @@ public final class HexInputStreamTest {
     @Test
     public void readLowerCaseTest() throws IOException {
         String hex = "0f21da471cf2";
-        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
 
         Assert.assertEquals(15, his.read());
@@ -107,7 +109,7 @@ public final class HexInputStreamTest {
     @Test
     public void readBothCaseTest() throws IOException {
         String hex = "0F21dA471cf2";
-        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
 
         Assert.assertEquals(15, his.read());
@@ -129,7 +131,7 @@ public final class HexInputStreamTest {
     @Test
     public void readWrongSizeFailTest() throws IOException {
         String hex = "0f21da471cf";
-        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
 
         Assert.assertEquals(15, his.read());
@@ -154,7 +156,7 @@ public final class HexInputStreamTest {
     public void readWrongSymbolFailTest() throws IOException {
         try {
             String hex = "0x";
-            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
             Assert.fail("Wrong symbol unprocessed");
@@ -163,7 +165,7 @@ public final class HexInputStreamTest {
         }
         try {
             String hex = "gf";
-            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
             Assert.fail("Wrong symbol unprocessed");
@@ -172,7 +174,7 @@ public final class HexInputStreamTest {
         }
         try {
             String hex = "110-";
-            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
             his.read();
@@ -182,7 +184,7 @@ public final class HexInputStreamTest {
         }
         try {
             String hex = "~a";
-            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
             his.read();
@@ -192,7 +194,7 @@ public final class HexInputStreamTest {
         }
         try {
             String hex = "+a";
-            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(Consts.ENCODING));
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
             his.read();
