@@ -77,12 +77,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>3.0.4</version>
-                <configuration>
-                    <includeFilterFile>findbugs-strict.xml</includeFilterFile>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <xmlOutput>true</xmlOutput>
-                </configuration>
                 <executions>
                     <execution>
                         <id>check-findbugs</id>
@@ -92,6 +86,12 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <includeFilterFile>findbugs-strict.xml</includeFilterFile>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -147,6 +147,23 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.1.10</version>
+                <executions>
+                    <execution>
+                        <id>check-pitest</id>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <failWhenNoMutations>true</failWhenNoMutations>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
