@@ -239,7 +239,9 @@
             <property name="ignoreName" value="true" />
             <property name="ignoreModifier" value="true" />
         </module>
-        <module name="CatchParameterName" />
+        <module name="CatchParameterName">
+            <property name="format" value="^ex$" />
+        </module>
         <module name="ClassTypeParameterName" />
         <module name="ConstantName" />
         <module name="InterfaceTypeParameterName" />
