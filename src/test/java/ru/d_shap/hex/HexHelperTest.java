@@ -200,7 +200,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("aabc3f72", bytes);
             Assert.fail("Array size check fail");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Byte array is too small for hex string", ex.getMessage());
+            Assert.assertEquals("Result array is too small for hex string", ex.getMessage());
         }
     }
 
