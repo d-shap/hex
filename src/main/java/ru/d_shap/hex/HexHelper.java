@@ -96,13 +96,13 @@ public final class HexHelper {
         if (hexLength % 2 != 0) {
             throw new HexRuntimeException("Hex string must contain an even number of characters");
         }
-        int arrLength = hexLength / 2;
-        if (result.length < arrLength) {
-            throw new HexRuntimeException("Byte array is too small for hex string");
+        int resultLength = hexLength / 2;
+        if (result.length < resultLength) {
+            throw new HexRuntimeException("Result array is too small for hex string");
         }
 
         convertToBytes(hex, result);
-        return arrLength;
+        return resultLength;
     }
 
     /**
@@ -115,13 +115,16 @@ public final class HexHelper {
         if (hex == null) {
             return new byte[0];
         }
+        if ("".equals(hex)) {
+            return new byte[0];
+        }
 
         int hexLength = hex.length();
         if (hexLength % 2 != 0) {
             throw new HexRuntimeException("Hex string must contain an even number of characters");
         }
-        int arrLength = hexLength / 2;
-        byte[] result = new byte[arrLength];
+        int resultLength = hexLength / 2;
+        byte[] result = new byte[resultLength];
 
         convertToBytes(hex, result);
         return result;
@@ -183,7 +186,7 @@ public final class HexHelper {
      *
      * @param hex       hex string.
      * @param evenCheck is hex string contains even number of symbols or not.
-     * @return true, if hex string contains only hex symbols.
+     * @return true, if input string contains only hex symbols.
      */
     public static boolean isHexString(final String hex, final boolean evenCheck) {
         if (hex == null) {
