@@ -104,48 +104,6 @@ public final class HexHelperTest {
      * {@link HexHelper} class test.
      */
     @Test
-    public void getUpperByteTest() {
-        Assert.assertEquals(0, HexHelper.getUpperByte(4));
-        Assert.assertEquals(0, HexHelper.getUpperByte(8));
-        Assert.assertEquals(0, HexHelper.getUpperByte(15));
-        Assert.assertEquals(1, HexHelper.getUpperByte(16));
-        Assert.assertEquals(1, HexHelper.getUpperByte(26));
-        Assert.assertEquals(5, HexHelper.getUpperByte(83));
-        Assert.assertEquals(9, HexHelper.getUpperByte(144));
-        Assert.assertEquals(11, HexHelper.getUpperByte(180));
-        Assert.assertEquals(15, HexHelper.getUpperByte(242));
-        Assert.assertEquals(15, HexHelper.getUpperByte(255));
-        Assert.assertEquals(2, HexHelper.getUpperByte(300));
-        Assert.assertEquals(2, HexHelper.getUpperByte(300 % 256));
-        Assert.assertEquals(3, HexHelper.getUpperByte(824));
-        Assert.assertEquals(3, HexHelper.getUpperByte(824 % 256));
-    }
-
-    /**
-     * {@link HexHelper} class test.
-     */
-    @Test
-    public void getLowerByteTest() {
-        Assert.assertEquals(4, HexHelper.getLowerByte(4));
-        Assert.assertEquals(8, HexHelper.getLowerByte(8));
-        Assert.assertEquals(15, HexHelper.getLowerByte(15));
-        Assert.assertEquals(0, HexHelper.getLowerByte(16));
-        Assert.assertEquals(10, HexHelper.getLowerByte(26));
-        Assert.assertEquals(3, HexHelper.getLowerByte(83));
-        Assert.assertEquals(0, HexHelper.getLowerByte(144));
-        Assert.assertEquals(4, HexHelper.getLowerByte(180));
-        Assert.assertEquals(2, HexHelper.getLowerByte(242));
-        Assert.assertEquals(15, HexHelper.getLowerByte(255));
-        Assert.assertEquals(12, HexHelper.getLowerByte(300));
-        Assert.assertEquals(12, HexHelper.getLowerByte(300 % 256));
-        Assert.assertEquals(8, HexHelper.getLowerByte(824));
-        Assert.assertEquals(8, HexHelper.getLowerByte(824 % 256));
-    }
-
-    /**
-     * {@link HexHelper} class test.
-     */
-    @Test
     public void toBytesSpecifiedTest() {
         byte[] bytes = new byte[8];
 
@@ -275,48 +233,8 @@ public final class HexHelperTest {
      * {@link HexHelper} class test.
      */
     @Test
-    public void convertToBytePartTest() {
-        Assert.assertEquals(-1, HexHelper.convertToBytePart(-10));
-        Assert.assertEquals(-1, HexHelper.convertToBytePart(250));
-        Assert.assertEquals(-1, HexHelper.convertToBytePart('+'));
-        Assert.assertEquals(-1, HexHelper.convertToBytePart('-'));
+    public void isHexSymbolValidTest() {
 
-        Assert.assertEquals(0, HexHelper.convertToBytePart('0'));
-        Assert.assertEquals(1, HexHelper.convertToBytePart('1'));
-        Assert.assertEquals(2, HexHelper.convertToBytePart('2'));
-        Assert.assertEquals(3, HexHelper.convertToBytePart('3'));
-        Assert.assertEquals(4, HexHelper.convertToBytePart('4'));
-        Assert.assertEquals(5, HexHelper.convertToBytePart('5'));
-        Assert.assertEquals(6, HexHelper.convertToBytePart('6'));
-        Assert.assertEquals(7, HexHelper.convertToBytePart('7'));
-        Assert.assertEquals(8, HexHelper.convertToBytePart('8'));
-        Assert.assertEquals(9, HexHelper.convertToBytePart('9'));
-        Assert.assertEquals(10, HexHelper.convertToBytePart('a'));
-        Assert.assertEquals(10, HexHelper.convertToBytePart('A'));
-        Assert.assertEquals(11, HexHelper.convertToBytePart('b'));
-        Assert.assertEquals(11, HexHelper.convertToBytePart('B'));
-        Assert.assertEquals(12, HexHelper.convertToBytePart('c'));
-        Assert.assertEquals(12, HexHelper.convertToBytePart('C'));
-        Assert.assertEquals(13, HexHelper.convertToBytePart('d'));
-        Assert.assertEquals(13, HexHelper.convertToBytePart('D'));
-        Assert.assertEquals(14, HexHelper.convertToBytePart('e'));
-        Assert.assertEquals(14, HexHelper.convertToBytePart('E'));
-        Assert.assertEquals(15, HexHelper.convertToBytePart('f'));
-        Assert.assertEquals(15, HexHelper.convertToBytePart('F'));
-    }
-
-    /**
-     * {@link HexHelper} class test.
-     */
-    @Test
-    public void getFullByteTest() {
-        Assert.assertEquals(172, HexHelper.getFullByte(10, 12));
-        Assert.assertEquals(17, HexHelper.getFullByte(1, 1));
-        Assert.assertEquals(7, HexHelper.getFullByte(0, 7));
-        Assert.assertEquals(112, HexHelper.getFullByte(7, 0));
-        Assert.assertEquals(227, HexHelper.getFullByte(14, 3));
-        Assert.assertEquals(207, HexHelper.getFullByte(12, 15));
-        Assert.assertEquals(340, HexHelper.getFullByte(20, 20));
     }
 
     /**

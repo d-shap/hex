@@ -26,32 +26,32 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for {@link Consts}.
+ * Tests for {@link ExceptionMessageHelper}.
  *
  * @author Dmitry Shapovalov
  */
-public final class ConstsTest {
+public final class ExceptionMessageHelperTest {
 
     /**
      * Test class constructor.
      */
-    public ConstsTest() {
+    public ExceptionMessageHelperTest() {
         super();
     }
 
     /**
-     * {@link Consts} class test.
+     * {@link ExceptionMessageHelper} class test.
      *
      * @throws IllegalAccessException exception in test.
      * @throws InstantiationException exception in test.
      */
     @Test(expected = IllegalAccessException.class)
     public void constructorPrivateTest() throws IllegalAccessException, InstantiationException {
-        Consts.class.newInstance();
+        ExceptionMessageHelper.class.newInstance();
     }
 
     /**
-     * {@link Consts} class test.
+     * {@link ExceptionMessageHelper} class test.
      *
      * @throws IllegalAccessException    exception in test.
      * @throws InstantiationException    exception in test.
@@ -59,33 +59,30 @@ public final class ConstsTest {
      */
     @Test
     public void constructorInaccessibleTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
-        Constructor[] ctors = Consts.class.getDeclaredConstructors();
+        Constructor[] ctors = ExceptionMessageHelper.class.getDeclaredConstructors();
         Assert.assertEquals(1, ctors.length);
         Constructor ctor = ctors[0];
         Assert.assertFalse(ctor.isAccessible());
         ctor.setAccessible(true);
-        Assert.assertEquals(Consts.class, ctor.newInstance().getClass());
+        Assert.assertEquals(ExceptionMessageHelper.class, ctor.newInstance().getClass());
     }
 
     /**
-     * {@link Consts} class test.
+     * {@link ExceptionMessageHelper} class test.
      */
     @Test
-    public void valueConsistencyTest() {
-        for (int i = 0; i < Consts.TO_LOWERCASE_HEX.length; i++) {
-            int lowercaseHex = Consts.TO_LOWERCASE_HEX[i];
-            int value = Consts.FROM_HEX[lowercaseHex];
-            Assert.assertEquals(i, value);
-        }
-        for (int i = 0; i < Consts.TO_UPPERCASE_HEX.length; i++) {
-            int uppercaseHex = Consts.TO_UPPERCASE_HEX[i];
-            int value = Consts.FROM_HEX[uppercaseHex];
-            Assert.assertEquals(i, value);
-        }
-        for (int i = 0; i < Consts.FROM_HEX.length; i++) {
-            int value = Consts.FROM_HEX[i];
-            Assert.assertTrue(value == -1 || Consts.TO_LOWERCASE_HEX[value] == i || Consts.TO_UPPERCASE_HEX[value] == i);
-        }
+    public void createMessageTest() {
+        Assert.assertEquals("Wrong number of symbols in hex string (11)", ExceptionMessageHelper.createWrongHexStringSizeMessage(11));
+        Assert.assertEquals("Wrong number of symbols in hex string (13)", ExceptionMessageHelper.createWrongHexStringSizeMessage(13));
+
+        Assert.assertEquals("Result array is too small for hex string (13), expected size is (16)", ExceptionMessageHelper.createWrongResultArrayMessage(16, 13));
+        Assert.assertEquals("Result array is too small for hex string (9), expected size is (20)", ExceptionMessageHelper.createWrongResultArrayMessage(20, 9));
+
+        Assert.assertEquals("Wrong symbol obtained: '-' (45)", ExceptionMessageHelper.createWrongHexSymbol('-'));
+        Assert.assertEquals("Wrong symbol obtained: '!' (33)", ExceptionMessageHelper.createWrongHexSymbol('!'));
+        Assert.assertEquals("Wrong symbol obtained: '#' (35)", ExceptionMessageHelper.createWrongHexSymbol('#'));
+
+        Assert.assertEquals("Unexpected end of stream", ExceptionMessageHelper.createEndOfStreamMessage());
     }
 
 }
