@@ -144,7 +144,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("abc", new byte[8]);
             Assert.fail("Even check is wrong");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Hex string must contain an even number of characters", ex.getMessage());
+            Assert.assertEquals("Wrong number of symbols in hex string (3)", ex.getMessage());
         }
     }
 
@@ -158,7 +158,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("aabc3f72", bytes);
             Assert.fail("Array size check fail");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Result array is too small for hex string", ex.getMessage());
+            Assert.assertEquals("Result array is too small for hex string (3), expected size is (4)", ex.getMessage());
         }
     }
 
@@ -206,7 +206,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("abc");
             Assert.fail("Even check is wrong");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Hex string must contain an even number of characters", ex.getMessage());
+            Assert.assertEquals("Wrong number of symbols in hex string (3)", ex.getMessage());
         }
     }
 
