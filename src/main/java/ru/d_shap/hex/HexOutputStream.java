@@ -31,7 +31,9 @@ public final class HexOutputStream extends OutputStream {
 
     private final OutputStream _outputStream;
 
-    private final char[] _hexes;
+    private final int[] _hexUpperSymbols;
+
+    private final int[] _hexLowerSymbols;
 
     /**
      * Create new object. Upper case symbols are used for hex representation.
@@ -52,17 +54,20 @@ public final class HexOutputStream extends OutputStream {
         super();
         _outputStream = outputStream;
         if (upperCase) {
-            _hexes = Consts.TO_UPPDERCASE_HEX;
+            _hexUpperSymbols = Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL;
+            _hexLowerSymbols = Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL;
         } else {
-            _hexes = Consts.TO_LOWERCASE_HEX;
+            _hexUpperSymbols = Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL;
+            _hexLowerSymbols = Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL;
         }
     }
 
     @Override
     public void write(final int value) throws IOException {
-        char upperByte = _hexes[HexHelper.getUpperByte(value)];
+        int idx = value & 0xFF;
+        int upperByte = _hexUpperSymbols[idx];
         _outputStream.write(upperByte);
-        char lowerByte = _hexes[HexHelper.getLowerByte(value)];
+        int lowerByte = _hexLowerSymbols[idx];
         _outputStream.write(lowerByte);
     }
 

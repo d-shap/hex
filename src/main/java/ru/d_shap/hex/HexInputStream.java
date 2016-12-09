@@ -47,21 +47,19 @@ public final class HexInputStream extends InputStream {
         if (symbol1 < 0) {
             return -1;
         }
-        int upperByte = HexHelper.convertToBytePart(symbol1);
-        if (upperByte < 0) {
-            throw new IOException("Wrong symbol obtained: '" + (char) symbol1 + "' (" + symbol1 + ")");
+        if (!HexHelper.isHexSymbolValid(symbol1)) {
+            throw new IOException(ExceptionMessageHelper.createWrongHexSymbol(symbol1));
         }
 
         int symbol2 = _inputStream.read();
         if (symbol2 < 0) {
-            throw new IOException("Unexpected end of stream");
+            throw new IOException(ExceptionMessageHelper.createEndOfStreamMessage());
         }
-        int lowerByte = HexHelper.convertToBytePart(symbol2);
-        if (lowerByte < 0) {
-            throw new IOException("Wrong symbol obtained: '" + (char) symbol2 + "' (" + symbol2 + ")");
+        if (!HexHelper.isHexSymbolValid(symbol2)) {
+            throw new IOException(ExceptionMessageHelper.createWrongHexSymbol(symbol2));
         }
 
-        return HexHelper.getFullByte(upperByte, lowerByte);
+        return Consts.FROM_HEX_UPPER_BYTE[symbol1] + Consts.FROM_HEX_LOWER_BYTE[symbol2];
     }
 
     @Override

@@ -52,29 +52,25 @@ public final class HexHelper {
             return "";
         }
 
-        char[] hex;
+        int[] hexUpperSymbols;
+        int[] hexLowerSymbols;
         if (upperCase) {
-            hex = Consts.TO_UPPDERCASE_HEX;
+            hexUpperSymbols = Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL;
+            hexLowerSymbols = Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL;
         } else {
-            hex = Consts.TO_LOWERCASE_HEX;
+            hexUpperSymbols = Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL;
+            hexLowerSymbols = Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL;
         }
 
         StringBuilder buffer = new StringBuilder(2 * bytes.length);
         for (byte value : bytes) {
-            char upperByte = hex[getUpperByte(value)];
-            buffer.append(upperByte);
-            char lowerByte = hex[getLowerByte(value)];
-            buffer.append(lowerByte);
+            int idx = value & 0xFF;
+            int upperByte = hexUpperSymbols[idx];
+            buffer.append((char) upperByte);
+            int lowerByte = hexLowerSymbols[idx];
+            buffer.append((char) lowerByte);
         }
         return buffer.toString();
-    }
-
-    static int getUpperByte(final int value) {
-        return (value & 0xF0) >> 4;
-    }
-
-    static int getLowerByte(final int value) {
-        return value & 0x0F;
     }
 
     /**
@@ -94,11 +90,11 @@ public final class HexHelper {
 
         int hexLength = hex.length();
         if (hexLength % 2 != 0) {
-            throw new HexRuntimeException("Hex string must contain an even number of characters");
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringSizeMessage(hexLength));
         }
         int resultLength = hexLength / 2;
         if (result.length < resultLength) {
-            throw new HexRuntimeException("Result array is too small for hex string");
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongResultArrayMessage(resultLength, result.length));
         }
 
         convertToBytes(hex, result);
@@ -121,7 +117,7 @@ public final class HexHelper {
 
         int hexLength = hex.length();
         if (hexLength % 2 != 0) {
-            throw new HexRuntimeException("Hex string must contain an even number of characters");
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringSizeMessage(hexLength));
         }
         int resultLength = hexLength / 2;
         byte[] result = new byte[resultLength];
@@ -131,44 +127,32 @@ public final class HexHelper {
     }
 
     private static void convertToBytes(final String hex, final byte[] result) {
-        int hexIndex = 0;
-        int resultIndex = 0;
         int hexLength = hex.length();
 
+        int hexIndex = 0;
         int symbol1;
-        int upperByte;
         int symbol2;
-        int lowerByte;
-
+        int resultIndex = 0;
         while (hexIndex < hexLength) {
             symbol1 = hex.charAt(hexIndex);
-            upperByte = convertToBytePart(symbol1);
-            if (upperByte < 0) {
-                throw new HexRuntimeException("Wrong symbol obtained: '" + (char) symbol1 + "' (" + symbol1 + ")");
+            if (!isHexSymbolValid(symbol1)) {
+                throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexSymbol(symbol1));
             }
+            hexIndex++;
 
-            symbol2 = hex.charAt(hexIndex + 1);
-            lowerByte = convertToBytePart(symbol2);
-            if (lowerByte < 0) {
-                throw new HexRuntimeException("Wrong symbol obtained: '" + (char) symbol2 + "' (" + symbol2 + ")");
+            symbol2 = hex.charAt(hexIndex);
+            if (!isHexSymbolValid(symbol2)) {
+                throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexSymbol(symbol2));
             }
+            hexIndex++;
 
-            result[resultIndex] = (byte) getFullByte(upperByte, lowerByte);
-            hexIndex += 2;
+            result[resultIndex] = (byte) (Consts.FROM_HEX_UPPER_BYTE[symbol1] + Consts.FROM_HEX_LOWER_BYTE[symbol2]);
             resultIndex++;
         }
     }
 
-    static int convertToBytePart(final int value) {
-        if (value >= 0 && value < Consts.FROM_HEX.length && Consts.FROM_HEX[value] >= 0) {
-            return (byte) Consts.FROM_HEX[value];
-        } else {
-            return -1;
-        }
-    }
-
-    static int getFullByte(final int upperByte, final int lowerByte) {
-        return (upperByte << 4) + lowerByte;
+    static boolean isHexSymbolValid(final int symbol) {
+        return symbol >= 0 && symbol < Consts.FROM_HEX.length && Consts.FROM_HEX[symbol] >= 0;
     }
 
     /**
@@ -201,7 +185,7 @@ public final class HexHelper {
             return false;
         }
         for (int i = 0; i < hexLength; i++) {
-            if (convertToBytePart(hex.charAt(i)) < 0) {
+            if (!isHexSymbolValid(hex.charAt(i))) {
                 return false;
             }
         }
