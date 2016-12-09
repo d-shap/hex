@@ -33,7 +33,7 @@ public class HexRuntimeException extends RuntimeException {
      *
      * @param message excepton message.
      */
-    public HexRuntimeException(final String message) {
+    HexRuntimeException(final String message) {
         super(message);
     }
 
