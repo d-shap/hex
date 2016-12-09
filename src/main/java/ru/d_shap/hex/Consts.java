@@ -26,10 +26,10 @@ package ru.d_shap.hex;
  */
 final class Consts {
 
-    static final char[] TO_LOWERCASE_HEX;
+    static final int[] TO_LOWERCASE_HEX;
 
     static {
-        TO_LOWERCASE_HEX = new char[16];
+        TO_LOWERCASE_HEX = new int[16];
 
         TO_LOWERCASE_HEX[0] = '0';
         TO_LOWERCASE_HEX[1] = '1';
@@ -49,27 +49,63 @@ final class Consts {
         TO_LOWERCASE_HEX[15] = 'f';
     }
 
-    static final char[] TO_UPPDERCASE_HEX;
+    static final int[] TO_LOWERCASE_HEX_UPPER_SYMBOL;
 
     static {
-        TO_UPPDERCASE_HEX = new char[16];
+        TO_LOWERCASE_HEX_UPPER_SYMBOL = new int[256];
+        for (int i = 0; i < TO_LOWERCASE_HEX_UPPER_SYMBOL.length; i++) {
+            TO_LOWERCASE_HEX_UPPER_SYMBOL[i] = TO_LOWERCASE_HEX[(i & 0xF0) >> 4];
+        }
+    }
 
-        TO_UPPDERCASE_HEX[0] = '0';
-        TO_UPPDERCASE_HEX[1] = '1';
-        TO_UPPDERCASE_HEX[2] = '2';
-        TO_UPPDERCASE_HEX[3] = '3';
-        TO_UPPDERCASE_HEX[4] = '4';
-        TO_UPPDERCASE_HEX[5] = '5';
-        TO_UPPDERCASE_HEX[6] = '6';
-        TO_UPPDERCASE_HEX[7] = '7';
-        TO_UPPDERCASE_HEX[8] = '8';
-        TO_UPPDERCASE_HEX[9] = '9';
-        TO_UPPDERCASE_HEX[10] = 'A';
-        TO_UPPDERCASE_HEX[11] = 'B';
-        TO_UPPDERCASE_HEX[12] = 'C';
-        TO_UPPDERCASE_HEX[13] = 'D';
-        TO_UPPDERCASE_HEX[14] = 'E';
-        TO_UPPDERCASE_HEX[15] = 'F';
+    static final int[] TO_LOWERCASE_HEX_LOWER_SYMBOL;
+
+    static {
+        TO_LOWERCASE_HEX_LOWER_SYMBOL = new int[256];
+        for (int i = 0; i < TO_LOWERCASE_HEX_LOWER_SYMBOL.length; i++) {
+            TO_LOWERCASE_HEX_LOWER_SYMBOL[i] = TO_LOWERCASE_HEX[i & 0x0F];
+        }
+    }
+
+    static final int[] TO_UPPERCASE_HEX;
+
+    static {
+        TO_UPPERCASE_HEX = new int[16];
+
+        TO_UPPERCASE_HEX[0] = '0';
+        TO_UPPERCASE_HEX[1] = '1';
+        TO_UPPERCASE_HEX[2] = '2';
+        TO_UPPERCASE_HEX[3] = '3';
+        TO_UPPERCASE_HEX[4] = '4';
+        TO_UPPERCASE_HEX[5] = '5';
+        TO_UPPERCASE_HEX[6] = '6';
+        TO_UPPERCASE_HEX[7] = '7';
+        TO_UPPERCASE_HEX[8] = '8';
+        TO_UPPERCASE_HEX[9] = '9';
+        TO_UPPERCASE_HEX[10] = 'A';
+        TO_UPPERCASE_HEX[11] = 'B';
+        TO_UPPERCASE_HEX[12] = 'C';
+        TO_UPPERCASE_HEX[13] = 'D';
+        TO_UPPERCASE_HEX[14] = 'E';
+        TO_UPPERCASE_HEX[15] = 'F';
+    }
+
+    static final int[] TO_UPPERCASE_HEX_UPPER_SYMBOL;
+
+    static {
+        TO_UPPERCASE_HEX_UPPER_SYMBOL = new int[256];
+        for (int i = 0; i < TO_UPPERCASE_HEX_UPPER_SYMBOL.length; i++) {
+            TO_UPPERCASE_HEX_UPPER_SYMBOL[i] = TO_UPPERCASE_HEX[(i & 0xF0) >> 4];
+        }
+    }
+
+    static final int[] TO_UPPERCASE_HEX_LOWER_SYMBOL;
+
+    static {
+        TO_UPPERCASE_HEX_LOWER_SYMBOL = new int[256];
+        for (int i = 0; i < TO_UPPERCASE_HEX_LOWER_SYMBOL.length; i++) {
+            TO_UPPERCASE_HEX_LOWER_SYMBOL[i] = TO_UPPERCASE_HEX[i & 0x0F];
+        }
     }
 
     static final int[] FROM_HEX;
@@ -110,6 +146,28 @@ final class Consts {
 
         FROM_HEX['f'] = 15;
         FROM_HEX['F'] = 15;
+    }
+
+    static final int[] FROM_HEX_UPPER_BYTE;
+
+    static {
+        FROM_HEX_UPPER_BYTE = new int[FROM_HEX.length];
+        for (int i = 0; i < FROM_HEX_UPPER_BYTE.length; i++) {
+            if (FROM_HEX[i] == -1) {
+                FROM_HEX_UPPER_BYTE[i] = -1;
+            } else {
+                FROM_HEX_UPPER_BYTE[i] = FROM_HEX[i] << 4;
+            }
+        }
+    }
+
+    static final int[] FROM_HEX_LOWER_BYTE;
+
+    static {
+        FROM_HEX_LOWER_BYTE = new int[FROM_HEX.length];
+        for (int i = 0; i < FROM_HEX_LOWER_BYTE.length; i++) {
+            FROM_HEX_LOWER_BYTE[i] = FROM_HEX[i];
+        }
     }
 
     private Consts() {
