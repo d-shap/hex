@@ -51,19 +51,17 @@
  * An example, how to write hex symbols to the file:
  * </p>
  * <pre>{@code
- * FileInputStream inputStream = new FileInputStream("some input file");
- * FileOutputStream outputStream = new FileOutputStream("some output file");
- * HexOutputStream hexOutputStream = new HexOutputStream(outputStream);
- * int read;
- * while (true) {
- *     read = inputStream.read();
- *     if (read < 0) {
- *         break;
- *     }
- *     hexOutputStream.write(read);
+ * try (FileInputStream inputStream = new FileInputStream("some input file");
+ *      HexOutputStream outputStream = new HexOutputStream(new FileOutputStream("some output file"))) {
+ *    int b;
+ *    while (true) {
+ *       b = inputStream.read();
+ *       if (b < 0) {
+ *          break;
+ *       }
+ *       outputStream.write(b);
+ *    }
  * }
- * hexOutputStream.close();
- * inputStream.close();
  * }</pre>
  * <p>
  * Each byte is represented with two hex symbols. That is why hex representation doubles the original data size.
