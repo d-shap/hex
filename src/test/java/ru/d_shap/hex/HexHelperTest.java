@@ -260,9 +260,11 @@ public final class HexHelperTest {
         Assert.assertTrue(HexHelper.isHexSymbolValid('f'));
         Assert.assertTrue(HexHelper.isHexSymbolValid('F'));
 
+        Assert.assertFalse(HexHelper.isHexSymbolValid(0));
         Assert.assertFalse(HexHelper.isHexSymbolValid(-1));
         Assert.assertFalse(HexHelper.isHexSymbolValid(-2));
         Assert.assertFalse(HexHelper.isHexSymbolValid(12));
+        Assert.assertFalse(HexHelper.isHexSymbolValid(103));
         Assert.assertFalse(HexHelper.isHexSymbolValid(120));
         Assert.assertFalse(HexHelper.isHexSymbolValid(500));
         Assert.assertFalse(HexHelper.isHexSymbolValid('g'));
