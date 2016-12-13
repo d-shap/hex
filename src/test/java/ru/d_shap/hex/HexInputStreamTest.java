@@ -171,7 +171,7 @@ public final class HexInputStreamTest {
             String hex = "110-";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            his.read();
+            Assert.assertEquals(17, his.read());
             his.read();
             Assert.fail("Wrong symbol unprocessed");
         } catch (IOException ex) {
@@ -182,7 +182,6 @@ public final class HexInputStreamTest {
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
-            his.read();
             Assert.fail("Wrong symbol unprocessed");
         } catch (IOException ex) {
             Assert.assertEquals("Wrong symbol obtained: '~' (126)", ex.getMessage());
@@ -192,10 +191,29 @@ public final class HexInputStreamTest {
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
-            his.read();
             Assert.fail("Wrong symbol unprocessed");
         } catch (IOException ex) {
             Assert.assertEquals("Wrong symbol obtained: '+' (43)", ex.getMessage());
+        }
+        try {
+            String hex = "aa\u0000b";
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+            HexInputStream his = new HexInputStream(bais);
+            Assert.assertEquals(170, his.read());
+            his.read();
+            Assert.fail("Wrong symbol unprocessed");
+        } catch (IOException ex) {
+            Assert.assertEquals("Wrong symbol obtained: '\u0000' (0)", ex.getMessage());
+        }
+        try {
+            String hex = "aab\u0000";
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+            HexInputStream his = new HexInputStream(bais);
+            Assert.assertEquals(170, his.read());
+            his.read();
+            Assert.fail("Wrong symbol unprocessed");
+        } catch (IOException ex) {
+            Assert.assertEquals("Wrong symbol obtained: '\u0000' (0)", ex.getMessage());
         }
     }
 
