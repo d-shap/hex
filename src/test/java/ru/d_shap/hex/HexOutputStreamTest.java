@@ -21,6 +21,7 @@ package ru.d_shap.hex;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -261,6 +262,52 @@ public final class HexOutputStreamTest {
 
         hos.close();
         Assert.assertEquals("000102030405060708090A0B0C0D0E0F107BF2F2", new String(baos.toByteArray(), ENCODING));
+    }
+
+    /**
+     * {@link HexOutputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void closeTest() throws IOException {
+        CloseStream closeStream = new CloseStream();
+        HexOutputStream hos = new HexOutputStream(closeStream);
+        hos.write(123);
+
+        Assert.assertFalse(closeStream.isClosed());
+        hos.close();
+        Assert.assertTrue(closeStream.isClosed());
+    }
+
+    /**
+     * Output stream to test close method.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class CloseStream extends OutputStream {
+
+        private boolean _closed;
+
+        CloseStream() {
+            super();
+            _closed = false;
+        }
+
+        @Override
+        public void write(final int value) throws IOException {
+            // Ignore
+        }
+
+        boolean isClosed() {
+            return _closed;
+        }
+
+        @Override
+        public void close() throws IOException {
+            _closed = true;
+        }
+
     }
 
 }

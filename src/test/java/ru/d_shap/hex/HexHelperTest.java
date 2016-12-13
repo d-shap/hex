@@ -73,6 +73,7 @@ public final class HexHelperTest {
     @Test
     public void toHexUpperCaseTest() {
         Assert.assertEquals("", HexHelper.toHex(null, true));
+        Assert.assertEquals("", HexHelper.toHex(new byte[0], true));
         Assert.assertEquals("01058CFAF2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, true));
         Assert.assertEquals("111CB3F2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, true));
         Assert.assertEquals("FFFAB4115E", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, true));
@@ -84,6 +85,7 @@ public final class HexHelperTest {
     @Test
     public void toHexLowerCaseTest() {
         Assert.assertEquals("", HexHelper.toHex(null, false));
+        Assert.assertEquals("", HexHelper.toHex(new byte[0], false));
         Assert.assertEquals("01058cfaf2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, false));
         Assert.assertEquals("111cb3f2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, false));
         Assert.assertEquals("fffab4115e", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, false));
@@ -95,6 +97,7 @@ public final class HexHelperTest {
     @Test
     public void toHexDefaultCaseTest() {
         Assert.assertEquals("", HexHelper.toHex(null));
+        Assert.assertEquals("", HexHelper.toHex(new byte[0]));
         Assert.assertEquals("01058CFAF2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}));
         Assert.assertEquals("111CB3F2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}));
         Assert.assertEquals("FFFAB4115E", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}));
@@ -234,7 +237,36 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexSymbolValidTest() {
+        Assert.assertTrue(HexHelper.isHexSymbolValid('0'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('1'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('2'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('3'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('4'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('5'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('6'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('7'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('8'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('9'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('a'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('A'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('b'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('B'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('c'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('C'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('d'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('D'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('e'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('E'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('f'));
+        Assert.assertTrue(HexHelper.isHexSymbolValid('F'));
 
+        Assert.assertFalse(HexHelper.isHexSymbolValid(-1));
+        Assert.assertFalse(HexHelper.isHexSymbolValid(-2));
+        Assert.assertFalse(HexHelper.isHexSymbolValid(12));
+        Assert.assertFalse(HexHelper.isHexSymbolValid(120));
+        Assert.assertFalse(HexHelper.isHexSymbolValid(500));
+        Assert.assertFalse(HexHelper.isHexSymbolValid('g'));
+        Assert.assertFalse(HexHelper.isHexSymbolValid('G'));
     }
 
     /**

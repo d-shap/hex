@@ -21,6 +21,7 @@ package ru.d_shap.hex;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -53,8 +54,6 @@ public final class HexInputStreamTest {
         HexInputStream his = new HexInputStream(bais);
 
         Assert.assertEquals(-1, his.read());
-
-        his.close();
     }
 
     /**
@@ -75,8 +74,6 @@ public final class HexInputStreamTest {
         Assert.assertEquals(28, his.read());
         Assert.assertEquals(242, his.read());
         Assert.assertEquals(-1, his.read());
-
-        his.close();
     }
 
     /**
@@ -97,8 +94,6 @@ public final class HexInputStreamTest {
         Assert.assertEquals(28, his.read());
         Assert.assertEquals(242, his.read());
         Assert.assertEquals(-1, his.read());
-
-        his.close();
     }
 
     /**
@@ -119,8 +114,6 @@ public final class HexInputStreamTest {
         Assert.assertEquals(28, his.read());
         Assert.assertEquals(242, his.read());
         Assert.assertEquals(-1, his.read());
-
-        his.close();
     }
 
     /**
@@ -129,7 +122,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void readWrongSizeFailTest() throws IOException {
+    public void readOddSymbolCountFailTest() throws IOException {
         String hex = "0f21da471cf";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -155,18 +148,20 @@ public final class HexInputStreamTest {
     @Test
     public void readWrongSymbolFailTest() throws IOException {
         try {
-            String hex = "0x";
+            String hex = "000x12";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
+            Assert.assertEquals(0, his.read());
             his.read();
             Assert.fail("Wrong symbol unprocessed");
         } catch (IOException ex) {
             Assert.assertEquals("Wrong symbol obtained: 'x' (120)", ex.getMessage());
         }
         try {
-            String hex = "gf";
+            String hex = "00gf12";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
+            Assert.assertEquals(0, his.read());
             his.read();
             Assert.fail("Wrong symbol unprocessed");
         } catch (IOException ex) {
@@ -202,6 +197,52 @@ public final class HexInputStreamTest {
         } catch (IOException ex) {
             Assert.assertEquals("Wrong symbol obtained: '+' (43)", ex.getMessage());
         }
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void closeTest() throws IOException {
+        CloseStream closeStream = new CloseStream();
+        HexInputStream his = new HexInputStream(closeStream);
+        Assert.assertEquals(-1, his.read());
+
+        Assert.assertFalse(closeStream.isClosed());
+        his.close();
+        Assert.assertTrue(closeStream.isClosed());
+    }
+
+    /**
+     * Input stream to test close method.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class CloseStream extends InputStream {
+
+        private boolean _closed;
+
+        CloseStream() {
+            super();
+            _closed = false;
+        }
+
+        @Override
+        public int read() throws IOException {
+            return -1;
+        }
+
+        boolean isClosed() {
+            return _closed;
+        }
+
+        @Override
+        public void close() throws IOException {
+            _closed = true;
+        }
+
     }
 
 }
