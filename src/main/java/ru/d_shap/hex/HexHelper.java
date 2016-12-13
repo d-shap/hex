@@ -44,7 +44,7 @@ public final class HexHelper {
      * Convert byte array to hex string.
      *
      * @param bytes     byte array.
-     * @param upperCase use upper case symbols or not.
+     * @param upperCase use upper case symbols for hex representation or not.
      * @return hex string.
      */
     public static String toHex(final byte[] bytes, final boolean upperCase) {
@@ -78,7 +78,7 @@ public final class HexHelper {
      *
      * @param hex    hex string.
      * @param result byte array to write result.
-     * @return number of bytes affected in byte array.
+     * @return number of bytes affected in the byte array.
      */
     public static int toBytes(final String hex, final byte[] result) {
         if (hex == null) {
@@ -134,20 +134,22 @@ public final class HexHelper {
         int symbol2;
         int resultIndex = 0;
         while (hexIndex < hexLength) {
-            symbol1 = hex.charAt(hexIndex);
-            if (!isHexSymbolValid(symbol1)) {
-                throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexSymbol(symbol1));
-            }
+            symbol1 = hexCharAt(hex, hexIndex);
             hexIndex++;
-
-            symbol2 = hex.charAt(hexIndex);
-            if (!isHexSymbolValid(symbol2)) {
-                throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexSymbol(symbol2));
-            }
+            symbol2 = hexCharAt(hex, hexIndex);
             hexIndex++;
 
             result[resultIndex] = (byte) (Consts.FROM_HEX_UPPER_BYTE[symbol1] + Consts.FROM_HEX_LOWER_BYTE[symbol2]);
             resultIndex++;
+        }
+    }
+
+    private static int hexCharAt(final String hex, final int hexIndex) {
+        int symbol = hex.charAt(hexIndex);
+        if (isHexSymbolValid(symbol)) {
+            return symbol;
+        } else {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexSymbol(symbol));
         }
     }
 
