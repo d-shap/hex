@@ -84,9 +84,6 @@ public final class HexHelper {
         if (hex == null) {
             return 0;
         }
-        if ("".equals(hex)) {
-            return 0;
-        }
 
         int hexLength = hex.length();
         if (hexLength % 2 != 0) {
@@ -109,9 +106,6 @@ public final class HexHelper {
      */
     public static byte[] toBytes(final String hex) {
         if (hex == null) {
-            return new byte[0];
-        }
-        if ("".equals(hex)) {
             return new byte[0];
         }
 
