@@ -71,6 +71,22 @@ public final class ConstsTest {
      * {@link Consts} class test.
      */
     @Test
+    public void lengthTest() {
+        Assert.assertEquals(16, Consts.TO_LOWERCASE_HEX.length);
+        Assert.assertEquals(256, Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL.length);
+        Assert.assertEquals(256, Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL.length);
+        Assert.assertEquals(16, Consts.TO_UPPERCASE_HEX.length);
+        Assert.assertEquals(256, Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL.length);
+        Assert.assertEquals(256, Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL.length);
+        Assert.assertEquals(103, Consts.FROM_HEX.length);
+        Assert.assertEquals(103, Consts.FROM_HEX_UPPER_BYTE.length);
+        Assert.assertEquals(103, Consts.FROM_HEX_LOWER_BYTE.length);
+    }
+
+    /**
+     * {@link Consts} class test.
+     */
+    @Test
     public void valueConsistencyTest() {
         for (int i = 0; i < Consts.TO_LOWERCASE_HEX.length; i++) {
             int lowercaseHex = Consts.TO_LOWERCASE_HEX[i];
