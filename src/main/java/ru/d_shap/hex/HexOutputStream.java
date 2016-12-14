@@ -36,7 +36,7 @@ public final class HexOutputStream extends OutputStream {
     private final int[] _hexLowerSymbols;
 
     /**
-     * Create new object. Upper case symbols are used for hex representation.
+     * Create new object. Upper case symbols are used for the hex representation.
      *
      * @param outputStream output stream to write bytes.
      */
@@ -48,7 +48,7 @@ public final class HexOutputStream extends OutputStream {
      * Create new object.
      *
      * @param outputStream output stream to write bytes.
-     * @param upperCase    use upper case symbols for hex representation or not.
+     * @param upperCase    use upper case symbols for the hex representation or not.
      */
     public HexOutputStream(final OutputStream outputStream, final boolean upperCase) {
         super();
