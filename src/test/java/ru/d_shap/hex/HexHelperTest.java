@@ -127,6 +127,9 @@ public final class HexHelperTest {
 
         Assert.assertEquals(3, HexHelper.toBytes("aAcD2F", bytes));
         Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47, 120, (byte) 144, 0, 0, 0}, bytes);
+
+        Assert.assertEquals(8, HexHelper.toBytes("0102030405060708", bytes));
+        Assert.assertArrayEquals(new byte[]{1, 2, 3, 4, 5, 6, 7, 8}, bytes);
     }
 
     /**
