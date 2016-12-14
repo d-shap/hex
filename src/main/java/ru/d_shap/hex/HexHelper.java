@@ -31,7 +31,7 @@ public final class HexHelper {
     }
 
     /**
-     * Convert byte array to hex string. Upper case symbols are used for hex representation.
+     * Convert byte array to hex string. Upper case symbols are used for the hex representation.
      *
      * @param bytes byte array.
      * @return hex string.
@@ -44,7 +44,7 @@ public final class HexHelper {
      * Convert byte array to hex string.
      *
      * @param bytes     byte array.
-     * @param upperCase use upper case symbols for hex representation or not.
+     * @param upperCase use upper case symbols for the hex representation or not.
      * @return hex string.
      */
     public static String toHex(final byte[] bytes, final boolean upperCase) {
