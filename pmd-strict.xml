@@ -196,7 +196,7 @@
     <!-- coupling.xml -->
     <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">
         <properties>
-            <property name="threshold" value="30" />
+            <property name="threshold" value="100" />
         </properties>
     </rule>
     <!-- rule ref="rulesets/java/coupling.xml/ExcessiveImports" / -->

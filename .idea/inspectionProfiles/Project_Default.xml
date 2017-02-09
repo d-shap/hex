@@ -25,7 +25,7 @@
     <inspection_tool class="ClassInitializerMayBeStatic" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassNameDiffersFromFileName" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassReferencesSubclass" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="ClassWithOnlyPrivateConstructors" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="ClassWithOnlyPrivateConstructors" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="CloneCallsSuperClone" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CloneDeclaresCloneNotSupported" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CloneInNonCloneableClass" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -80,7 +80,7 @@
     <inspection_tool class="EqualsCalledOnEnumConstant" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EqualsWhichDoesntCheckParameterClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EqualsWithItself" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ErrorRethrown" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="ErrorRethrown" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ExtendsAnnotation" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExtendsObject" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExternalizableWithoutPublicNoArgConstructor" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -269,6 +269,9 @@
     <inspection_tool class="RedundantThrows" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="RedundantTypeArguments" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReflectionForUnavailableAnnotation" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="RefusedBequest" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoreEmptySuperMethods" value="false" />
+    </inspection_tool>
     <inspection_tool class="ReplaceAllDot" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReturnFromFinallyBlock" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SafeVarargsDetector" enabled="true" level="ERROR" enabled_by_default="true" />
