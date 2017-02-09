@@ -11,13 +11,29 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
+        <build.plugin.pitest.skip>true</build.plugin.pitest.skip>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>run-pitest</id>
+            <properties>
+                <build.plugin.pitest.skip>false</build.plugin.pitest.skip>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.d_shap</groupId>
+            <artifactId>assertions</artifactId>
+            <version>1.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -200,7 +216,7 @@
                     </jvmArgs>
                     <failWhenNoMutations>true</failWhenNoMutations>
                     <timestampedReports>false</timestampedReports>
-                    <skip>true</skip>
+                    <skip>${build.plugin.pitest.skip}</skip>
                 </configuration>
             </plugin>
             <plugin>
@@ -231,15 +247,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>artifactory</id>
-            <url>${artifactory.url}/${artifactory.repo.release}</url>
-        </repository>
-        <snapshotRepository>
-            <id>artifactory</id>
-            <url>${artifactory.url}/${artifactory.repo.snapshot}</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
