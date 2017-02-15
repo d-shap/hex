@@ -23,8 +23,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link HexInputStream}.
@@ -52,8 +53,7 @@ public final class HexInputStreamTest {
         String hex = "";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
-
-        Assert.assertEquals(-1, his.read());
+        Assertions.assertThat(his).isCompleted();
     }
 
     /**
@@ -66,14 +66,7 @@ public final class HexInputStreamTest {
         String hex = "0F21DA471CF2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
-
-        Assert.assertEquals(15, his.read());
-        Assert.assertEquals(33, his.read());
-        Assert.assertEquals(218, his.read());
-        Assert.assertEquals(71, his.read());
-        Assert.assertEquals(28, his.read());
-        Assert.assertEquals(242, his.read());
-        Assert.assertEquals(-1, his.read());
+        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, 218, 71, 28, 242);
     }
 
     /**
@@ -86,14 +79,7 @@ public final class HexInputStreamTest {
         String hex = "0f21da471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
-
-        Assert.assertEquals(15, his.read());
-        Assert.assertEquals(33, his.read());
-        Assert.assertEquals(218, his.read());
-        Assert.assertEquals(71, his.read());
-        Assert.assertEquals(28, his.read());
-        Assert.assertEquals(242, his.read());
-        Assert.assertEquals(-1, his.read());
+        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, 218, 71, 28, 242);
     }
 
     /**
@@ -106,14 +92,7 @@ public final class HexInputStreamTest {
         String hex = "0F21dA471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
-
-        Assert.assertEquals(15, his.read());
-        Assert.assertEquals(33, his.read());
-        Assert.assertEquals(218, his.read());
-        Assert.assertEquals(71, his.read());
-        Assert.assertEquals(28, his.read());
-        Assert.assertEquals(242, his.read());
-        Assert.assertEquals(-1, his.read());
+        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, 218, 71, 28, 242);
     }
 
     /**
@@ -123,20 +102,15 @@ public final class HexInputStreamTest {
      */
     @Test
     public void readOddSymbolCountFailTest() throws IOException {
-        String hex = "0f21da471cf";
-        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
-        HexInputStream his = new HexInputStream(bais);
-
-        Assert.assertEquals(15, his.read());
-        Assert.assertEquals(33, his.read());
-        Assert.assertEquals(218, his.read());
-        Assert.assertEquals(71, his.read());
-        Assert.assertEquals(28, his.read());
         try {
+            String hex = "0f21da471cf";
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+            HexInputStream his = new HexInputStream(bais);
+            Assertions.assertThat(his).isNextBytesEqualTo(15, 33, 218, 71, 28);
             his.read();
-            Assert.fail("End of stream unprocessed");
+            Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assert.assertEquals("Unexpected end of stream", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Unexpected end of stream");
         }
     }
 
@@ -151,69 +125,69 @@ public final class HexInputStreamTest {
             String hex = "000x12";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            Assert.assertEquals(0, his.read());
+            Assertions.assertThat(his).isNextBytesEqualTo(0);
             his.read();
-            Assert.fail("Wrong symbol unprocessed");
+            Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assert.assertEquals("Wrong symbol obtained: 'x' (120)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: 'x' (120)");
         }
         try {
             String hex = "00gf12";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            Assert.assertEquals(0, his.read());
+            Assertions.assertThat(his).isNextBytesEqualTo(0);
             his.read();
-            Assert.fail("Wrong symbol unprocessed");
+            Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assert.assertEquals("Wrong symbol obtained: 'g' (103)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: 'g' (103)");
         }
         try {
             String hex = "110-";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            Assert.assertEquals(17, his.read());
+            Assertions.assertThat(his).isNextBytesEqualTo(17);
             his.read();
-            Assert.fail("Wrong symbol unprocessed");
+            Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assert.assertEquals("Wrong symbol obtained: '-' (45)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '-' (45)");
         }
         try {
             String hex = "~a";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
-            Assert.fail("Wrong symbol unprocessed");
+            Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assert.assertEquals("Wrong symbol obtained: '~' (126)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '~' (126)");
         }
         try {
             String hex = "+a";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
             his.read();
-            Assert.fail("Wrong symbol unprocessed");
+            Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assert.assertEquals("Wrong symbol obtained: '+' (43)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '+' (43)");
         }
         try {
             String hex = "aa\u0000b";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            Assert.assertEquals(170, his.read());
+            Assertions.assertThat(his).isNextBytesEqualTo(170);
             his.read();
-            Assert.fail("Wrong symbol unprocessed");
+            Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assert.assertEquals("Wrong symbol obtained: '\u0000' (0)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '\u0000' (0)");
         }
         try {
             String hex = "aab\u0000";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            Assert.assertEquals(170, his.read());
+            Assertions.assertThat(his).isNextBytesEqualTo(170);
             his.read();
-            Assert.fail("Wrong symbol unprocessed");
+            Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assert.assertEquals("Wrong symbol obtained: '\u0000' (0)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '\u0000' (0)");
         }
     }
 
@@ -226,11 +200,11 @@ public final class HexInputStreamTest {
     public void closeTest() throws IOException {
         CloseStream closeStream = new CloseStream();
         HexInputStream his = new HexInputStream(closeStream);
-        Assert.assertEquals(-1, his.read());
+        Assertions.assertThat(his).isCompleted();
 
-        Assert.assertFalse(closeStream.isClosed());
+        Assertions.assertThat(closeStream.isClosed()).isFalse();
         his.close();
-        Assert.assertTrue(closeStream.isClosed());
+        Assertions.assertThat(closeStream.isClosed()).isTrue();
     }
 
     /**
@@ -258,6 +232,7 @@ public final class HexInputStreamTest {
 
         @Override
         public void close() throws IOException {
+            super.close();
             _closed = true;
         }
 

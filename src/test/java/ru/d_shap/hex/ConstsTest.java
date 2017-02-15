@@ -19,11 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.hex;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
-import org.junit.Assert;
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link Consts}.
@@ -41,30 +39,10 @@ public final class ConstsTest {
 
     /**
      * {@link Consts} class test.
-     *
-     * @throws IllegalAccessException exception in test.
-     * @throws InstantiationException exception in test.
-     */
-    @Test(expected = IllegalAccessException.class)
-    public void constructorPrivateTest() throws IllegalAccessException, InstantiationException {
-        Consts.class.newInstance();
-    }
-
-    /**
-     * {@link Consts} class test.
-     *
-     * @throws IllegalAccessException    exception in test.
-     * @throws InstantiationException    exception in test.
-     * @throws InvocationTargetException exception in test.
      */
     @Test
-    public void constructorInaccessibleTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
-        Constructor[] ctors = Consts.class.getDeclaredConstructors();
-        Assert.assertEquals(1, ctors.length);
-        Constructor ctor = ctors[0];
-        Assert.assertFalse(ctor.isAccessible());
-        ctor.setAccessible(true);
-        Assert.assertEquals(Consts.class, ctor.newInstance().getClass());
+    public void constructorTest() {
+        Assertions.assertThat(Consts.class).hasOnePrivateConstructor();
     }
 
     /**
@@ -72,15 +50,15 @@ public final class ConstsTest {
      */
     @Test
     public void lengthTest() {
-        Assert.assertEquals(16, Consts.TO_LOWERCASE_HEX.length);
-        Assert.assertEquals(256, Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL.length);
-        Assert.assertEquals(256, Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL.length);
-        Assert.assertEquals(16, Consts.TO_UPPERCASE_HEX.length);
-        Assert.assertEquals(256, Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL.length);
-        Assert.assertEquals(256, Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL.length);
-        Assert.assertEquals(103, Consts.FROM_HEX.length);
-        Assert.assertEquals(103, Consts.FROM_HEX_UPPER_BYTE.length);
-        Assert.assertEquals(103, Consts.FROM_HEX_LOWER_BYTE.length);
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX).hasLength(16);
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL).hasLength(256);
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL).hasLength(256);
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX).hasLength(16);
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL).hasLength(256);
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL).hasLength(256);
+        Assertions.assertThat(Consts.FROM_HEX).hasLength(103);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE).hasLength(103);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE).hasLength(103);
     }
 
     /**
@@ -91,16 +69,16 @@ public final class ConstsTest {
         for (int i = 0; i < Consts.TO_LOWERCASE_HEX.length; i++) {
             int lowercaseHex = Consts.TO_LOWERCASE_HEX[i];
             int value = Consts.FROM_HEX[lowercaseHex];
-            Assert.assertEquals(i, value);
+            Assertions.assertThat(value).isEqualTo(i);
         }
         for (int i = 0; i < Consts.TO_UPPERCASE_HEX.length; i++) {
             int uppercaseHex = Consts.TO_UPPERCASE_HEX[i];
             int value = Consts.FROM_HEX[uppercaseHex];
-            Assert.assertEquals(i, value);
+            Assertions.assertThat(value).isEqualTo(i);
         }
         for (int i = 0; i < Consts.FROM_HEX.length; i++) {
             int value = Consts.FROM_HEX[i];
-            Assert.assertTrue(value == -1 || Consts.TO_LOWERCASE_HEX[value] == i || Consts.TO_UPPERCASE_HEX[value] == i);
+            Assertions.assertThat(value == -1 || Consts.TO_LOWERCASE_HEX[value] == i || Consts.TO_UPPERCASE_HEX[value] == i).isTrue();
         }
     }
 
@@ -109,20 +87,20 @@ public final class ConstsTest {
      */
     @Test
     public void toLowerCaseHexUpperSymbolTest() {
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xF0]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xF2]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xF6]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xF9]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xFA]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xFB]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xFF]);
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xF0]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xF2]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xF6]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xF9]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xFA]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xFB]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xFF]).isEqualTo('f');
 
-        Assert.assertEquals('c', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xC0]);
-        Assert.assertEquals('b', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xB0]);
-        Assert.assertEquals('9', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0x90]);
-        Assert.assertEquals('3', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0x30]);
-        Assert.assertEquals('1', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0x10]);
-        Assert.assertEquals('0', Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0x00]);
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xC0]).isEqualTo('c');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0xB0]).isEqualTo('b');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0x90]).isEqualTo('9');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0x30]).isEqualTo('3');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0x10]).isEqualTo('1');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL[0x00]).isEqualTo('0');
     }
 
     /**
@@ -130,20 +108,20 @@ public final class ConstsTest {
      */
     @Test
     public void toLowerCaseHexLowerSymbolTest() {
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x0F]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x2F]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x6F]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x9F]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0xAF]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0xBF]);
-        Assert.assertEquals('f', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0xFF]);
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x0F]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x2F]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x6F]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x9F]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0xAF]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0xBF]).isEqualTo('f');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0xFF]).isEqualTo('f');
 
-        Assert.assertEquals('c', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x0C]);
-        Assert.assertEquals('b', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x0B]);
-        Assert.assertEquals('9', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x09]);
-        Assert.assertEquals('3', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x03]);
-        Assert.assertEquals('1', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x01]);
-        Assert.assertEquals('0', Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x00]);
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x0C]).isEqualTo('c');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x0B]).isEqualTo('b');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x09]).isEqualTo('9');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x03]).isEqualTo('3');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x01]).isEqualTo('1');
+        Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL[0x00]).isEqualTo('0');
     }
 
     /**
@@ -151,21 +129,20 @@ public final class ConstsTest {
      */
     @Test
     public void toUpperCaseHexUpperSymbolTest() {
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xF0]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xF2]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xF6]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xF9]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xFA]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xFB]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xFF]);
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xF0]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xF2]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xF6]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xF9]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xFA]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xFB]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xFF]).isEqualTo('F');
 
-        Assert.assertEquals('C', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xC0]);
-        Assert.assertEquals('B', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xB0]);
-        Assert.assertEquals('9', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0x90]);
-        Assert.assertEquals('3', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0x30]);
-        Assert.assertEquals('1', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0x10]);
-        Assert.assertEquals('0', Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0x00]);
-
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xC0]).isEqualTo('C');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0xB0]).isEqualTo('B');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0x90]).isEqualTo('9');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0x30]).isEqualTo('3');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0x10]).isEqualTo('1');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL[0x00]).isEqualTo('0');
     }
 
     /**
@@ -173,21 +150,19 @@ public final class ConstsTest {
      */
     @Test
     public void toUpperCaseHexLowerSymbolTest() {
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x0F]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x2F]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x6F]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x9F]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0xAF]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0xBF]);
-        Assert.assertEquals('F', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0xFF]);
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x2F]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x6F]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x9F]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0xAF]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0xBF]).isEqualTo('F');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0xFF]).isEqualTo('F');
 
-        Assert.assertEquals('C', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x0C]);
-        Assert.assertEquals('B', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x0B]);
-        Assert.assertEquals('9', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x09]);
-        Assert.assertEquals('3', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x03]);
-        Assert.assertEquals('1', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x01]);
-        Assert.assertEquals('0', Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x00]);
-
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x0C]).isEqualTo('C');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x0B]).isEqualTo('B');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x09]).isEqualTo('9');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x03]).isEqualTo('3');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x01]).isEqualTo('1');
+        Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL[0x00]).isEqualTo('0');
     }
 
     /**
@@ -195,16 +170,16 @@ public final class ConstsTest {
      */
     @Test
     public void fromHexUpperByteTest() {
-        Assert.assertEquals(0xF0, Consts.FROM_HEX_UPPER_BYTE['f']);
-        Assert.assertEquals(0xF0, Consts.FROM_HEX_UPPER_BYTE['F']);
-        Assert.assertEquals(0xA0, Consts.FROM_HEX_UPPER_BYTE['a']);
-        Assert.assertEquals(0xA0, Consts.FROM_HEX_UPPER_BYTE['A']);
-        Assert.assertEquals(0x90, Consts.FROM_HEX_UPPER_BYTE['9']);
-        Assert.assertEquals(0x50, Consts.FROM_HEX_UPPER_BYTE['5']);
-        Assert.assertEquals(0x10, Consts.FROM_HEX_UPPER_BYTE['1']);
-        Assert.assertEquals(0x00, Consts.FROM_HEX_UPPER_BYTE['0']);
-        Assert.assertEquals(-1, Consts.FROM_HEX_UPPER_BYTE['/']);
-        Assert.assertEquals(-1, Consts.FROM_HEX_UPPER_BYTE['+']);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['f']).isEqualTo(0xF0);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['F']).isEqualTo(0xF0);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['a']).isEqualTo(0xA0);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['A']).isEqualTo(0xA0);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['9']).isEqualTo(0x90);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['5']).isEqualTo(0x50);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['1']).isEqualTo(0x10);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['0']).isEqualTo(0x00);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['/']).isEqualTo(-1);
+        Assertions.assertThat(Consts.FROM_HEX_UPPER_BYTE['+']).isEqualTo(-1);
     }
 
     /**
@@ -212,16 +187,16 @@ public final class ConstsTest {
      */
     @Test
     public void fromHexLowerByteTest() {
-        Assert.assertEquals(0x0F, Consts.FROM_HEX_LOWER_BYTE['f']);
-        Assert.assertEquals(0x0F, Consts.FROM_HEX_LOWER_BYTE['F']);
-        Assert.assertEquals(0x0A, Consts.FROM_HEX_LOWER_BYTE['a']);
-        Assert.assertEquals(0x0A, Consts.FROM_HEX_LOWER_BYTE['A']);
-        Assert.assertEquals(0x09, Consts.FROM_HEX_LOWER_BYTE['9']);
-        Assert.assertEquals(0x05, Consts.FROM_HEX_LOWER_BYTE['5']);
-        Assert.assertEquals(0x01, Consts.FROM_HEX_LOWER_BYTE['1']);
-        Assert.assertEquals(0x00, Consts.FROM_HEX_LOWER_BYTE['0']);
-        Assert.assertEquals(-1, Consts.FROM_HEX_LOWER_BYTE['/']);
-        Assert.assertEquals(-1, Consts.FROM_HEX_LOWER_BYTE['+']);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['f']).isEqualTo(0x0F);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['F']).isEqualTo(0x0F);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['a']).isEqualTo(0x0A);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['A']).isEqualTo(0x0A);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['9']).isEqualTo(0x09);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['5']).isEqualTo(0x05);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['1']).isEqualTo(0x01);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['0']).isEqualTo(0x00);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['/']).isEqualTo(-1);
+        Assertions.assertThat(Consts.FROM_HEX_LOWER_BYTE['+']).isEqualTo(-1);
     }
 
 }

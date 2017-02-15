@@ -19,11 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.hex;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
-import org.junit.Assert;
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link HexHelper}.
@@ -41,30 +39,10 @@ public final class HexHelperTest {
 
     /**
      * {@link HexHelper} class test.
-     *
-     * @throws IllegalAccessException exception in test.
-     * @throws InstantiationException exception in test.
-     */
-    @Test(expected = IllegalAccessException.class)
-    public void constructorPrivateTest() throws IllegalAccessException, InstantiationException {
-        HexHelper.class.newInstance();
-    }
-
-    /**
-     * {@link HexHelper} class test.
-     *
-     * @throws IllegalAccessException    exception in test.
-     * @throws InstantiationException    exception in test.
-     * @throws InvocationTargetException exception in test.
      */
     @Test
-    public void constructorInaccessibleTest() throws IllegalAccessException, InstantiationException, InvocationTargetException {
-        Constructor[] ctors = HexHelper.class.getDeclaredConstructors();
-        Assert.assertEquals(1, ctors.length);
-        Constructor ctor = ctors[0];
-        Assert.assertFalse(ctor.isAccessible());
-        ctor.setAccessible(true);
-        Assert.assertEquals(HexHelper.class, ctor.newInstance().getClass());
+    public void constructorTest() {
+        Assertions.assertThat(HexHelper.class).hasOnePrivateConstructor();
     }
 
     /**
@@ -72,11 +50,11 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexUpperCaseTest() {
-        Assert.assertEquals("", HexHelper.toHex(null, true));
-        Assert.assertEquals("", HexHelper.toHex(new byte[0], true));
-        Assert.assertEquals("01058CFAF2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, true));
-        Assert.assertEquals("111CB3F2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, true));
-        Assert.assertEquals("FFFAB4115E", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, true));
+        Assertions.assertThat(HexHelper.toHex(null, true)).isEqualTo("");
+        Assertions.assertThat(HexHelper.toHex(new byte[0], true)).isEqualTo("");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, true)).isEqualTo("01058CFAF2");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, true)).isEqualTo("111CB3F2");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, true)).isEqualTo("FFFAB4115E");
     }
 
     /**
@@ -84,11 +62,11 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexLowerCaseTest() {
-        Assert.assertEquals("", HexHelper.toHex(null, false));
-        Assert.assertEquals("", HexHelper.toHex(new byte[0], false));
-        Assert.assertEquals("01058cfaf2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, false));
-        Assert.assertEquals("111cb3f2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, false));
-        Assert.assertEquals("fffab4115e", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, false));
+        Assertions.assertThat(HexHelper.toHex(null, false)).isEqualTo("");
+        Assertions.assertThat(HexHelper.toHex(new byte[0], false)).isEqualTo("");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}, false)).isEqualTo("01058cfaf2");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}, false)).isEqualTo("111cb3f2");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, false)).isEqualTo("fffab4115e");
     }
 
     /**
@@ -96,11 +74,11 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexDefaultCaseTest() {
-        Assert.assertEquals("", HexHelper.toHex(null));
-        Assert.assertEquals("", HexHelper.toHex(new byte[0]));
-        Assert.assertEquals("01058CFAF2", HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14}));
-        Assert.assertEquals("111CB3F2", HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14}));
-        Assert.assertEquals("FFFAB4115E", HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}));
+        Assertions.assertThat(HexHelper.toHex(null)).isEqualTo("");
+        Assertions.assertThat(HexHelper.toHex(new byte[0])).isEqualTo("");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14})).isEqualTo("01058CFAF2");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14})).isEqualTo("111CB3F2");
+        Assertions.assertThat(HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94})).isEqualTo("FFFAB4115E");
     }
 
     /**
@@ -110,26 +88,26 @@ public final class HexHelperTest {
     public void toBytesSpecifiedTest() {
         byte[] bytes = new byte[8];
 
-        Assert.assertEquals(3, HexHelper.toBytes("AC120F", bytes));
-        Assert.assertArrayEquals(new byte[]{(byte) 172, 18, 15, 0, 0, 0, 0, 0}, bytes);
+        Assertions.assertThat(HexHelper.toBytes("AC120F", bytes)).isEqualTo(3);
+        Assertions.assertThat(bytes).containsExactlyInOrder(172, 18, 15, 0, 0, 0, 0, 0);
 
-        Assert.assertEquals(2, HexHelper.toBytes("77A2", bytes));
-        Assert.assertArrayEquals(new byte[]{119, (byte) 162, 15, 0, 0, 0, 0, 0}, bytes);
+        Assertions.assertThat(HexHelper.toBytes("77A2", bytes)).isEqualTo(2);
+        Assertions.assertThat(bytes).containsExactlyInOrder(119, 162, 15, 0, 0, 0, 0, 0);
 
-        Assert.assertEquals(5, HexHelper.toBytes("1234567890", bytes));
-        Assert.assertArrayEquals(new byte[]{18, 52, 86, 120, (byte) 144, 0, 0, 0}, bytes);
+        Assertions.assertThat(HexHelper.toBytes("1234567890", bytes)).isEqualTo(5);
+        Assertions.assertThat(bytes).containsExactlyInOrder(18, 52, 86, 120, 144, 0, 0, 0);
 
-        Assert.assertEquals(3, HexHelper.toBytes("AACD2F", bytes));
-        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47, 120, (byte) 144, 0, 0, 0}, bytes);
+        Assertions.assertThat(HexHelper.toBytes("AACD2F", bytes)).isEqualTo(3);
+        Assertions.assertThat(bytes).containsExactlyInOrder(170, 205, 47, 120, 144, 0, 0, 0);
 
-        Assert.assertEquals(3, HexHelper.toBytes("aacd2f", bytes));
-        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47, 120, (byte) 144, 0, 0, 0}, bytes);
+        Assertions.assertThat(HexHelper.toBytes("aacd2f", bytes)).isEqualTo(3);
+        Assertions.assertThat(bytes).containsExactlyInOrder(170, 205, 47, 120, 144, 0, 0, 0);
 
-        Assert.assertEquals(3, HexHelper.toBytes("aAcD2F", bytes));
-        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47, 120, (byte) 144, 0, 0, 0}, bytes);
+        Assertions.assertThat(HexHelper.toBytes("aAcD2F", bytes)).isEqualTo(3);
+        Assertions.assertThat(bytes).containsExactlyInOrder(170, 205, 47, 120, 144, 0, 0, 0);
 
-        Assert.assertEquals(8, HexHelper.toBytes("0102030405060708", bytes));
-        Assert.assertArrayEquals(new byte[]{1, 2, 3, 4, 5, 6, 7, 8}, bytes);
+        Assertions.assertThat(HexHelper.toBytes("0102030405060708", bytes)).isEqualTo(8);
+        Assertions.assertThat(bytes).containsExactlyInOrder(1, 2, 3, 4, 5, 6, 7, 8);
     }
 
     /**
@@ -137,8 +115,8 @@ public final class HexHelperTest {
      */
     @Test
     public void toBytesSpecifiedEmptyHexTest() {
-        Assert.assertEquals(0, HexHelper.toBytes(null, new byte[8]));
-        Assert.assertEquals(0, HexHelper.toBytes("", new byte[8]));
+        Assertions.assertThat(HexHelper.toBytes(null, new byte[8])).isEqualTo(0);
+        Assertions.assertThat(HexHelper.toBytes("", new byte[8])).isEqualTo(0);
     }
 
     /**
@@ -148,9 +126,9 @@ public final class HexHelperTest {
     public void toBytesSpecifiedOddHexLengthTest() {
         try {
             HexHelper.toBytes("abc", new byte[8]);
-            Assert.fail("Even check is wrong");
+            Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Wrong number of symbols in hex string (3)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong number of symbols in hex string (3)");
         }
     }
 
@@ -162,9 +140,9 @@ public final class HexHelperTest {
         try {
             byte[] bytes = new byte[3];
             HexHelper.toBytes("aabc3f72", bytes);
-            Assert.fail("Array size check fail");
+            Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Result array is too small for hex string (3), expected size is (4)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Result array is too small for hex string (3), expected size is (4)");
         }
     }
 
@@ -176,22 +154,22 @@ public final class HexHelperTest {
         byte[] bytes;
 
         bytes = HexHelper.toBytes("AC120F");
-        Assert.assertArrayEquals(new byte[]{(byte) 172, 18, 15}, bytes);
+        Assertions.assertThat(bytes).containsExactlyInOrder(172, 18, 15);
 
         bytes = HexHelper.toBytes("77A2");
-        Assert.assertArrayEquals(new byte[]{119, (byte) 162}, bytes);
+        Assertions.assertThat(bytes).containsExactlyInOrder(119, 162);
 
         bytes = HexHelper.toBytes("1234567890");
-        Assert.assertArrayEquals(new byte[]{18, 52, 86, 120, (byte) 144}, bytes);
+        Assertions.assertThat(bytes).containsExactlyInOrder(18, 52, 86, 120, 144);
 
         bytes = HexHelper.toBytes("AACD2F");
-        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47}, bytes);
+        Assertions.assertThat(bytes).containsExactlyInOrder(170, 205, 47);
 
         bytes = HexHelper.toBytes("aacd2f");
-        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47}, bytes);
+        Assertions.assertThat(bytes).containsExactlyInOrder(170, 205, 47);
 
         bytes = HexHelper.toBytes("aAcD2F");
-        Assert.assertArrayEquals(new byte[]{(byte) 170, (byte) 205, 47}, bytes);
+        Assertions.assertThat(bytes).containsExactlyInOrder(170, 205, 47);
     }
 
     /**
@@ -199,8 +177,8 @@ public final class HexHelperTest {
      */
     @Test
     public void toBytesCreatedEmptyHexTest() {
-        Assert.assertArrayEquals(new byte[]{}, HexHelper.toBytes(null));
-        Assert.assertArrayEquals(new byte[]{}, HexHelper.toBytes(""));
+        Assertions.assertThat(HexHelper.toBytes(null)).containsExactlyInOrder();
+        Assertions.assertThat(HexHelper.toBytes("")).containsExactlyInOrder();
     }
 
     /**
@@ -210,9 +188,9 @@ public final class HexHelperTest {
     public void toBytesCreatedOddHexLengthTest() {
         try {
             HexHelper.toBytes("abc");
-            Assert.fail("Even check is wrong");
+            Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Wrong number of symbols in hex string (3)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong number of symbols in hex string (3)");
         }
     }
 
@@ -223,15 +201,15 @@ public final class HexHelperTest {
     public void toBytesWrongSymbolTest() {
         try {
             HexHelper.toBytes("defg12");
-            Assert.fail("Wrong symbol processed");
+            Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Wrong symbol obtained: 'g' (103)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: 'g' (103)");
         }
         try {
             HexHelper.toBytes("dehf12");
-            Assert.fail("Wrong symbol processed");
+            Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assert.assertEquals("Wrong symbol obtained: 'h' (104)", ex.getMessage());
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: 'h' (104)");
         }
     }
 
@@ -240,38 +218,38 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexSymbolValidTest() {
-        Assert.assertTrue(HexHelper.isHexSymbolValid('0'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('1'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('2'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('3'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('4'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('5'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('6'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('7'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('8'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('9'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('a'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('A'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('b'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('B'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('c'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('C'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('d'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('D'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('e'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('E'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('f'));
-        Assert.assertTrue(HexHelper.isHexSymbolValid('F'));
+        Assertions.assertThat(HexHelper.isHexSymbolValid('0')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('1')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('2')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('3')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('4')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('5')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('6')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('7')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('8')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('9')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('a')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('A')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('b')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('B')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('c')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('C')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('d')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('D')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('e')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('E')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('f')).isTrue();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('F')).isTrue();
 
-        Assert.assertFalse(HexHelper.isHexSymbolValid(0));
-        Assert.assertFalse(HexHelper.isHexSymbolValid(-1));
-        Assert.assertFalse(HexHelper.isHexSymbolValid(-2));
-        Assert.assertFalse(HexHelper.isHexSymbolValid(12));
-        Assert.assertFalse(HexHelper.isHexSymbolValid(103));
-        Assert.assertFalse(HexHelper.isHexSymbolValid(120));
-        Assert.assertFalse(HexHelper.isHexSymbolValid(500));
-        Assert.assertFalse(HexHelper.isHexSymbolValid('g'));
-        Assert.assertFalse(HexHelper.isHexSymbolValid('G'));
+        Assertions.assertThat(HexHelper.isHexSymbolValid(0)).isFalse();
+        Assertions.assertThat(HexHelper.isHexSymbolValid(-1)).isFalse();
+        Assertions.assertThat(HexHelper.isHexSymbolValid(-2)).isFalse();
+        Assertions.assertThat(HexHelper.isHexSymbolValid(12)).isFalse();
+        Assertions.assertThat(HexHelper.isHexSymbolValid(103)).isFalse();
+        Assertions.assertThat(HexHelper.isHexSymbolValid(120)).isFalse();
+        Assertions.assertThat(HexHelper.isHexSymbolValid(500)).isFalse();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('g')).isFalse();
+        Assertions.assertThat(HexHelper.isHexSymbolValid('G')).isFalse();
     }
 
     /**
@@ -279,12 +257,12 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexUpperCaseStringTest() {
-        Assert.assertTrue(HexHelper.isHexString("AB12"));
-        Assert.assertTrue(HexHelper.isHexString("53F15C94E2E4"));
-        Assert.assertTrue(HexHelper.isHexString("1234567890ABCDEF"));
-        Assert.assertFalse(HexHelper.isHexString("12ACEG"));
-        Assert.assertFalse(HexHelper.isHexString("6F4-"));
-        Assert.assertFalse(HexHelper.isHexString("+183"));
+        Assertions.assertThat(HexHelper.isHexString("AB12")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("53F15C94E2E4")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("1234567890ABCDEF")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("12ACEG")).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("6F4-")).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("+183")).isFalse();
     }
 
     /**
@@ -292,12 +270,12 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexLowerCaseStringTest() {
-        Assert.assertTrue(HexHelper.isHexString("ab12"));
-        Assert.assertTrue(HexHelper.isHexString("53f15c94e2e4"));
-        Assert.assertTrue(HexHelper.isHexString("1234567890abcdef"));
-        Assert.assertFalse(HexHelper.isHexString("12aceg"));
-        Assert.assertFalse(HexHelper.isHexString("6f4-"));
-        Assert.assertFalse(HexHelper.isHexString("+183"));
+        Assertions.assertThat(HexHelper.isHexString("ab12")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("53f15c94e2e4")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("1234567890abcdef")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("12aceg")).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("6f4-")).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("+183")).isFalse();
     }
 
     /**
@@ -305,12 +283,12 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexBothCaseStringTest() {
-        Assert.assertTrue(HexHelper.isHexString("Ab12"));
-        Assert.assertTrue(HexHelper.isHexString("53F15C94e2e4"));
-        Assert.assertTrue(HexHelper.isHexString("1234567890ABcdEf"));
-        Assert.assertFalse(HexHelper.isHexString("12AceG"));
-        Assert.assertFalse(HexHelper.isHexString("6f4-"));
-        Assert.assertFalse(HexHelper.isHexString("+183"));
+        Assertions.assertThat(HexHelper.isHexString("Ab12")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("53F15C94e2e4")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("1234567890ABcdEf")).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("12AceG")).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("6f4-")).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("+183")).isFalse();
     }
 
     /**
@@ -318,8 +296,8 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexEmptyStringTest() {
-        Assert.assertFalse(HexHelper.isHexString(null));
-        Assert.assertFalse(HexHelper.isHexString(""));
+        Assertions.assertThat(HexHelper.isHexString(null)).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("")).isFalse();
     }
 
     /**
@@ -327,11 +305,11 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexOddLengthStringTest() {
-        Assert.assertFalse(HexHelper.isHexString("123"));
-        Assert.assertFalse(HexHelper.isHexString("123", true));
-        Assert.assertTrue(HexHelper.isHexString("123", false));
-        Assert.assertTrue(HexHelper.isHexString("1234", true));
-        Assert.assertTrue(HexHelper.isHexString("1234", false));
+        Assertions.assertThat(HexHelper.isHexString("123")).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("123", true)).isFalse();
+        Assertions.assertThat(HexHelper.isHexString("123", false)).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("1234", true)).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("1234", false)).isTrue();
     }
 
 }
