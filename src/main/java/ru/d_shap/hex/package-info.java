@@ -2,7 +2,7 @@
 // Hex library converts bytes to hex representation and vice versa.
 // Copyright (C) 2016 Dmitry Shapovalov.
 //
-// This file is part of Hex library.
+// This file is part of hex library.
 //
 // Hex library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
