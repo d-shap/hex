@@ -56,7 +56,6 @@
     <inspection_tool class="DefaultNotLastCaseInSwitch" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="Deprecation" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="DialogTitleCapitalization" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="DoubleNegation" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DuplicateBooleanBranch" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DuplicateCondition" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="ignoreMethodCalls" value="false" />
@@ -126,6 +125,7 @@
     <inspection_tool class="InstanceofCatchParameter" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="InstantiatingObjectToGetClassObject" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JUnit4AnnotatedMethodInJUnit3TestCase" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Java8ReplaceMapGet" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="JavaDoc" enabled="false" level="WARNING" enabled_by_default="false">
       <option name="TOP_LEVEL_CLASS_OPTIONS">
         <value>
@@ -329,10 +329,10 @@
       <option name="reportMethodParameters" value="true" />
     </inspection_tool>
     <inspection_tool class="SynchronizeOnNonFinalField" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="SystemOutErr" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="SystemOutErr" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ThrowFromFinallyBlock" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ThrowableInstanceNeverThrown" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ThrowablePrintedToSystemOut" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="ThrowablePrintedToSystemOut" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ThrowableResultOfMethodCallIgnored" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ThrowsRuntimeException" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ToArrayCallWithZeroLengthArrayArgument" enabled="true" level="ERROR" enabled_by_default="true" />
