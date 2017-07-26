@@ -144,7 +144,7 @@
         <module name="IllegalImport" />
         <!--<module name="ImportControl"/>-->
         <module name="ImportOrder">
-            <property name="groups" value="java,javax,com,net,org,ru" />
+            <property name="groups" value="java,javax,android,com,net,org,ru" />
             <property name="ordered" value="true" />
             <property name="separated" value="true" />
             <property name="option" value="above" />
