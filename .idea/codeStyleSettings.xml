@@ -10,19 +10,19 @@
         </option>
         <option name="IMPORT_LAYOUT_TABLE">
           <value>
+            <package name="java" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="javax" withSubpackages="true" static="false" />
+            <emptyLine />
             <package name="android" withSubpackages="true" static="false" />
             <emptyLine />
             <package name="com" withSubpackages="true" static="false" />
-            <emptyLine />
-            <package name="junit" withSubpackages="true" static="false" />
             <emptyLine />
             <package name="net" withSubpackages="true" static="false" />
             <emptyLine />
             <package name="org" withSubpackages="true" static="false" />
             <emptyLine />
-            <package name="java" withSubpackages="true" static="false" />
-            <emptyLine />
-            <package name="javax" withSubpackages="true" static="false" />
+            <package name="ru" withSubpackages="true" static="false" />
             <emptyLine />
             <package name="" withSubpackages="true" static="false" />
             <emptyLine />
@@ -34,6 +34,9 @@
         <AndroidXmlCodeStyleSettings>
           <option name="USE_CUSTOM_SETTINGS" value="true" />
         </AndroidXmlCodeStyleSettings>
+        <JavaCodeStyleSettings>
+          <option name="CLASS_NAMES_IN_JAVADOC" value="2" />
+        </JavaCodeStyleSettings>
         <Objective-C-extensions>
           <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
           <option name="RELEASE_STYLE" value="IVAR" />
@@ -63,12 +66,21 @@
           </extensions>
         </Objective-C-extensions>
         <XML>
-          <option name="XML_KEEP_LINE_BREAKS" value="false" />
           <option name="XML_ALIGN_ATTRIBUTES" value="false" />
           <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
           <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
         </XML>
+        <codeStyleSettings language="JAVA">
+          <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
+          <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
+          <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
+          <option name="BLANK_LINES_AROUND_FIELD" value="1" />
+          <option name="BLANK_LINES_AROUND_FIELD_IN_INTERFACE" value="1" />
+          <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
+          <option name="BLANK_LINES_AFTER_ANONYMOUS_CLASS_HEADER" value="1" />
+        </codeStyleSettings>
         <codeStyleSettings language="XML">
+          <option name="RIGHT_MARGIN" value="999" />
           <option name="FORCE_REARRANGE_MODE" value="1" />
           <indentOptions>
             <option name="CONTINUATION_INDENT_SIZE" value="4" />
@@ -227,6 +239,6 @@
         </codeStyleSettings>
       </value>
     </option>
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </component>
 </project>
