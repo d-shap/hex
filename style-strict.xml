@@ -265,12 +265,27 @@
         <module name="Regexp">
             <property name="format" value="}\n}\n$" />
             <property name="illegalPattern" value="true" />
-            <property name="message" value="No empty row before the end of the class" />
+            <property name="message" value="No empty line before the end of the class" />
+        </module>
+        <module name="Regexp">
+            <property name="format" value="}\r\n}\r\n$" />
+            <property name="illegalPattern" value="true" />
+            <property name="message" value="No empty line before the end of the class" />
         </module>
         <module name="Regexp">
             <property name="format" value="^\s+$" />
             <property name="illegalPattern" value="true" />
-            <property name="message" value="Too much spaces in empty lines" />
+            <property name="message" value="Empty line contains spaces" />
+        </module>
+        <module name="Regexp">
+            <property name="format" value="\*/\n\n" />
+            <property name="illegalPattern" value="true" />
+            <property name="message" value="Empty line after block comment" />
+        </module>
+        <module name="Regexp">
+            <property name="format" value="\*/\r\n\r\n" />
+            <property name="illegalPattern" value="true" />
+            <property name="message" value="Empty line after block comment" />
         </module>
 
         <!-- Size Violations -->
