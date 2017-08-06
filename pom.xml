@@ -4,8 +4,24 @@
 
     <groupId>ru.d_shap</groupId>
     <artifactId>hex</artifactId>
-    <version>1.0.2</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
+
+    <name>Hex library</name>
+    <description>Hex library converts bytes to hex representation and vice versa</description>
+    <url>https://github.com/d-shap/hex</url>
+
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License, Version 3</name>
+            <url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/d-shap/hex</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -90,7 +106,7 @@
                     </rulesets>
                     <ignoreIdentifiers>false</ignoreIdentifiers>
                     <ignoreLiterals>true</ignoreLiterals>
-                    <minimumTokens>200</minimumTokens>
+                    <minimumTokens>500</minimumTokens>
                 </configuration>
             </plugin>
             <plugin>
