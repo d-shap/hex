@@ -1,5 +1,6 @@
 glob:*.class
 glob:*.iml
+glob:*~
 
 .idea/copyright/
 .idea/dictionaries/
