@@ -208,7 +208,7 @@ public final class HexInputStreamTest {
     }
 
     /**
-     * Input stream to test close method.
+     * Test class.
      *
      * @author Dmitry Shapovalov
      */
