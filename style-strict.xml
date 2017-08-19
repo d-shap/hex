@@ -201,7 +201,7 @@
             <property name="fileMaximum" value="4000" />
         </module>
         <module name="NPathComplexity">
-            <property name="max" value="524288" />
+            <property name="max" value="25000000" />
         </module>
 
         <!-- Miscellaneous -->
