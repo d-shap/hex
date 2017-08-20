@@ -53,14 +53,14 @@
  * <pre>{@code
  * try (FileInputStream inputStream = new FileInputStream("some input file");
  *      HexOutputStream outputStream = new HexOutputStream(new FileOutputStream("some output file"))) {
- *    int b;
- *    while (true) {
- *       b = inputStream.read();
- *       if (b < 0) {
- *          break;
- *       }
- *       outputStream.write(b);
- *    }
+ *     int b;
+ *     while (true) {
+ *         b = inputStream.read();
+ *         if (b < 0) {
+ *             break;
+ *         }
+ *         outputStream.write(b);
+ *     }
  * }
  * }</pre>
  * <p>
