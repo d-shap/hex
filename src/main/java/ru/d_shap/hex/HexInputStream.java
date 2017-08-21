@@ -64,7 +64,6 @@ public final class HexInputStream extends InputStream {
 
     @Override
     public void close() throws IOException {
-        super.close();
         _inputStream.close();
     }
 
