@@ -25,7 +25,7 @@
 
     <!-- Size Violations -->
     <module name="FileLength">
-        <property name="max" value="8000" />
+        <property name="max" value="15000" />
     </module>
 
     <!-- Whitespace -->
@@ -187,21 +187,21 @@
             <property name="max" value="20" />
         </module>
         <module name="ClassDataAbstractionCoupling">
-            <property name="max" value="70" />
+            <property name="max" value="100" />
         </module>
         <module name="ClassFanOutComplexity">
-            <property name="max" value="70" />
+            <property name="max" value="100" />
         </module>
         <module name="CyclomaticComplexity">
             <property name="max" value="300" />
         </module>
         <module name="JavaNCSS">
-            <property name="methodMaximum" value="500" />
-            <property name="classMaximum" value="3000" />
-            <property name="fileMaximum" value="4000" />
+            <property name="methodMaximum" value="1000" />
+            <property name="classMaximum" value="10000" />
+            <property name="fileMaximum" value="10000" />
         </module>
         <module name="NPathComplexity">
-            <property name="max" value="25000000" />
+            <property name="max" value="50000000" />
         </module>
 
         <!-- Miscellaneous -->
