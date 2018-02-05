@@ -101,7 +101,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void readOddSymbolCountFailTest() throws IOException {
+    public void readOddSymbolCountTest() throws IOException {
         try {
             String hex = "0f21da471cf";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -120,7 +120,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void readWrongSymbolFailTest() throws IOException {
+    public void readWrongSymbolTest() throws IOException {
         try {
             String hex = "000x12";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -188,6 +188,170 @@ public final class HexInputStreamTest {
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
             Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '\u0000' (0)");
+        }
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void skipTest() throws IOException {
+        String hex = "0f21da471cf2";
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+        HexInputStream his = new HexInputStream(bais);
+        Assertions.assertThat(his).isNextBytesEqualTo(15);
+        Assertions.assertThat(his.skip(1)).isEqualTo(1);
+        Assertions.assertThat(his).isNextBytesEqualTo(218);
+        Assertions.assertThat(his.skip(2)).isEqualTo(2);
+        Assertions.assertThat(his).isNextBytesEqualTo(242);
+        Assertions.assertThat(his.skip(2)).isEqualTo(0);
+        Assertions.assertThat(his).isCompleted();
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void skipNonPositiveCountTest() throws IOException {
+        String hex = "0f21da471cf2";
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+        HexInputStream his = new HexInputStream(bais);
+        Assertions.assertThat(his.skip(0)).isEqualTo(0);
+        Assertions.assertThat(his.skip(-1)).isEqualTo(-1);
+        Assertions.assertThat(his.skip(-2)).isEqualTo(-1);
+        Assertions.assertThat(his.skip(-512)).isEqualTo(-1);
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void skipMoreThenAvailableCountTest() throws IOException {
+        String hex = "0f21da471cf2";
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+        HexInputStream his = new HexInputStream(bais);
+        Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
+        Assertions.assertThat(his.skip(10)).isEqualTo(4);
+        Assertions.assertThat(his).isCompleted();
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void skipOddSymbolCountMoreThenAvailableTest() throws IOException {
+        String hex = "0f21da471cf";
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+        HexInputStream his = new HexInputStream(bais);
+        Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
+        Assertions.assertThat(his.skip(4)).isEqualTo(3);
+        Assertions.assertThat(his).isCompleted();
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void skipOddSymbolCountReadTest() throws IOException {
+        try {
+            String hex = "0f21da471cf";
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+            HexInputStream his = new HexInputStream(bais);
+            Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
+            Assertions.assertThat(his.skip(3)).isEqualTo(3);
+            his.read();
+            Assertions.fail("HexInputStream test fail");
+        } catch (IOException ex) {
+            Assertions.assertThat(ex).hasMessage("Unexpected end of stream");
+        }
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void skipWrongSymbolTest() throws IOException {
+        String hex = "0f21xxZZ1Qf2";
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+        HexInputStream his = new HexInputStream(bais);
+        Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
+        Assertions.assertThat(his.skip(3)).isEqualTo(3);
+        Assertions.assertThat(his).isNextBytesEqualTo(242);
+        Assertions.assertThat(his).isCompleted();
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void skipWrongSymbolReadTest() throws IOException {
+        try {
+            String hex = "0f21xxZZ1QfW";
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+            HexInputStream his = new HexInputStream(bais);
+            Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
+            Assertions.assertThat(his.skip(3)).isEqualTo(3);
+            his.read();
+            Assertions.fail("HexInputStream test fail");
+        } catch (IOException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: 'W' (87)");
+        }
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void availableTest() throws IOException {
+        String hex = "0f21da471cf2";
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+        HexInputStream his = new HexInputStream(bais);
+        Assertions.assertThat(his.available()).isEqualTo(6);
+        Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
+        Assertions.assertThat(his.available()).isEqualTo(4);
+        Assertions.assertThat(his).isNextBytesEqualTo(218, 71, 28);
+        Assertions.assertThat(his.available()).isEqualTo(1);
+        Assertions.assertThat(his).isNextBytesEqualTo(242);
+        Assertions.assertThat(his.available()).isEqualTo(0);
+        Assertions.assertThat(his).isCompleted();
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
+    public void availableOddSymbolCountTest() throws IOException {
+        try {
+            String hex = "0f21da471cf";
+            ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+            HexInputStream his = new HexInputStream(bais);
+            Assertions.assertThat(his.available()).isEqualTo(5);
+            Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
+            Assertions.assertThat(his.available()).isEqualTo(3);
+            Assertions.assertThat(his).isNextBytesEqualTo(218, 71, 28);
+            Assertions.assertThat(his.available()).isEqualTo(0);
+            his.read();
+            Assertions.fail("HexInputStream test fail");
+        } catch (IOException ex) {
+            Assertions.assertThat(ex).hasMessage("Unexpected end of stream");
         }
     }
 
