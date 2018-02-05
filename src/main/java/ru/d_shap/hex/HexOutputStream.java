@@ -72,6 +72,11 @@ public final class HexOutputStream extends OutputStream {
     }
 
     @Override
+    public void flush() throws IOException {
+        _outputStream.flush();
+    }
+
+    @Override
     public void close() throws IOException {
         _outputStream.close();
     }
