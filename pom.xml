@@ -4,7 +4,7 @@
 
     <groupId>ru.d-shap</groupId>
     <artifactId>hex</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>Hex library</name>
@@ -47,7 +47,7 @@
         <dependency>
             <groupId>ru.d-shap</groupId>
             <artifactId>assertions</artifactId>
-            <version>1.0</version>
+            <version>1.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -98,13 +98,14 @@
                 </executions>
                 <configuration>
                     <printFailingErrors>true</printFailingErrors>
+                    <linkXRef>false</linkXRef>
                     <verbose>true</verbose>
                     <rulesets>
                         <ruleset>pmd-strict.xml</ruleset>
                     </rulesets>
                     <ignoreIdentifiers>false</ignoreIdentifiers>
                     <ignoreLiterals>true</ignoreLiterals>
-                    <minimumTokens>500</minimumTokens>
+                    <minimumTokens>1000</minimumTokens>
                 </configuration>
             </plugin>
             <plugin>
@@ -219,7 +220,7 @@
                     <plugin>
                         <groupId>org.pitest</groupId>
                         <artifactId>pitest-maven</artifactId>
-                        <version>1.2.2</version>
+                        <version>1.2.4</version>
                         <executions>
                             <execution>
                                 <id>mutationCoverage-pitest</id>
@@ -229,8 +230,8 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <threads>5</threads>
-                            <mutateStaticInitializers>true</mutateStaticInitializers>
+                            <threads>4</threads>
+                            <mutateStaticInitializers>false</mutateStaticInitializers>
                             <mutators>
                                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                                 <mutator>NEGATE_CONDITIONALS</mutator>
@@ -249,6 +250,8 @@
                                 <value>-Xmx256M</value>
                             </jvmArgs>
                             <failWhenNoMutations>true</failWhenNoMutations>
+                            <exportLineCoverage>false</exportLineCoverage>
+                            <detectInlinedCode>true</detectInlinedCode>
                             <timestampedReports>false</timestampedReports>
                         </configuration>
                     </plugin>
@@ -306,5 +309,16 @@
             </build>
         </profile>
     </profiles>
+
+    <distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
