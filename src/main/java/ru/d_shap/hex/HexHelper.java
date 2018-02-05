@@ -148,7 +148,7 @@ public final class HexHelper {
     }
 
     static boolean isHexSymbolValid(final int symbol) {
-        return symbol >= 0 && symbol < Consts.FROM_HEX.length && Consts.FROM_HEX[symbol] >= 0;
+        return symbol >= '0' && symbol < Consts.FROM_HEX.length && Consts.FROM_HEX[symbol] >= 0;
     }
 
     /**
