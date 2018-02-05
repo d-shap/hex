@@ -63,6 +63,23 @@ public final class HexInputStream extends InputStream {
     }
 
     @Override
+    public long skip(final long count) throws IOException {
+        if (count < 0) {
+            return -1;
+        } else {
+            long byteCount = count * 2;
+            long result = _inputStream.skip(byteCount);
+            return result / 2;
+        }
+    }
+
+    @Override
+    public int available() throws IOException {
+        int result = _inputStream.available();
+        return result / 2;
+    }
+
+    @Override
     public void close() throws IOException {
         _inputStream.close();
     }
