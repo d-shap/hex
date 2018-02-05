@@ -24,7 +24,7 @@ package ru.d_shap.hex;
  *
  * @author Dmitry Shapovalov
  */
-public class HexRuntimeException extends RuntimeException {
+public final class HexRuntimeException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
