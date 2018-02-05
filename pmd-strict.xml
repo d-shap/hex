@@ -265,7 +265,7 @@
             <property name="minimum" value="50" />
         </properties>
     </rule>
-    <rule ref="rulesets/java/naming.xml/ShortMethodName" />
+    <!-- rule ref="rulesets/java/naming.xml/ShortMethodName" / -->
     <rule ref="rulesets/java/naming.xml/VariableNamingConventions">
         <properties>
             <property name="memberPrefix" value="_" />

@@ -200,9 +200,9 @@
             <property name="classMaximum" value="10000" />
             <property name="fileMaximum" value="10000" />
         </module>
-        <module name="NPathComplexity">
+        <!--<module name="NPathComplexity">
             <property name="max" value="50000000" />
-        </module>
+        </module>-->
 
         <!-- Miscellaneous -->
         <module name="ArrayTypeStyle" />
@@ -256,10 +256,6 @@
         <module name="ParameterName" />
         <module name="StaticVariableName" />
         <module name="TypeName" />
-        <module name="TypeName">
-            <property name="format" value="^I[A-Z][a-zA-Z0-9]*$" />
-            <property name="tokens" value="INTERFACE_DEF" />
-        </module>
 
         <!-- Regexp -->
         <module name="Regexp">
@@ -293,7 +289,7 @@
             <property name="max" value="40" />
         </module>
         <module name="ExecutableStatementCount">
-            <property name="max" value="300" />
+            <property name="max" value="500" />
         </module>
         <module name="LineLength">
             <property name="max" value="2000" />
