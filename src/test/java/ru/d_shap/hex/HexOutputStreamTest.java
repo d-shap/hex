@@ -271,14 +271,59 @@ public final class HexOutputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
+    public void flushTest() throws IOException {
+        FlushStream flushStream = new FlushStream();
+        HexOutputStream hos = new HexOutputStream(flushStream);
+        hos.write(123);
+        Assertions.assertThat(flushStream.isFlushed()).isFalse();
+        hos.flush();
+        Assertions.assertThat(flushStream.isFlushed()).isTrue();
+    }
+
+    /**
+     * {@link HexOutputStream} class test.
+     *
+     * @throws IOException IO exception.
+     */
+    @Test
     public void closeTest() throws IOException {
         CloseStream closeStream = new CloseStream();
         HexOutputStream hos = new HexOutputStream(closeStream);
         hos.write(123);
-
         Assertions.assertThat(closeStream.isClosed()).isFalse();
         hos.close();
         Assertions.assertThat(closeStream.isClosed()).isTrue();
+    }
+
+    /**
+     * Test class.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class FlushStream extends OutputStream {
+
+        private boolean _flushed;
+
+        FlushStream() {
+            super();
+            _flushed = false;
+        }
+
+        @Override
+        public void write(final int value) throws IOException {
+            // Ignore
+        }
+
+        boolean isFlushed() {
+            return _flushed;
+        }
+
+        @Override
+        public void flush() throws IOException {
+            super.flush();
+            _flushed = true;
+        }
+
     }
 
     /**
