@@ -74,7 +74,7 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexDefaultCaseTest() {
-//        Assertions.assertThat(HexHelper.toHex(null)).isEqualTo("");
+        // Assertions.assertThat(HexHelper.toHex(null)).isEqualTo("");
         Assertions.assertThat(HexHelper.toHex(new byte[0])).isEqualTo("");
         Assertions.assertThat(HexHelper.toHex(new byte[]{1, 5, (byte) 140, (byte) 250, -14})).isEqualTo("01058cfaf2");
         Assertions.assertThat(HexHelper.toHex(new byte[]{17, 28, (byte) 179, -14})).isEqualTo("111cb3f2");
