@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>Hex library</name>
-    <description>Hex library converts bytes to hex representation and vice versa</description>
+    <description>Hex library converts bytes to the hex representation and vice versa</description>
     <url>https://github.com/d-shap/hex</url>
 
     <licenses>
