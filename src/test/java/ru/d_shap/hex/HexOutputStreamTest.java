@@ -232,37 +232,37 @@ public final class HexOutputStreamTest {
         Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("00010203040506070809");
 
         hos.write(10);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a");
 
         hos.write(11);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b");
 
         hos.write(12);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c");
 
         hos.write(13);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C0D");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c0d");
 
         hos.write(14);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C0D0E");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c0d0e");
 
         hos.write(15);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C0D0E0F");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c0d0e0f");
 
         hos.write(16);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C0D0E0F10");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c0d0e0f10");
 
         hos.write(123);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C0D0E0F107B");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c0d0e0f107b");
 
         hos.write(242);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C0D0E0F107BF2");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c0d0e0f107bf2");
 
         hos.write(-14);
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C0D0E0F107BF2F2");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c0d0e0f107bf2f2");
 
         hos.close();
-        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090A0B0C0D0E0F107BF2F2");
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("000102030405060708090a0b0c0d0e0f107bf2f2");
     }
 
     /**

@@ -50,15 +50,15 @@ public final class ExceptionMessageHelperTest {
      */
     @Test
     public void createMessageTest() {
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringSizeMessage(11)).isEqualTo("Wrong number of symbols in hex string (11)");
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringSizeMessage(13)).isEqualTo("Wrong number of symbols in hex string (13)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringSizeMessage(11)).isEqualTo("Wrong number of characters in the hex string (11)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringSizeMessage(13)).isEqualTo("Wrong number of characters in the hex string (13)");
 
-        Assertions.assertThat(ExceptionMessageHelper.createWrongResultArrayMessage(16, 13)).isEqualTo("Result array is too small for hex string (13), expected size is (16)");
-        Assertions.assertThat(ExceptionMessageHelper.createWrongResultArrayMessage(20, 9)).isEqualTo("Result array is too small for hex string (9), expected size is (20)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongResultArrayMessage(16, 13)).isEqualTo("Result array is too small for the hex string (13), expected size is (16)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongResultArrayMessage(20, 9)).isEqualTo("Result array is too small for the hex string (9), expected size is (20)");
 
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexSymbol('-')).isEqualTo("Wrong symbol obtained: '-' (45)");
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexSymbol('!')).isEqualTo("Wrong symbol obtained: '!' (33)");
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexSymbol('#')).isEqualTo("Wrong symbol obtained: '#' (35)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexCharacterMessage('-')).isEqualTo("Wrong character obtained: '-' (45)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexCharacterMessage('!')).isEqualTo("Wrong character obtained: '!' (33)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexCharacterMessage('#')).isEqualTo("Wrong character obtained: '#' (35)");
 
         Assertions.assertThat(ExceptionMessageHelper.createEndOfStreamMessage()).isEqualTo("Unexpected end of stream");
     }

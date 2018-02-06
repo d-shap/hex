@@ -129,7 +129,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: 'x' (120)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained: 'x' (120)");
         }
         try {
             String hex = "00gf12";
@@ -139,7 +139,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: 'g' (103)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained: 'g' (103)");
         }
         try {
             String hex = "110-";
@@ -149,7 +149,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '-' (45)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '-' (45)");
         }
         try {
             String hex = "~a";
@@ -158,7 +158,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '~' (126)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '~' (126)");
         }
         try {
             String hex = "+a";
@@ -167,7 +167,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '+' (43)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '+' (43)");
         }
         try {
             String hex = "aa\u0000b";
@@ -177,7 +177,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '\u0000' (0)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '\u0000' (0)");
         }
         try {
             String hex = "aab\u0000";
@@ -187,7 +187,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: '\u0000' (0)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '\u0000' (0)");
         }
     }
 
@@ -308,7 +308,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong symbol obtained: 'W' (87)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained: 'W' (87)");
         }
     }
 
