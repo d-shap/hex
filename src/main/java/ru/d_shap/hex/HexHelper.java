@@ -20,7 +20,7 @@
 package ru.d_shap.hex;
 
 /**
- * Class to perform bytes to hex and hex to bytes conversions.
+ * Class to perform the bytes-to-hex and the hex-to-bytes conversions.
  *
  * @author Dmitry Shapovalov
  */
@@ -31,157 +31,218 @@ public final class HexHelper {
     }
 
     /**
-     * Convert byte array to hex string. Upper case symbols are used for the hex representation.
+     * Convert the byte array to the hex string. Lower case characters are used for the hex representation.
      *
-     * @param bytes byte array.
-     * @return hex string.
+     * @param bytes the byte array.
+     * @return the hex string.
      */
     public static String toHex(final byte[] bytes) {
-        return toHex(bytes, true);
+        return toHex(bytes, 0, bytes.length, false);
     }
 
     /**
-     * Convert byte array to hex string.
+     * Convert the byte array to the hex string. Lower case characters are used for the hex representation.
      *
-     * @param bytes     byte array.
-     * @param upperCase use upper case symbols for the hex representation or not.
-     * @return hex string.
+     * @param bytes       the byte array.
+     * @param bytesOffset the offset of the first element in the byte array.
+     * @param bytesLength the number of elements in the byte array.
+     * @return the hex string.
+     */
+    public static String toHex(final byte[] bytes, final int bytesOffset, final int bytesLength) {
+        return toHex(bytes, bytesOffset, bytesLength, false);
+    }
+
+    /**
+     * Convert the byte array to the hex string.
+     *
+     * @param bytes     the byte array.
+     * @param upperCase true to use upper case characters for the hex representation, false otherwise.
+     * @return the hex string.
      */
     public static String toHex(final byte[] bytes, final boolean upperCase) {
-        if (bytes == null) {
-            return "";
-        }
+        return toHex(bytes, 0, bytes.length, upperCase);
+    }
 
-        int[] hexUpperSymbols;
-        int[] hexLowerSymbols;
+    /**
+     * Convert the byte array to the hex string.
+     *
+     * @param bytes       the byte array.
+     * @param bytesOffset the offset of the first element in the byte array.
+     * @param bytesLength the number of elements in the byte array.
+     * @param upperCase   true to use upper case characters for the hex representation, false otherwise.
+     * @return the hex string.
+     */
+    public static String toHex(final byte[] bytes, final int bytesOffset, final int bytesLength, final boolean upperCase) {
+        int[] hexUpperCharacters;
+        int[] hexLowerCharacters;
         if (upperCase) {
-            hexUpperSymbols = Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL;
-            hexLowerSymbols = Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL;
+            hexUpperCharacters = Consts.TO_UPPERCASE_HEX_UPPER_CHARACTER;
+            hexLowerCharacters = Consts.TO_UPPERCASE_HEX_LOWER_CHARACTER;
         } else {
-            hexUpperSymbols = Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL;
-            hexLowerSymbols = Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL;
+            hexUpperCharacters = Consts.TO_LOWERCASE_HEX_UPPER_CHARACTER;
+            hexLowerCharacters = Consts.TO_LOWERCASE_HEX_LOWER_CHARACTER;
         }
 
-        StringBuilder buffer = new StringBuilder(2 * bytes.length);
-        for (byte value : bytes) {
-            int idx = value & 0xFF;
-            int upperByte = hexUpperSymbols[idx];
-            buffer.append((char) upperByte);
-            int lowerByte = hexLowerSymbols[idx];
-            buffer.append((char) lowerByte);
+        StringBuilder buffer = new StringBuilder(bytesLength * 2);
+        int bytesMaxIndex = bytesOffset + bytesLength;
+        int currentByte;
+        int upperCharacter;
+        int lowerCharacter;
+        for (int i = bytesOffset; i < bytesMaxIndex; i++) {
+            currentByte = bytes[i] & 0xFF;
+            upperCharacter = hexUpperCharacters[currentByte];
+            buffer.append((char) upperCharacter);
+            lowerCharacter = hexLowerCharacters[currentByte];
+            buffer.append((char) lowerCharacter);
         }
         return buffer.toString();
     }
 
     /**
-     * Convert hex string to byte array.
+     * Convert the hex string to the byte array.
      *
-     * @param hex    hex string.
-     * @param result byte array to write result.
-     * @return number of bytes affected in the byte array.
+     * @param hex   the hex string.
+     * @param bytes the byte array to write the result.
+     * @return the number of bytes affected in the byte array.
      */
-    public static int toBytes(final String hex, final byte[] result) {
-        if (hex == null) {
-            return 0;
-        }
-
-        int hexLength = hex.length();
-        if (hexLength % 2 != 0) {
-            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringSizeMessage(hexLength));
-        }
-        int resultLength = hexLength / 2;
-        if (result.length < resultLength) {
-            throw new HexRuntimeException(ExceptionMessageHelper.createWrongResultArrayMessage(resultLength, result.length));
-        }
-
-        convertToBytes(hex, result);
-        return resultLength;
+    public static int toBytes(final String hex, final byte[] bytes) {
+        return toBytes(hex, 0, hex.length(), bytes, 0);
     }
 
     /**
-     * Convert hex string to byte array.
+     * Convert the hex string to the byte array.
      *
-     * @param hex hex string.
-     * @return new byte array with conversion result.
+     * @param hex       the hex string.
+     * @param hexOffset the offset of the first element in the hex string.
+     * @param hexLength the number of elements in the hex string.
+     * @param bytes     the byte array to write the result.
+     * @return the number of bytes affected in the byte array.
+     */
+    public static int toBytes(final String hex, final int hexOffset, final int hexLength, final byte[] bytes) {
+        return toBytes(hex, hexOffset, hexLength, bytes, 0);
+    }
+
+    /**
+     * Convert the hex string to the byte array.
+     *
+     * @param hex         the hex string.
+     * @param bytes       the byte array to write the result.
+     * @param bytesOffset the offset of the first element in the byte array.
+     * @return the number of bytes affected in the byte array.
+     */
+    public static int toBytes(final String hex, final byte[] bytes, final int bytesOffset) {
+        return toBytes(hex, 0, hex.length(), bytes, bytesOffset);
+    }
+
+    /**
+     * Convert the hex string to the byte array.
+     *
+     * @param hex         the hex string.
+     * @param hexOffset   the offset of the first element in the hex string.
+     * @param hexLength   the number of elements in the hex string.
+     * @param bytes       the byte array to write the result.
+     * @param bytesOffset the offset of the first element in the byte array.
+     * @return the number of bytes affected in the byte array.
+     */
+    public static int toBytes(final String hex, final int hexOffset, final int hexLength, final byte[] bytes, final int bytesOffset) {
+        if (hexLength % 2 != 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringSizeMessage(hexLength));
+        }
+        int bytesLength = hexLength / 2;
+        if (bytes.length - bytesOffset < bytesLength) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongResultArrayMessage(bytesLength, bytes.length));
+        }
+
+        convertToBytes(hex, hexOffset, hexLength, bytes, bytesOffset);
+        return bytesLength;
+    }
+
+    /**
+     * Convert the hex string to the byte array.
+     *
+     * @param hex the hex string.
+     * @return the byte array with the result.
      */
     public static byte[] toBytes(final String hex) {
-        if (hex == null) {
-            return new byte[0];
-        }
-
-        int hexLength = hex.length();
-        if (hexLength % 2 != 0) {
-            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringSizeMessage(hexLength));
-        }
-        int resultLength = hexLength / 2;
-        byte[] result = new byte[resultLength];
-
-        convertToBytes(hex, result);
-        return result;
-    }
-
-    private static void convertToBytes(final String hex, final byte[] result) {
-        int hexLength = hex.length();
-
-        int hexIndex = 0;
-        int symbol1;
-        int symbol2;
-        int resultIndex = 0;
-        while (hexIndex < hexLength) {
-            symbol1 = hexCharAt(hex, hexIndex);
-            hexIndex++;
-            symbol2 = hexCharAt(hex, hexIndex);
-            hexIndex++;
-
-            result[resultIndex] = (byte) (Consts.FROM_HEX_UPPER_BYTE[symbol1] + Consts.FROM_HEX_LOWER_BYTE[symbol2]);
-            resultIndex++;
-        }
-    }
-
-    private static int hexCharAt(final String hex, final int hexIndex) {
-        int symbol = hex.charAt(hexIndex);
-        if (isHexSymbolValid(symbol)) {
-            return symbol;
-        } else {
-            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexSymbol(symbol));
-        }
-    }
-
-    static boolean isHexSymbolValid(final int symbol) {
-        return symbol >= '0' && symbol < Consts.FROM_HEX.length && Consts.FROM_HEX[symbol] >= 0;
+        return toBytes(hex, 0, hex.length());
     }
 
     /**
-     * Define, whether input string contains only hex symbols or not. String must contain an even number of symbols.
+     * Convert the hex string to the byte array.
      *
-     * @param hex hex string.
-     * @return true, if hex string contains only hex symbols.
+     * @param hex       the hex string.
+     * @param hexOffset the offset of the first element in the hex string.
+     * @param hexLength the number of elements in the hex string.
+     * @return the byte array with the result.
+     */
+    public static byte[] toBytes(final String hex, final int hexOffset, final int hexLength) {
+        if (hexLength % 2 != 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringSizeMessage(hexLength));
+        }
+        int bytesLength = hexLength / 2;
+        byte[] bytes = new byte[bytesLength];
+
+        convertToBytes(hex, hexOffset, hexLength, bytes, 0);
+        return bytes;
+    }
+
+    private static void convertToBytes(final String hex, final int hexOffset, final int hexLength, final byte[] bytes, final int bytesOffset) {
+        int hexIndex = hexOffset;
+        int hexMaxIndex = hexOffset + hexLength;
+        int currentCharacter1;
+        int currentCharacter2;
+        int bytesIndex = bytesOffset;
+        while (hexIndex < hexMaxIndex) {
+            currentCharacter1 = hexCharacterAt(hex, hexIndex);
+            hexIndex++;
+            currentCharacter2 = hexCharacterAt(hex, hexIndex);
+            hexIndex++;
+
+            bytes[bytesIndex] = (byte) (Consts.FROM_HEX_UPPER_BYTE[currentCharacter1] + Consts.FROM_HEX_LOWER_BYTE[currentCharacter2]);
+            bytesIndex++;
+        }
+    }
+
+    private static int hexCharacterAt(final String hex, final int hexIndex) {
+        int character = hex.charAt(hexIndex);
+        if (isHexCharacterValid(character)) {
+            return character;
+        } else {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexCharacterMessage(character));
+        }
+    }
+
+    static boolean isHexCharacterValid(final int character) {
+        return character >= '0' && character < Consts.FROM_HEX.length && Consts.FROM_HEX[character] >= 0;
+    }
+
+    /**
+     * Define, whether the hex string contains only the hex characters or not. The string must contain an even number of characters.
+     *
+     * @param hex the hex string.
+     * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex) {
         return isHexString(hex, true);
     }
 
     /**
-     * Define, whether input string contains only hex symbols or not.
+     * Define, whether the hex string contains only the hex characters or not.
      *
-     * @param hex       hex string.
-     * @param evenCheck is hex string contains even number of symbols or not.
-     * @return true, if input string contains only hex symbols.
+     * @param hex       the hex string.
+     * @param evenCheck true if the hex string contains should contain an even number of characters, false otherwisef.
+     * @return true, the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final boolean evenCheck) {
-        if (hex == null) {
-            return false;
-        }
         if ("".equals(hex)) {
             return false;
         }
-
         int hexLength = hex.length();
         if (evenCheck && hexLength % 2 != 0) {
             return false;
         }
         for (int i = 0; i < hexLength; i++) {
-            if (!isHexSymbolValid(hex.charAt(i))) {
+            if (!isHexCharacterValid(hex.charAt(i))) {
                 return false;
             }
         }
