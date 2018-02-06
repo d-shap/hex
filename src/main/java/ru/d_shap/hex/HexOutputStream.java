@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Output stream to write hex representation of bytes.
+ * Output stream to write the hex representation of the bytes.
  *
  * @author Dmitry Shapovalov
  */
@@ -31,44 +31,44 @@ public final class HexOutputStream extends OutputStream {
 
     private final OutputStream _outputStream;
 
-    private final int[] _hexUpperSymbols;
+    private final int[] _hexUpperCharacters;
 
-    private final int[] _hexLowerSymbols;
+    private final int[] _hexLowerCharacters;
 
     /**
-     * Create new object. Upper case symbols are used for the hex representation.
+     * Create new object. Lower case characters are used for the hex representation.
      *
-     * @param outputStream output stream to write bytes.
+     * @param outputStream output stream with the hex representation of the bytes.
      */
     public HexOutputStream(final OutputStream outputStream) {
-        this(outputStream, true);
+        this(outputStream, false);
     }
 
     /**
      * Create new object.
      *
-     * @param outputStream output stream to write bytes.
-     * @param upperCase    use upper case symbols for the hex representation or not.
+     * @param outputStream output stream with the hex representation of the bytes.
+     * @param upperCase    true to use upper case characters for the hex representation, false otherwise.
      */
     public HexOutputStream(final OutputStream outputStream, final boolean upperCase) {
         super();
         _outputStream = outputStream;
         if (upperCase) {
-            _hexUpperSymbols = Consts.TO_UPPERCASE_HEX_UPPER_SYMBOL;
-            _hexLowerSymbols = Consts.TO_UPPERCASE_HEX_LOWER_SYMBOL;
+            _hexUpperCharacters = Consts.TO_UPPERCASE_HEX_UPPER_CHARACTER;
+            _hexLowerCharacters = Consts.TO_UPPERCASE_HEX_LOWER_CHARACTER;
         } else {
-            _hexUpperSymbols = Consts.TO_LOWERCASE_HEX_UPPER_SYMBOL;
-            _hexLowerSymbols = Consts.TO_LOWERCASE_HEX_LOWER_SYMBOL;
+            _hexUpperCharacters = Consts.TO_LOWERCASE_HEX_UPPER_CHARACTER;
+            _hexLowerCharacters = Consts.TO_LOWERCASE_HEX_LOWER_CHARACTER;
         }
     }
 
     @Override
     public void write(final int value) throws IOException {
-        int idx = value & 0xFF;
-        int upperByte = _hexUpperSymbols[idx];
-        _outputStream.write(upperByte);
-        int lowerByte = _hexLowerSymbols[idx];
-        _outputStream.write(lowerByte);
+        int currentByte = value & 0xFF;
+        int upperCharacter = _hexUpperCharacters[currentByte];
+        _outputStream.write(upperCharacter);
+        int lowerCharacter = _hexLowerCharacters[currentByte];
+        _outputStream.write(lowerCharacter);
     }
 
     @Override
