@@ -20,7 +20,7 @@
 package ru.d_shap.hex;
 
 /**
- * Exception thrown during hex-to-byte or byte-to-hex conversion.
+ * Exception thrown during the bytes-to-hex and the hex-to-bytes conversions.
  *
  * @author Dmitry Shapovalov
  */
