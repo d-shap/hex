@@ -230,7 +230,7 @@ public final class HexHelper {
      * Define, whether the hex string contains only the hex characters or not.
      *
      * @param hex       the hex string.
-     * @param evenCheck true if the hex string contains should contain an even number of characters, false otherwisef.
+     * @param evenCheck true if the hex string contains should contain an even number of characters, false otherwise.
      * @return true, the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final boolean evenCheck) {
