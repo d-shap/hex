@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Input stream to read hex representation of bytes.
+ * Input stream to read the hex representation of the bytes.
  *
  * @author Dmitry Shapovalov
  */
@@ -34,7 +34,7 @@ public final class HexInputStream extends InputStream {
     /**
      * Create new object.
      *
-     * @param inputStream input stream to read bytes.
+     * @param inputStream input stream with the hex representation of the bytes.
      */
     public HexInputStream(final InputStream inputStream) {
         super();
@@ -43,23 +43,23 @@ public final class HexInputStream extends InputStream {
 
     @Override
     public int read() throws IOException {
-        int symbol1 = _inputStream.read();
-        if (symbol1 < 0) {
+        int character1 = _inputStream.read();
+        if (character1 < 0) {
             return -1;
         }
-        if (!HexHelper.isHexSymbolValid(symbol1)) {
-            throw new IOException(ExceptionMessageHelper.createWrongHexSymbol(symbol1));
+        if (!HexHelper.isHexCharacterValid(character1)) {
+            throw new IOException(ExceptionMessageHelper.createWrongHexCharacterMessage(character1));
         }
 
-        int symbol2 = _inputStream.read();
-        if (symbol2 < 0) {
+        int character2 = _inputStream.read();
+        if (character2 < 0) {
             throw new IOException(ExceptionMessageHelper.createEndOfStreamMessage());
         }
-        if (!HexHelper.isHexSymbolValid(symbol2)) {
-            throw new IOException(ExceptionMessageHelper.createWrongHexSymbol(symbol2));
+        if (!HexHelper.isHexCharacterValid(character2)) {
+            throw new IOException(ExceptionMessageHelper.createWrongHexCharacterMessage(character2));
         }
 
-        return Consts.FROM_HEX_UPPER_BYTE[symbol1] + Consts.FROM_HEX_LOWER_BYTE[symbol2];
+        return Consts.FROM_HEX_UPPER_BYTE[character1] + Consts.FROM_HEX_LOWER_BYTE[character2];
     }
 
     @Override
