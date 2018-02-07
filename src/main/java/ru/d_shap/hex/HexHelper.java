@@ -88,8 +88,8 @@ public final class HexHelper {
         int currentByte;
         int upperCharacter;
         int lowerCharacter;
-        for (int i = bytesOffset; i < bytesMaxIndex; i++) {
-            currentByte = bytes[i] & 0xFF;
+        for (int bytesIndex = bytesOffset; bytesIndex < bytesMaxIndex; bytesIndex++) {
+            currentByte = bytes[bytesIndex] & 0xFF;
             upperCharacter = hexUpperCharacters[currentByte];
             buffer.append((char) upperCharacter);
             lowerCharacter = hexLowerCharacters[currentByte];
@@ -265,13 +265,13 @@ public final class HexHelper {
         if (evenCheck && hexLength % 2 != 0) {
             return false;
         }
-        int hexIndex = hexOffset;
         int hexMaxIndex = hexOffset + hexLength;
-        while (hexIndex < hexMaxIndex) {
-            if (!isHexCharacterValid(hex.charAt(hexIndex))) {
+        int currentCharacter;
+        for (int hexIndex = hexOffset; hexIndex < hexMaxIndex; hexIndex++) {
+            currentCharacter = hex.charAt(hexIndex);
+            if (!isHexCharacterValid(currentCharacter)) {
                 return false;
             }
-            hexIndex++;
         }
         return true;
     }
