@@ -101,7 +101,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void readOddSymbolCountTest() throws IOException {
+    public void readOddCharacterCountTest() throws IOException {
         try {
             String hex = "0f21da471cf";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -120,7 +120,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void readWrongSymbolTest() throws IOException {
+    public void readWrongCharacterTest() throws IOException {
         try {
             String hex = "000x12";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -129,7 +129,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong character obtained: 'x' (120)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained ('x', 120)");
         }
         try {
             String hex = "00gf12";
@@ -139,7 +139,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong character obtained: 'g' (103)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained ('g', 103)");
         }
         try {
             String hex = "110-";
@@ -149,7 +149,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '-' (45)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained ('-', 45)");
         }
         try {
             String hex = "~a";
@@ -158,7 +158,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '~' (126)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained ('~', 126)");
         }
         try {
             String hex = "+a";
@@ -167,7 +167,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '+' (43)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained ('+', 43)");
         }
         try {
             String hex = "aa\u0000b";
@@ -177,7 +177,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '\u0000' (0)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained ('\u0000', 0)");
         }
         try {
             String hex = "aab\u0000";
@@ -187,7 +187,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong character obtained: '\u0000' (0)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained ('\u0000', 0)");
         }
     }
 
@@ -247,7 +247,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void skipOddSymbolCountMoreThenAvailableTest() throws IOException {
+    public void skipOddCharacterCountMoreThenAvailableTest() throws IOException {
         String hex = "0f21da471cf";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -262,7 +262,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void skipOddSymbolCountReadTest() throws IOException {
+    public void skipOddCharacterCountReadTest() throws IOException {
         try {
             String hex = "0f21da471cf";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -282,7 +282,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void skipWrongSymbolTest() throws IOException {
+    public void skipWrongCharacterTest() throws IOException {
         String hex = "0f21xxZZ1Qf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -298,7 +298,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void skipWrongSymbolReadTest() throws IOException {
+    public void skipWrongCharacterReadTest() throws IOException {
         try {
             String hex = "0f21xxZZ1QfW";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -308,7 +308,7 @@ public final class HexInputStreamTest {
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong character obtained: 'W' (87)");
+            Assertions.assertThat(ex).hasMessage("Wrong character obtained ('W', 87)");
         }
     }
 
@@ -338,7 +338,7 @@ public final class HexInputStreamTest {
      * @throws IOException IO exception.
      */
     @Test
-    public void availableOddSymbolCountTest() throws IOException {
+    public void availableOddCharacterCountTest() throws IOException {
         try {
             String hex = "0f21da471cf";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
