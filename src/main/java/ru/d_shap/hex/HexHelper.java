@@ -83,7 +83,7 @@ public final class HexHelper {
             hexLowerCharacters = Consts.TO_LOWERCASE_HEX_LOWER_CHARACTER;
         }
 
-        StringBuilder buffer = new StringBuilder(bytesLength * 2);
+        StringBuilder buffer = new StringBuilder(Math.max(bytesLength * 2, 0));
         int bytesMaxIndex = bytesOffset + bytesLength;
         int currentByte;
         int upperCharacter;
@@ -150,11 +150,11 @@ public final class HexHelper {
         }
         int bytesLength = hexLength / 2;
         if (bytes.length - bytesOffset < bytesLength) {
-            throw new HexRuntimeException(ExceptionMessageHelper.createWrongResultArrayMessage(bytesLength, bytes.length));
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongResultArrayMessage(bytesLength, Math.max(bytes.length - bytesOffset, 0)));
         }
 
         convertToBytes(hex, hexOffset, hexLength, bytes, bytesOffset);
-        return bytesLength;
+        return Math.max(bytesLength, 0);
     }
 
     /**
@@ -180,7 +180,7 @@ public final class HexHelper {
             throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringSizeMessage(hexLength));
         }
         int bytesLength = hexLength / 2;
-        byte[] bytes = new byte[bytesLength];
+        byte[] bytes = new byte[Math.max(bytesLength, 0)];
 
         convertToBytes(hex, hexOffset, hexLength, bytes, 0);
         return bytes;
@@ -259,7 +259,7 @@ public final class HexHelper {
      * @return true, the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final int hexOffset, final int hexLength, final boolean evenCheck) {
-        if ("".equals(hex)) {
+        if (hexLength <= 0) {
             return false;
         }
         if (evenCheck && hexLength % 2 != 0) {
