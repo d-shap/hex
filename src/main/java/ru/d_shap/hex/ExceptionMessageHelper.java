@@ -35,11 +35,11 @@ final class ExceptionMessageHelper {
     }
 
     static String createWrongResultArrayMessage(final int expected, final int actual) {
-        return "Result array is too small for the hex string (" + actual + "), expected size is (" + expected + ")";
+        return "The result array is too small for the hex string (" + actual + "), expected size is (" + expected + ")";
     }
 
     static String createWrongHexCharacterMessage(final int character) {
-        return "Wrong character obtained: '" + (char) character + "' (" + character + ")";
+        return "Wrong character obtained ('" + (char) character + "', " + character + ")";
     }
 
     static String createEndOfStreamMessage() {
