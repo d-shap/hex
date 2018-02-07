@@ -86,7 +86,7 @@ public final class ConstsTest {
      * {@link Consts} class test.
      */
     @Test
-    public void toLowerCaseHexUpperSymbolTest() {
+    public void toLowerCaseHexUpperCharacterTest() {
         Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_CHARACTER[0xF0]).isEqualTo('f');
         Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_CHARACTER[0xF2]).isEqualTo('f');
         Assertions.assertThat(Consts.TO_LOWERCASE_HEX_UPPER_CHARACTER[0xF6]).isEqualTo('f');
@@ -107,7 +107,7 @@ public final class ConstsTest {
      * {@link Consts} class test.
      */
     @Test
-    public void toLowerCaseHexLowerSymbolTest() {
+    public void toLowerCaseHexLowerCharacterTest() {
         Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_CHARACTER[0x0F]).isEqualTo('f');
         Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_CHARACTER[0x2F]).isEqualTo('f');
         Assertions.assertThat(Consts.TO_LOWERCASE_HEX_LOWER_CHARACTER[0x6F]).isEqualTo('f');
@@ -128,7 +128,7 @@ public final class ConstsTest {
      * {@link Consts} class test.
      */
     @Test
-    public void toUpperCaseHexUpperSymbolTest() {
+    public void toUpperCaseHexUpperCharacterTest() {
         Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_CHARACTER[0xF0]).isEqualTo('F');
         Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_CHARACTER[0xF2]).isEqualTo('F');
         Assertions.assertThat(Consts.TO_UPPERCASE_HEX_UPPER_CHARACTER[0xF6]).isEqualTo('F');
@@ -149,7 +149,7 @@ public final class ConstsTest {
      * {@link Consts} class test.
      */
     @Test
-    public void toUpperCaseHexLowerSymbolTest() {
+    public void toUpperCaseHexLowerCharacterTest() {
         Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_CHARACTER[0x2F]).isEqualTo('F');
         Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_CHARACTER[0x6F]).isEqualTo('F');
         Assertions.assertThat(Consts.TO_UPPERCASE_HEX_LOWER_CHARACTER[0x9F]).isEqualTo('F');
