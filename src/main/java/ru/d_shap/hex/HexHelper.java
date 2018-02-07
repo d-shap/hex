@@ -223,7 +223,19 @@ public final class HexHelper {
      * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex) {
-        return isHexString(hex, true);
+        return isHexString(hex, 0, hex.length(), true);
+    }
+
+    /**
+     * Define, whether the hex string contains only the hex characters or not. The string must contain an even number of characters.
+     *
+     * @param hex       the hex string.
+     * @param hexOffset the offset of the first element in the hex string.
+     * @param hexLength the number of elements in the hex string.
+     * @return true, if the hex string contains only the hex characters.
+     */
+    public static boolean isHexString(final String hex, final int hexOffset, final int hexLength) {
+        return isHexString(hex, hexOffset, hexLength, true);
     }
 
     /**
@@ -234,17 +246,32 @@ public final class HexHelper {
      * @return true, the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final boolean evenCheck) {
+        return isHexString(hex, 0, hex.length(), evenCheck);
+    }
+
+    /**
+     * Define, whether the hex string contains only the hex characters or not.
+     *
+     * @param hex       the hex string.
+     * @param hexOffset the offset of the first element in the hex string.
+     * @param hexLength the number of elements in the hex string.
+     * @param evenCheck true if the hex string contains should contain an even number of characters, false otherwise.
+     * @return true, the hex string contains only the hex characters.
+     */
+    public static boolean isHexString(final String hex, final int hexOffset, final int hexLength, final boolean evenCheck) {
         if ("".equals(hex)) {
             return false;
         }
-        int hexLength = hex.length();
         if (evenCheck && hexLength % 2 != 0) {
             return false;
         }
-        for (int i = 0; i < hexLength; i++) {
-            if (!isHexCharacterValid(hex.charAt(i))) {
+        int hexIndex = hexOffset;
+        int hexMaxIndex = hexOffset + hexLength;
+        while (hexIndex < hexMaxIndex) {
+            if (!isHexCharacterValid(hex.charAt(hexIndex))) {
                 return false;
             }
+            hexIndex++;
         }
         return true;
     }
