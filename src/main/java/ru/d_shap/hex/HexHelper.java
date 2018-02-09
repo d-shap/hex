@@ -243,7 +243,7 @@ public final class HexHelper {
      *
      * @param hex       the hex string.
      * @param evenCheck true if the hex string contains should contain an even number of characters, false otherwise.
-     * @return true, the hex string contains only the hex characters.
+     * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final boolean evenCheck) {
         return isHexString(hex, 0, hex.length(), evenCheck);
@@ -256,7 +256,7 @@ public final class HexHelper {
      * @param hexOffset the offset of the first element in the hex string.
      * @param hexLength the number of elements in the hex string.
      * @param evenCheck true if the hex string contains should contain an even number of characters, false otherwise.
-     * @return true, the hex string contains only the hex characters.
+     * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final int hexOffset, final int hexLength, final boolean evenCheck) {
         if (hexLength <= 0) {
