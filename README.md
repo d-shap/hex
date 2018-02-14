@@ -26,8 +26,8 @@ In this case `HexInputStream` and `HexOutputStream` classes can be used.
 
 An example, how to write the hex characters to the file:
 ```
-try (FileInputStream inputStream = new FileInputStream("some input file");
-     HexOutputStream outputStream = new HexOutputStream(new FileOutputStream("some output file"))) {
+try (FileInputStream inputStream = new FileInputStream("input file");
+     HexOutputStream outputStream = new HexOutputStream(new FileOutputStream("hex output file"))) {
     int b;
     while (true) {
         b = inputStream.read();
