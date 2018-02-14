@@ -50,15 +50,24 @@ public final class ExceptionMessageHelperTest {
      */
     @Test
     public void createMessageTest() {
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringSizeMessage(11)).isEqualTo("Wrong number of characters in the hex string (11)");
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringSizeMessage(13)).isEqualTo("Wrong number of characters in the hex string (13)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongByteArrayIndexMessage(-1)).isEqualTo("Wrong byte array index (-1)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongByteArrayIndexMessage(17)).isEqualTo("Wrong byte array index (17)");
 
-        Assertions.assertThat(ExceptionMessageHelper.createWrongResultArrayMessage(16, 13)).isEqualTo("The result array is too small for the hex string (13), expected size is (16)");
-        Assertions.assertThat(ExceptionMessageHelper.createWrongResultArrayMessage(20, 9)).isEqualTo("The result array is too small for the hex string (9), expected size is (20)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongByteArrayLengthMessage(-1)).isEqualTo("Wrong byte array length (-1)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongByteArrayLengthMessage(17)).isEqualTo("Wrong byte array length (17)");
 
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexCharacterMessage('-')).isEqualTo("Wrong character obtained ('-', 45)");
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexCharacterMessage('!')).isEqualTo("Wrong character obtained ('!', 33)");
-        Assertions.assertThat(ExceptionMessageHelper.createWrongHexCharacterMessage('#')).isEqualTo("Wrong character obtained ('#', 35)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongByteArrayLengthMessage(13, 16)).isEqualTo("Wrong byte array length (13), expected length is (16)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongByteArrayLengthMessage(9, 20)).isEqualTo("Wrong byte array length (9), expected length is (20)");
+
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringIndexMessage(-1)).isEqualTo("Wrong hex string index (-1)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringIndexMessage(17)).isEqualTo("Wrong hex string index (17)");
+
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringLengthMessage(-1)).isEqualTo("Wrong hex string length (-1)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringLengthMessage(17)).isEqualTo("Wrong hex string length (17)");
+
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringCharacterMessage('-')).isEqualTo("Wrong character obtained ('-', 45)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringCharacterMessage('!')).isEqualTo("Wrong character obtained ('!', 33)");
+        Assertions.assertThat(ExceptionMessageHelper.createWrongHexStringCharacterMessage('#')).isEqualTo("Wrong character obtained ('#', 35)");
 
         Assertions.assertThat(ExceptionMessageHelper.createEndOfStreamMessage()).isEqualTo("Unexpected end of stream");
     }
