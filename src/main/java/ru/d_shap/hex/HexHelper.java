@@ -170,20 +170,16 @@ public final class HexHelper {
         if (bytesOffset < 0) {
             throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayIndexMessage(bytesOffset));
         }
-        if (bytesOffset >= bytes.length) {
+        if (bytesOffset > bytes.length) {
             throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayIndexMessage(bytesOffset));
         }
 
-        if (hexLength == 0) {
-            return 0;
-        } else {
-            int bytesLength = hexLength / 2;
-            if (bytesOffset + bytesLength > bytes.length) {
-                throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayLengthMessage(bytes.length - bytesOffset, bytesLength));
-            }
-            convertToBytes(hex, hexOffset, hexLength, bytes, bytesOffset);
-            return bytesLength;
+        int bytesLength = hexLength / 2;
+        if (bytesOffset + bytesLength > bytes.length) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayLengthMessage(bytes.length - bytesOffset, bytesLength));
         }
+        convertToBytes(hex, hexOffset, hexLength, bytes, bytesOffset);
+        return bytesLength;
     }
 
     /**
@@ -218,14 +214,10 @@ public final class HexHelper {
             throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringLengthMessage(hexLength));
         }
 
-        if (hexLength == 0) {
-            return new byte[0];
-        } else {
-            int bytesLength = hexLength / 2;
-            byte[] bytes = new byte[bytesLength];
-            convertToBytes(hex, hexOffset, hexLength, bytes, 0);
-            return bytes;
-        }
+        int bytesLength = hexLength / 2;
+        byte[] bytes = new byte[bytesLength];
+        convertToBytes(hex, hexOffset, hexLength, bytes, 0);
+        return bytes;
     }
 
     private static void convertToBytes(final String hex, final int hexOffset, final int hexLength, final byte[] bytes, final int bytesOffset) {
