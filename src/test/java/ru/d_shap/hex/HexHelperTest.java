@@ -108,9 +108,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void toHexWithDefaultCaseAndBoundsAndNegativeOffsetTest() {
-        HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, -1, 2);
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, -1, 2);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (-1)");
+        }
     }
 
     /**
@@ -118,15 +123,25 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexWithDefaultCaseAndBoundsAndNegativeLengthTest() {
-        Assertions.assertThat(HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, -1)).isEqualTo("");
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, -1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (-1)");
+        }
     }
 
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void toHexWithDefaultCaseAndBoundsAndTooLargeLengthTest() {
-        HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, 10);
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, 10);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (10)");
+        }
     }
 
     /**
@@ -192,9 +207,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void toHexWithUpperCaseAndBoundsAndNegativeOffsetTest() {
-        HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, -1, 2, true);
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, -1, 2, true);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (-1)");
+        }
     }
 
     /**
@@ -202,15 +222,25 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexWithUpperCaseAndBoundsAndNegativeLengthTest() {
-        Assertions.assertThat(HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, -1, true)).isEqualTo("");
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, -1, true);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (-1)");
+        }
     }
 
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void toHexWithUpperCaseAndBoundsAndTooLargeLengthTest() {
-        HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, 10, true);
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, 10, true);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (10)");
+        }
     }
 
     /**
@@ -276,9 +306,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void toHexWithLowerCaseAndBoundsAndNegativeOffsetTest() {
-        HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, -1, 2, false);
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, -1, 2, false);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (-1)");
+        }
     }
 
     /**
@@ -286,15 +321,25 @@ public final class HexHelperTest {
      */
     @Test
     public void toHexWithLowerCaseAndBoundsAndNegativeLengthTest() {
-        Assertions.assertThat(HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, -1, false)).isEqualTo("");
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, -1, false);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (-1)");
+        }
     }
 
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void toHexWithLowerCaseAndBoundsAndTooLargeLengthTest() {
-        HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, 10, false);
+        try {
+            HexHelper.toHex(new byte[]{(byte) 255, (byte) 250, (byte) 180, 17, 94}, 0, 10, false);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (10)");
+        }
     }
 
     /**
@@ -447,9 +492,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void toBytesSpecifiedWithHexBoundsAndNegativeOffsetTest() {
-        HexHelper.toBytes("AACD2F", -1, 2, new byte[10]);
+        try {
+            HexHelper.toBytes("AACD2F", -1, 2, new byte[10]);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (-1)");
+        }
     }
 
     /**
@@ -457,17 +507,31 @@ public final class HexHelperTest {
      */
     @Test
     public void toBytesSpecifiedWithHexBoundsAndNegativeLengthTest() {
-        byte[] bytes = new byte[8];
-        Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, -2, bytes)).isEqualTo(0);
-        Assertions.assertThat(bytes).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 0);
+        try {
+            HexHelper.toBytes("AACD2F", 0, -1, new byte[8]);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-1)");
+        }
+        try {
+            HexHelper.toBytes("AACD2F", 0, -2, new byte[8]);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-2)");
+        }
     }
 
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void toBytesSpecifiedWithHexBoundsAndTooLargeLengthTest() {
-        HexHelper.toBytes("AACD2F", 0, 8, new byte[10]);
+        try {
+            HexHelper.toBytes("AACD2F", 0, 8, new byte[10]);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (8)");
+        }
     }
 
     /**
@@ -566,9 +630,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void toBytesSpecifiedWithByteArrayOffsetAndNegativeByteArrayOffsetTest() {
-        HexHelper.toBytes("AACD2F", new byte[8], -1);
+        try {
+            HexHelper.toBytes("AACD2F", new byte[8], -1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (-1)");
+        }
     }
 
     /**
@@ -580,8 +649,36 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", new byte[8], 10);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong byte array length (0), expected length is (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (10)");
         }
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesSpecifiedWithByteArrayOffsetAndUpperBoundTest() {
+        byte[] bytes1 = new byte[8];
+        Assertions.assertThat(HexHelper.toBytes("", bytes1, 8)).isEqualTo(0);
+        Assertions.assertThat(bytes1).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 0);
+
+        try {
+            HexHelper.toBytes("", new byte[8], 9);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (9)");
+        }
+
+        try {
+            HexHelper.toBytes("aa", new byte[8], 8);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (0), expected length is (1)");
+        }
+
+        byte[] bytes2 = new byte[8];
+        Assertions.assertThat(HexHelper.toBytes("aa", bytes2, 7)).isEqualTo(1);
+        Assertions.assertThat(bytes2).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 170);
     }
 
     /**
@@ -686,9 +783,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void toBytesSpecifiedWithHexBoundsAndByteArrayOffsetAndNegativeOffsetTest() {
-        HexHelper.toBytes("AACD2F", -1, 2, new byte[10], 1);
+        try {
+            HexHelper.toBytes("AACD2F", -1, 2, new byte[10], 1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (-1)");
+        }
     }
 
     /**
@@ -696,17 +798,31 @@ public final class HexHelperTest {
      */
     @Test
     public void toBytesSpecifiedWithHexBoundsAndByteArrayOffsetAndNegativeLengthTest() {
-        byte[] bytes = new byte[8];
-        Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, -2, bytes, 1)).isEqualTo(0);
-        Assertions.assertThat(bytes).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 0);
+        try {
+            HexHelper.toBytes("AACD2F", 0, -1, new byte[8], 1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-1)");
+        }
+        try {
+            HexHelper.toBytes("AACD2F", 0, -2, new byte[8], 1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-2)");
+        }
     }
 
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void toBytesSpecifiedWithHexBoundsAndByteArrayOffsetAndTooLargeLengthTest() {
-        HexHelper.toBytes("AACD2F", 0, 8, new byte[10], 1);
+        try {
+            HexHelper.toBytes("AACD2F", 0, 8, new byte[10], 1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (8)");
+        }
     }
 
     /**
@@ -733,9 +849,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void toBytesSpecifiedWithHexBoundsAndByteArrayOffsetAndNegativeByteArrayOffsetTest() {
-        HexHelper.toBytes("AACD2F", 2, 4, new byte[8], -1);
+        try {
+            HexHelper.toBytes("AACD2F", 2, 4, new byte[8], -1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (-1)");
+        }
     }
 
     /**
@@ -747,8 +868,48 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", 2, 4, new byte[8], 10);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong byte array length (0), expected length is (2)");
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (10)");
         }
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
+    public void toBytesSpecifiedWithHexBoundsAndByteArrayOffsetAndUpperBoundTest() {
+        byte[] bytes1 = new byte[8];
+        Assertions.assertThat(HexHelper.toBytes("", 0, 0, bytes1, 8)).isEqualTo(0);
+        Assertions.assertThat(bytes1).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 0);
+
+        byte[] bytes2 = new byte[8];
+        Assertions.assertThat(HexHelper.toBytes("aabbcc", 0, 0, bytes2, 8)).isEqualTo(0);
+        Assertions.assertThat(bytes2).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 0);
+
+        byte[] bytes3 = new byte[8];
+        Assertions.assertThat(HexHelper.toBytes("aabbcc", 2, 0, bytes3, 8)).isEqualTo(0);
+        Assertions.assertThat(bytes3).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 0);
+
+        byte[] bytes4 = new byte[8];
+        Assertions.assertThat(HexHelper.toBytes("aabbcc", 5, 0, bytes4, 8)).isEqualTo(0);
+        Assertions.assertThat(bytes4).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 0);
+
+        try {
+            HexHelper.toBytes("", 0, 0, new byte[8], 9);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array index (9)");
+        }
+
+        try {
+            HexHelper.toBytes("aa", 0, 2, new byte[8], 8);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (0), expected length is (1)");
+        }
+
+        byte[] bytes5 = new byte[8];
+        Assertions.assertThat(HexHelper.toBytes("aa", 0, 2, bytes5, 7)).isEqualTo(1);
+        Assertions.assertThat(bytes5).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 170);
     }
 
     /**
@@ -862,9 +1023,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void toBytesCreatedWithHexBoundsAndNegativeOffsetTest() {
-        HexHelper.toBytes("AACD2F", -1, 2);
+        try {
+            HexHelper.toBytes("AACD2F", -1, 2);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (-1)");
+        }
     }
 
     /**
@@ -872,16 +1038,31 @@ public final class HexHelperTest {
      */
     @Test
     public void toBytesCreatedWithHexBoundsAndNegativeLengthTest() {
-        byte[] bytes = HexHelper.toBytes("AACD2F", 0, -2);
-        Assertions.assertThat(bytes).containsExactlyInOrder();
+        try {
+            HexHelper.toBytes("AACD2F", 0, -1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-1)");
+        }
+        try {
+            HexHelper.toBytes("AACD2F", 0, -2);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-2)");
+        }
     }
 
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void toBytesCreatedWithHexBoundsAndTooLargeLengthTest() {
-        HexHelper.toBytes("AACD2F", 0, 8);
+        try {
+            HexHelper.toBytes("AACD2F", 0, 8);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (8)");
+        }
     }
 
     /**
@@ -1021,9 +1202,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void isHexStringWithBoundsAndNegativeOffsetTest() {
-        HexHelper.isHexString("AacD2f", -1, 4);
+        try {
+            HexHelper.isHexString("AacD2f", -1, 4);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (-1)");
+        }
     }
 
     /**
@@ -1031,15 +1217,31 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexStringWithBoundsAndNegativeLengthTest() {
-        Assertions.assertThat(HexHelper.isHexString("AacD2f", 0, -2)).isFalse();
+        try {
+            HexHelper.isHexString("AacD2f", 0, -1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-1)");
+        }
+        try {
+            HexHelper.isHexString("AacD2f", 0, -2);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-2)");
+        }
     }
 
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void isHexStringWithBoundsAndTooLargeLengthTest() {
-        HexHelper.isHexString("AacD2f", 0, 10);
+        try {
+            HexHelper.isHexString("AacD2f", 0, 10);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (10)");
+        }
     }
 
     /**
@@ -1118,9 +1320,14 @@ public final class HexHelperTest {
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void isHexStringWithNoEvenCheckAndBoundsAndNegativeOffsetTest() {
-        HexHelper.isHexString("AacD2f", -1, 4, false);
+        try {
+            HexHelper.isHexString("AacD2f", -1, 4, false);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (-1)");
+        }
     }
 
     /**
@@ -1128,15 +1335,31 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexStringWithNoEvenCheckAndBoundsAndNegativeLengthTest() {
-        Assertions.assertThat(HexHelper.isHexString("AacD2f", 0, -2, false)).isFalse();
+        try {
+            HexHelper.isHexString("AacD2f", 0, -1, false);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-1)");
+        }
+        try {
+            HexHelper.isHexString("AacD2f", 0, -2, false);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (-2)");
+        }
     }
 
     /**
      * {@link HexHelper} class test.
      */
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void isHexStringWithNoEvenCheckAndBoundsAndTooLargeLengthTest() {
-        HexHelper.isHexString("AacD2f", 0, 10, false);
+        try {
+            HexHelper.isHexString("AacD2f", 0, 10, false);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (10)");
+        }
     }
 
 }
