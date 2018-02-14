@@ -30,15 +30,27 @@ final class ExceptionMessageHelper {
         super();
     }
 
-    static String createWrongHexStringSizeMessage(final int length) {
-        return "Wrong number of characters in the hex string (" + length + ")";
+    static String createWrongByteArrayIndexMessage(final int index) {
+        return "Wrong byte array index (" + index + ")";
     }
 
-    static String createWrongResultArrayMessage(final int expected, final int actual) {
-        return "The result array is too small for the hex string (" + actual + "), expected size is (" + expected + ")";
+    static String createWrongByteArrayLengthMessage(final int length) {
+        return "Wrong byte array length (" + length + ")";
     }
 
-    static String createWrongHexCharacterMessage(final int character) {
+    static String createWrongByteArrayLengthMessage(final int actual, final int expected) {
+        return "Wrong byte array length (" + actual + "), expected length is (" + expected + ")";
+    }
+
+    static String createWrongHexStringIndexMessage(final int index) {
+        return "Wrong hex string index (" + index + ")";
+    }
+
+    static String createWrongHexStringLengthMessage(final int length) {
+        return "Wrong hex string length (" + length + ")";
+    }
+
+    static String createWrongHexStringCharacterMessage(final int character) {
         return "Wrong character obtained ('" + (char) character + "', " + character + ")";
     }
 

@@ -48,7 +48,7 @@ public final class HexInputStream extends InputStream {
             return -1;
         }
         if (!HexHelper.isHexCharacterValid(character1)) {
-            throw new IOException(ExceptionMessageHelper.createWrongHexCharacterMessage(character1));
+            throw new IOException(ExceptionMessageHelper.createWrongHexStringCharacterMessage(character1));
         }
 
         int character2 = _inputStream.read();
@@ -56,7 +56,7 @@ public final class HexInputStream extends InputStream {
             throw new IOException(ExceptionMessageHelper.createEndOfStreamMessage());
         }
         if (!HexHelper.isHexCharacterValid(character2)) {
-            throw new IOException(ExceptionMessageHelper.createWrongHexCharacterMessage(character2));
+            throw new IOException(ExceptionMessageHelper.createWrongHexStringCharacterMessage(character2));
         }
 
         return Consts.FROM_HEX_UPPER_BYTE[character1] + Consts.FROM_HEX_LOWER_BYTE[character2];
