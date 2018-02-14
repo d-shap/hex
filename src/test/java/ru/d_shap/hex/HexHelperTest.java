@@ -352,7 +352,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AAC", new byte[8]);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong number of characters in the hex string (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (3)");
         }
     }
 
@@ -373,7 +373,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", new byte[2]);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("The result array is too small for the hex string (2), expected size is (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (2), expected length is (3)");
         }
     }
 
@@ -440,7 +440,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", 2, 3, new byte[8]);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong number of characters in the hex string (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (3)");
         }
     }
 
@@ -487,7 +487,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", 1, 4, new byte[1]);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("The result array is too small for the hex string (1), expected size is (2)");
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (1), expected length is (2)");
         }
     }
 
@@ -538,7 +538,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AAC", new byte[8], 2);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong number of characters in the hex string (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (3)");
         }
     }
 
@@ -559,7 +559,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", new byte[8], 6);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("The result array is too small for the hex string (2), expected size is (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (2), expected length is (3)");
         }
     }
 
@@ -580,7 +580,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", new byte[8], 10);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("The result array is too small for the hex string (0), expected size is (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (0), expected length is (3)");
         }
     }
 
@@ -679,7 +679,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", 2, 3, new byte[8], 1);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong number of characters in the hex string (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (3)");
         }
     }
 
@@ -726,7 +726,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", 1, 4, new byte[2], 1);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("The result array is too small for the hex string (1), expected size is (2)");
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (1), expected length is (2)");
         }
     }
 
@@ -747,7 +747,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", 2, 4, new byte[8], 10);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("The result array is too small for the hex string (0), expected size is (2)");
+            Assertions.assertThat(ex).hasMessage("Wrong byte array length (0), expected length is (2)");
         }
     }
 
@@ -798,7 +798,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AAC");
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong number of characters in the hex string (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (3)");
         }
     }
 
@@ -855,7 +855,7 @@ public final class HexHelperTest {
             HexHelper.toBytes("AACD2F", 2, 3);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
-            Assertions.assertThat(ex).hasMessage("Wrong number of characters in the hex string (3)");
+            Assertions.assertThat(ex).hasMessage("Wrong hex string length (3)");
         }
     }
 
