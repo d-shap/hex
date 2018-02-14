@@ -73,6 +73,16 @@ public final class HexHelper {
      * @return the hex string.
      */
     public static String toHex(final byte[] bytes, final int bytesOffset, final int bytesLength, final boolean upperCase) {
+        if (bytesOffset < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayIndexMessage(bytesOffset));
+        }
+        if (bytesLength < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayLengthMessage(bytesLength));
+        }
+        if (bytesOffset + bytesLength > bytes.length) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayIndexMessage(bytesOffset + bytesLength));
+        }
+
         int[] hexUpperCharacters;
         int[] hexLowerCharacters;
         if (upperCase) {
@@ -83,7 +93,7 @@ public final class HexHelper {
             hexLowerCharacters = Consts.TO_LOWERCASE_HEX_LOWER_CHARACTER;
         }
 
-        StringBuilder buffer = new StringBuilder(Math.max(bytesLength * 2, 0));
+        StringBuilder buffer = new StringBuilder(bytesLength * 2);
         int bytesMaxIndex = bytesOffset + bytesLength;
         int currentByte;
         int upperCharacter;
@@ -145,16 +155,35 @@ public final class HexHelper {
      * @return the number of bytes affected in the byte array.
      */
     public static int toBytes(final String hex, final int hexOffset, final int hexLength, final byte[] bytes, final int bytesOffset) {
+        if (hexOffset < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringIndexMessage(hexOffset));
+        }
+        if (hexLength < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringLengthMessage(hexLength));
+        }
+        if (hexOffset + hexLength > hex.length()) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringIndexMessage(hexOffset + hexLength));
+        }
         if (hexLength % 2 != 0) {
             throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringLengthMessage(hexLength));
         }
-        int bytesLength = hexLength / 2;
-        if (bytes.length - bytesOffset < bytesLength) {
-            throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayLengthMessage(Math.max(bytes.length - bytesOffset, 0), bytesLength));
+        if (bytesOffset < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayIndexMessage(bytesOffset));
+        }
+        if (bytesOffset >= bytes.length) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayIndexMessage(bytesOffset));
         }
 
-        convertToBytes(hex, hexOffset, hexLength, bytes, bytesOffset);
-        return Math.max(bytesLength, 0);
+        if (hexLength == 0) {
+            return 0;
+        } else {
+            int bytesLength = hexLength / 2;
+            if (bytesOffset + bytesLength > bytes.length) {
+                throw new HexRuntimeException(ExceptionMessageHelper.createWrongByteArrayLengthMessage(bytes.length - bytesOffset, bytesLength));
+            }
+            convertToBytes(hex, hexOffset, hexLength, bytes, bytesOffset);
+            return bytesLength;
+        }
     }
 
     /**
@@ -176,14 +205,27 @@ public final class HexHelper {
      * @return the byte array with the result.
      */
     public static byte[] toBytes(final String hex, final int hexOffset, final int hexLength) {
+        if (hexOffset < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringIndexMessage(hexOffset));
+        }
+        if (hexLength < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringLengthMessage(hexLength));
+        }
+        if (hexOffset + hexLength > hex.length()) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringIndexMessage(hexOffset + hexLength));
+        }
         if (hexLength % 2 != 0) {
             throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringLengthMessage(hexLength));
         }
-        int bytesLength = hexLength / 2;
-        byte[] bytes = new byte[Math.max(bytesLength, 0)];
 
-        convertToBytes(hex, hexOffset, hexLength, bytes, 0);
-        return bytes;
+        if (hexLength == 0) {
+            return new byte[0];
+        } else {
+            int bytesLength = hexLength / 2;
+            byte[] bytes = new byte[bytesLength];
+            convertToBytes(hex, hexOffset, hexLength, bytes, 0);
+            return bytes;
+        }
     }
 
     private static void convertToBytes(final String hex, final int hexOffset, final int hexLength, final byte[] bytes, final int bytesOffset) {
@@ -259,12 +301,22 @@ public final class HexHelper {
      * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final int hexOffset, final int hexLength, final boolean evenCheck) {
-        if (hexLength <= 0) {
+        if (hexOffset < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringIndexMessage(hexOffset));
+        }
+        if (hexLength < 0) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringLengthMessage(hexLength));
+        }
+        if (hexOffset + hexLength > hex.length()) {
+            throw new HexRuntimeException(ExceptionMessageHelper.createWrongHexStringIndexMessage(hexOffset + hexLength));
+        }
+        if (hexLength == 0) {
             return false;
         }
         if (evenCheck && hexLength % 2 != 0) {
             return false;
         }
+
         int hexMaxIndex = hexOffset + hexLength;
         int currentCharacter;
         for (int hexIndex = hexOffset; hexIndex < hexMaxIndex; hexIndex++) {
