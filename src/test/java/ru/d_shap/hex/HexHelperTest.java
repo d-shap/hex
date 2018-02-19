@@ -527,6 +527,12 @@ public final class HexHelperTest {
     @Test
     public void toBytesSpecifiedWithHexBoundsAndTooLargeLengthTest() {
         try {
+            HexHelper.toBytes("AACD2F", 0, 7, new byte[10]);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (7)");
+        }
+        try {
             HexHelper.toBytes("AACD2F", 0, 8, new byte[10]);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
@@ -818,6 +824,12 @@ public final class HexHelperTest {
     @Test
     public void toBytesSpecifiedWithHexBoundsAndByteArrayOffsetAndTooLargeLengthTest() {
         try {
+            HexHelper.toBytes("AACD2F", 0, 7, new byte[10], 1);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (7)");
+        }
+        try {
             HexHelper.toBytes("AACD2F", 0, 8, new byte[10], 1);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
@@ -1058,6 +1070,12 @@ public final class HexHelperTest {
     @Test
     public void toBytesCreatedWithHexBoundsAndTooLargeLengthTest() {
         try {
+            HexHelper.toBytes("AACD2F", 0, 7);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (7)");
+        }
+        try {
             HexHelper.toBytes("AACD2F", 0, 8);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
@@ -1237,6 +1255,12 @@ public final class HexHelperTest {
     @Test
     public void isHexStringWithBoundsAndTooLargeLengthTest() {
         try {
+            HexHelper.isHexString("AacD2f", 0, 9);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (9)");
+        }
+        try {
             HexHelper.isHexString("AacD2f", 0, 10);
             Assertions.fail("HexHelper test fail");
         } catch (HexRuntimeException ex) {
@@ -1354,6 +1378,12 @@ public final class HexHelperTest {
      */
     @Test
     public void isHexStringWithNoEvenCheckAndBoundsAndTooLargeLengthTest() {
+        try {
+            HexHelper.isHexString("AacD2f", 0, 9, false);
+            Assertions.fail("HexHelper test fail");
+        } catch (HexRuntimeException ex) {
+            Assertions.assertThat(ex).hasMessage("Wrong hex string index (9)");
+        }
         try {
             HexHelper.isHexString("AacD2f", 0, 10, false);
             Assertions.fail("HexHelper test fail");
