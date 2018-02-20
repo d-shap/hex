@@ -93,7 +93,9 @@ public final class HexHelper {
             hexLowerCharacters = Consts.TO_LOWERCASE_HEX_LOWER_CHARACTER;
         }
 
+        int bufferLength = getHexStringLength(bytesLength);
         StringBuilder buffer = new StringBuilder(bytesLength * 2);
+
         int bytesMaxIndex = bytesOffset + bytesLength;
         int currentByte;
         int upperCharacter;
@@ -106,6 +108,10 @@ public final class HexHelper {
             buffer.append((char) lowerCharacter);
         }
         return buffer.toString();
+    }
+
+    static int getHexStringLength(final int bytesLength) {
+        return bytesLength * 2;
     }
 
     /**
