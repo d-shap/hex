@@ -94,7 +94,7 @@ public final class HexHelper {
         }
 
         int bufferLength = getHexStringLength(bytesLength);
-        StringBuilder buffer = new StringBuilder(bytesLength * 2);
+        StringBuilder buffer = new StringBuilder(bufferLength);
 
         int bytesMaxIndex = bytesOffset + bytesLength;
         int currentByte;
