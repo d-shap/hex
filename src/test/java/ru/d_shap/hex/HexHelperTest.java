@@ -346,6 +346,23 @@ public final class HexHelperTest {
      * {@link HexHelper} class test.
      */
     @Test
+    public void getHexStringLengthTest() {
+        Assertions.assertThat(HexHelper.getHexStringLength(0)).isEqualTo(0);
+        Assertions.assertThat(HexHelper.getHexStringLength(1)).isEqualTo(2);
+        Assertions.assertThat(HexHelper.getHexStringLength(2)).isEqualTo(4);
+        Assertions.assertThat(HexHelper.getHexStringLength(3)).isEqualTo(6);
+        Assertions.assertThat(HexHelper.getHexStringLength(4)).isEqualTo(8);
+        Assertions.assertThat(HexHelper.getHexStringLength(5)).isEqualTo(10);
+        Assertions.assertThat(HexHelper.getHexStringLength(6)).isEqualTo(12);
+        Assertions.assertThat(HexHelper.getHexStringLength(7)).isEqualTo(14);
+        Assertions.assertThat(HexHelper.getHexStringLength(8)).isEqualTo(16);
+        Assertions.assertThat(HexHelper.getHexStringLength(9)).isEqualTo(18);
+    }
+
+    /**
+     * {@link HexHelper} class test.
+     */
+    @Test
     public void toBytesSpecifiedTest() {
         byte[] bytes1 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("", bytes1)).isEqualTo(0);
