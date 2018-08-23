@@ -47,7 +47,7 @@
         <dependency>
             <groupId>ru.d-shap</groupId>
             <artifactId>assertions</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -287,6 +287,10 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <nohelp>true</nohelp>
+                            <show>public</show>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
