@@ -66,7 +66,7 @@ public final class HexInputStreamTest {
         String hex = "0F21DA471CF2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
-        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, 218, 71, 28, 242);
+        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, -38, 71, 28, -14);
     }
 
     /**
@@ -79,7 +79,7 @@ public final class HexInputStreamTest {
         String hex = "0f21da471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
-        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, 218, 71, 28, 242);
+        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, -38, 71, 28, -14);
     }
 
     /**
@@ -92,7 +92,7 @@ public final class HexInputStreamTest {
         String hex = "0F21dA471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
-        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, 218, 71, 28, 242);
+        Assertions.assertThat(his).isAllBytesEqualTo(15, 33, -38, 71, 28, -14);
     }
 
     /**
@@ -106,7 +106,7 @@ public final class HexInputStreamTest {
             String hex = "0f21da471cf";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            Assertions.assertThat(his).isNextBytesEqualTo(15, 33, 218, 71, 28);
+            Assertions.assertThat(his).isNextBytesEqualTo(15, 33, -38, 71, 28);
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
@@ -173,7 +173,7 @@ public final class HexInputStreamTest {
             String hex = "aa\u0000b";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            Assertions.assertThat(his).isNextBytesEqualTo(170);
+            Assertions.assertThat(his).isNextBytesEqualTo(-86);
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
@@ -183,7 +183,7 @@ public final class HexInputStreamTest {
             String hex = "aab\u0000";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
             HexInputStream his = new HexInputStream(bais);
-            Assertions.assertThat(his).isNextBytesEqualTo(170);
+            Assertions.assertThat(his).isNextBytesEqualTo(-86);
             his.read();
             Assertions.fail("HexInputStream test fail");
         } catch (IOException ex) {
@@ -203,9 +203,9 @@ public final class HexInputStreamTest {
         HexInputStream his = new HexInputStream(bais);
         Assertions.assertThat(his).isNextBytesEqualTo(15);
         Assertions.assertThat(his.skip(1)).isEqualTo(1);
-        Assertions.assertThat(his).isNextBytesEqualTo(218);
+        Assertions.assertThat(his).isNextBytesEqualTo(-38);
         Assertions.assertThat(his.skip(2)).isEqualTo(2);
-        Assertions.assertThat(his).isNextBytesEqualTo(242);
+        Assertions.assertThat(his).isNextBytesEqualTo(-14);
         Assertions.assertThat(his.skip(2)).isEqualTo(0);
         Assertions.assertThat(his).isCompleted();
     }
@@ -288,7 +288,7 @@ public final class HexInputStreamTest {
         HexInputStream his = new HexInputStream(bais);
         Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
         Assertions.assertThat(his.skip(3)).isEqualTo(3);
-        Assertions.assertThat(his).isNextBytesEqualTo(242);
+        Assertions.assertThat(his).isNextBytesEqualTo(-14);
         Assertions.assertThat(his).isCompleted();
     }
 
@@ -325,9 +325,9 @@ public final class HexInputStreamTest {
         Assertions.assertThat(his.available()).isEqualTo(6);
         Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
         Assertions.assertThat(his.available()).isEqualTo(4);
-        Assertions.assertThat(his).isNextBytesEqualTo(218, 71, 28);
+        Assertions.assertThat(his).isNextBytesEqualTo(-38, 71, 28);
         Assertions.assertThat(his.available()).isEqualTo(1);
-        Assertions.assertThat(his).isNextBytesEqualTo(242);
+        Assertions.assertThat(his).isNextBytesEqualTo(-14);
         Assertions.assertThat(his.available()).isEqualTo(0);
         Assertions.assertThat(his).isCompleted();
     }
@@ -346,7 +346,7 @@ public final class HexInputStreamTest {
             Assertions.assertThat(his.available()).isEqualTo(5);
             Assertions.assertThat(his).isNextBytesEqualTo(15, 33);
             Assertions.assertThat(his.available()).isEqualTo(3);
-            Assertions.assertThat(his).isNextBytesEqualTo(218, 71, 28);
+            Assertions.assertThat(his).isNextBytesEqualTo(-38, 71, 28);
             Assertions.assertThat(his.available()).isEqualTo(0);
             his.read();
             Assertions.fail("HexInputStream test fail");

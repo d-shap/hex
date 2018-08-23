@@ -370,27 +370,27 @@ public final class HexHelperTest {
 
         byte[] bytes2 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AC120F", bytes2)).isEqualTo(3);
-        Assertions.assertThat(bytes2).containsExactlyInOrder(172, 18, 15, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes2).containsExactlyInOrder(-84, 18, 15, 0, 0, 0, 0, 0);
 
         byte[] bytes3 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("77A2", bytes3)).isEqualTo(2);
-        Assertions.assertThat(bytes3).containsExactlyInOrder(119, 162, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes3).containsExactlyInOrder(119, -94, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes4 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("1234567890", bytes4)).isEqualTo(5);
-        Assertions.assertThat(bytes4).containsExactlyInOrder(18, 52, 86, 120, 144, 0, 0, 0);
+        Assertions.assertThat(bytes4).containsExactlyInOrder(18, 52, 86, 120, -112, 0, 0, 0);
 
         byte[] bytes5 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", bytes5)).isEqualTo(3);
-        Assertions.assertThat(bytes5).containsExactlyInOrder(170, 205, 47, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes5).containsExactlyInOrder(-86, -51, 47, 0, 0, 0, 0, 0);
 
         byte[] bytes6 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("aacd2f", bytes6)).isEqualTo(3);
-        Assertions.assertThat(bytes6).containsExactlyInOrder(170, 205, 47, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes6).containsExactlyInOrder(-86, -51, 47, 0, 0, 0, 0, 0);
 
         byte[] bytes7 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("aAcD2F", bytes7)).isEqualTo(3);
-        Assertions.assertThat(bytes7).containsExactlyInOrder(170, 205, 47, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes7).containsExactlyInOrder(-86, -51, 47, 0, 0, 0, 0, 0);
 
         byte[] bytes8 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("0102030405060708", bytes8)).isEqualTo(8);
@@ -450,15 +450,15 @@ public final class HexHelperTest {
 
         byte[] bytes12 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 2, bytes12)).isEqualTo(1);
-        Assertions.assertThat(bytes12).containsExactlyInOrder(170, 0, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes12).containsExactlyInOrder(-86, 0, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes13 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 4, bytes13)).isEqualTo(2);
-        Assertions.assertThat(bytes13).containsExactlyInOrder(170, 205, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes13).containsExactlyInOrder(-86, -51, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes14 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 6, bytes14)).isEqualTo(3);
-        Assertions.assertThat(bytes14).containsExactlyInOrder(170, 205, 47, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes14).containsExactlyInOrder(-86, -51, 47, 0, 0, 0, 0, 0);
 
         byte[] bytes21 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 2, 0, bytes21)).isEqualTo(0);
@@ -466,11 +466,11 @@ public final class HexHelperTest {
 
         byte[] bytes22 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 2, 2, bytes22)).isEqualTo(1);
-        Assertions.assertThat(bytes22).containsExactlyInOrder(205, 0, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes22).containsExactlyInOrder(-51, 0, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes23 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 2, 4, bytes23)).isEqualTo(2);
-        Assertions.assertThat(bytes23).containsExactlyInOrder(205, 47, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes23).containsExactlyInOrder(-51, 47, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes31 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 4, 0, bytes31)).isEqualTo(0);
@@ -585,27 +585,27 @@ public final class HexHelperTest {
     public void toBytesSpecifiedWithByteArrayOffsetTest() {
         byte[] bytes1 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", bytes1, 0)).isEqualTo(3);
-        Assertions.assertThat(bytes1).containsExactlyInOrder(170, 205, 47, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes1).containsExactlyInOrder(-86, -51, 47, 0, 0, 0, 0, 0);
 
         byte[] bytes2 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", bytes2, 1)).isEqualTo(3);
-        Assertions.assertThat(bytes2).containsExactlyInOrder(0, 170, 205, 47, 0, 0, 0, 0);
+        Assertions.assertThat(bytes2).containsExactlyInOrder(0, -86, -51, 47, 0, 0, 0, 0);
 
         byte[] bytes3 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", bytes3, 2)).isEqualTo(3);
-        Assertions.assertThat(bytes3).containsExactlyInOrder(0, 0, 170, 205, 47, 0, 0, 0);
+        Assertions.assertThat(bytes3).containsExactlyInOrder(0, 0, -86, -51, 47, 0, 0, 0);
 
         byte[] bytes4 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", bytes4, 3)).isEqualTo(3);
-        Assertions.assertThat(bytes4).containsExactlyInOrder(0, 0, 0, 170, 205, 47, 0, 0);
+        Assertions.assertThat(bytes4).containsExactlyInOrder(0, 0, 0, -86, -51, 47, 0, 0);
 
         byte[] bytes5 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", bytes5, 4)).isEqualTo(3);
-        Assertions.assertThat(bytes5).containsExactlyInOrder(0, 0, 0, 0, 170, 205, 47, 0);
+        Assertions.assertThat(bytes5).containsExactlyInOrder(0, 0, 0, 0, -86, -51, 47, 0);
 
         byte[] bytes6 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", bytes6, 5)).isEqualTo(3);
-        Assertions.assertThat(bytes6).containsExactlyInOrder(0, 0, 0, 0, 0, 170, 205, 47);
+        Assertions.assertThat(bytes6).containsExactlyInOrder(0, 0, 0, 0, 0, -86, -51, 47);
     }
 
     /**
@@ -701,7 +701,7 @@ public final class HexHelperTest {
 
         byte[] bytes2 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("aa", bytes2, 7)).isEqualTo(1);
-        Assertions.assertThat(bytes2).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 170);
+        Assertions.assertThat(bytes2).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, -86);
     }
 
     /**
@@ -715,15 +715,15 @@ public final class HexHelperTest {
 
         byte[] bytes12 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 2, bytes12, 0)).isEqualTo(1);
-        Assertions.assertThat(bytes12).containsExactlyInOrder(170, 0, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes12).containsExactlyInOrder(-86, 0, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes13 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 4, bytes13, 0)).isEqualTo(2);
-        Assertions.assertThat(bytes13).containsExactlyInOrder(170, 205, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes13).containsExactlyInOrder(-86, -51, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes14 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 6, bytes14, 0)).isEqualTo(3);
-        Assertions.assertThat(bytes14).containsExactlyInOrder(170, 205, 47, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes14).containsExactlyInOrder(-86, -51, 47, 0, 0, 0, 0, 0);
 
         byte[] bytes21 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 2, 0, bytes21, 0)).isEqualTo(0);
@@ -731,11 +731,11 @@ public final class HexHelperTest {
 
         byte[] bytes22 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 2, 2, bytes22, 0)).isEqualTo(1);
-        Assertions.assertThat(bytes22).containsExactlyInOrder(205, 0, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes22).containsExactlyInOrder(-51, 0, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes23 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 2, 4, bytes23, 0)).isEqualTo(2);
-        Assertions.assertThat(bytes23).containsExactlyInOrder(205, 47, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes23).containsExactlyInOrder(-51, 47, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes31 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 0, bytes31, 1)).isEqualTo(0);
@@ -743,15 +743,15 @@ public final class HexHelperTest {
 
         byte[] bytes32 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 2, bytes32, 1)).isEqualTo(1);
-        Assertions.assertThat(bytes32).containsExactlyInOrder(0, 170, 0, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes32).containsExactlyInOrder(0, -86, 0, 0, 0, 0, 0, 0);
 
         byte[] bytes33 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 4, bytes33, 1)).isEqualTo(2);
-        Assertions.assertThat(bytes33).containsExactlyInOrder(0, 170, 205, 0, 0, 0, 0, 0);
+        Assertions.assertThat(bytes33).containsExactlyInOrder(0, -86, -51, 0, 0, 0, 0, 0);
 
         byte[] bytes34 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 6, bytes34, 1)).isEqualTo(3);
-        Assertions.assertThat(bytes34).containsExactlyInOrder(0, 170, 205, 47, 0, 0, 0, 0);
+        Assertions.assertThat(bytes34).containsExactlyInOrder(0, -86, -51, 47, 0, 0, 0, 0);
 
         byte[] bytes41 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 0, bytes41, 3)).isEqualTo(0);
@@ -759,27 +759,27 @@ public final class HexHelperTest {
 
         byte[] bytes42 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 2, bytes42, 3)).isEqualTo(1);
-        Assertions.assertThat(bytes42).containsExactlyInOrder(0, 0, 0, 170, 0, 0, 0, 0);
+        Assertions.assertThat(bytes42).containsExactlyInOrder(0, 0, 0, -86, 0, 0, 0, 0);
 
         byte[] bytes43 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 4, bytes43, 3)).isEqualTo(2);
-        Assertions.assertThat(bytes43).containsExactlyInOrder(0, 0, 0, 170, 205, 0, 0, 0);
+        Assertions.assertThat(bytes43).containsExactlyInOrder(0, 0, 0, -86, -51, 0, 0, 0);
 
         byte[] bytes44 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 6, bytes44, 3)).isEqualTo(3);
-        Assertions.assertThat(bytes44).containsExactlyInOrder(0, 0, 0, 170, 205, 47, 0, 0);
+        Assertions.assertThat(bytes44).containsExactlyInOrder(0, 0, 0, -86, -51, 47, 0, 0);
 
         byte[] bytes51 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 2, bytes51, 7)).isEqualTo(1);
-        Assertions.assertThat(bytes51).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 170);
+        Assertions.assertThat(bytes51).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, -86);
 
         byte[] bytes52 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 4, bytes52, 6)).isEqualTo(2);
-        Assertions.assertThat(bytes52).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 170, 205);
+        Assertions.assertThat(bytes52).containsExactlyInOrder(0, 0, 0, 0, 0, 0, -86, -51);
 
         byte[] bytes53 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("AACD2F", 0, 6, bytes53, 5)).isEqualTo(3);
-        Assertions.assertThat(bytes53).containsExactlyInOrder(0, 0, 0, 0, 0, 170, 205, 47);
+        Assertions.assertThat(bytes53).containsExactlyInOrder(0, 0, 0, 0, 0, -86, -51, 47);
     }
 
     /**
@@ -938,7 +938,7 @@ public final class HexHelperTest {
 
         byte[] bytes5 = new byte[8];
         Assertions.assertThat(HexHelper.toBytes("aa", 0, 2, bytes5, 7)).isEqualTo(1);
-        Assertions.assertThat(bytes5).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, 170);
+        Assertions.assertThat(bytes5).containsExactlyInOrder(0, 0, 0, 0, 0, 0, 0, -86);
     }
 
     /**
@@ -950,22 +950,22 @@ public final class HexHelperTest {
         Assertions.assertThat(bytes1).containsExactlyInOrder();
 
         byte[] bytes2 = HexHelper.toBytes("AC120F");
-        Assertions.assertThat(bytes2).containsExactlyInOrder(172, 18, 15);
+        Assertions.assertThat(bytes2).containsExactlyInOrder(-84, 18, 15);
 
         byte[] bytes3 = HexHelper.toBytes("77A2");
-        Assertions.assertThat(bytes3).containsExactlyInOrder(119, 162);
+        Assertions.assertThat(bytes3).containsExactlyInOrder(119, -94);
 
         byte[] bytes4 = HexHelper.toBytes("1234567890");
-        Assertions.assertThat(bytes4).containsExactlyInOrder(18, 52, 86, 120, 144);
+        Assertions.assertThat(bytes4).containsExactlyInOrder(18, 52, 86, 120, -112);
 
         byte[] bytes5 = HexHelper.toBytes("AACD2F");
-        Assertions.assertThat(bytes5).containsExactlyInOrder(170, 205, 47);
+        Assertions.assertThat(bytes5).containsExactlyInOrder(-86, -51, 47);
 
         byte[] bytes6 = HexHelper.toBytes("aacd2f");
-        Assertions.assertThat(bytes6).containsExactlyInOrder(170, 205, 47);
+        Assertions.assertThat(bytes6).containsExactlyInOrder(-86, -51, 47);
 
         byte[] bytes7 = HexHelper.toBytes("aAcD2F");
-        Assertions.assertThat(bytes7).containsExactlyInOrder(170, 205, 47);
+        Assertions.assertThat(bytes7).containsExactlyInOrder(-86, -51, 47);
 
         byte[] bytes8 = HexHelper.toBytes("0102030405060708");
         Assertions.assertThat(bytes8).containsExactlyInOrder(1, 2, 3, 4, 5, 6, 7, 8);
@@ -1001,22 +1001,22 @@ public final class HexHelperTest {
         Assertions.assertThat(bytes11).containsExactlyInOrder();
 
         byte[] bytes12 = HexHelper.toBytes("AACD2F", 0, 2);
-        Assertions.assertThat(bytes12).containsExactlyInOrder(170);
+        Assertions.assertThat(bytes12).containsExactlyInOrder(-86);
 
         byte[] bytes13 = HexHelper.toBytes("AACD2F", 0, 4);
-        Assertions.assertThat(bytes13).containsExactlyInOrder(170, 205);
+        Assertions.assertThat(bytes13).containsExactlyInOrder(-86, -51);
 
         byte[] bytes14 = HexHelper.toBytes("AACD2F", 0, 6);
-        Assertions.assertThat(bytes14).containsExactlyInOrder(170, 205, 47);
+        Assertions.assertThat(bytes14).containsExactlyInOrder(-86, -51, 47);
 
         byte[] bytes21 = HexHelper.toBytes("AACD2F", 2, 0);
         Assertions.assertThat(bytes21).containsExactlyInOrder();
 
         byte[] bytes22 = HexHelper.toBytes("AACD2F", 2, 2);
-        Assertions.assertThat(bytes22).containsExactlyInOrder(205);
+        Assertions.assertThat(bytes22).containsExactlyInOrder(-51);
 
         byte[] bytes23 = HexHelper.toBytes("AACD2F", 2, 4);
-        Assertions.assertThat(bytes23).containsExactlyInOrder(205, 47);
+        Assertions.assertThat(bytes23).containsExactlyInOrder(-51, 47);
 
         byte[] bytes31 = HexHelper.toBytes("AACD2F", 4, 0);
         Assertions.assertThat(bytes31).containsExactlyInOrder();
