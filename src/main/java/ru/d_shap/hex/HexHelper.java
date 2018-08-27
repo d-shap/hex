@@ -34,6 +34,7 @@ public final class HexHelper {
      * Convert the byte array to the hex string. Lower case characters are used for the hex representation.
      *
      * @param bytes the byte array.
+     *
      * @return the hex string.
      */
     public static String toHex(final byte[] bytes) {
@@ -46,6 +47,7 @@ public final class HexHelper {
      * @param bytes       the byte array.
      * @param bytesOffset the offset of the first element in the byte array.
      * @param bytesLength the number of elements in the byte array.
+     *
      * @return the hex string.
      */
     public static String toHex(final byte[] bytes, final int bytesOffset, final int bytesLength) {
@@ -57,6 +59,7 @@ public final class HexHelper {
      *
      * @param bytes     the byte array.
      * @param upperCase true to use upper case characters for the hex representation, false otherwise.
+     *
      * @return the hex string.
      */
     public static String toHex(final byte[] bytes, final boolean upperCase) {
@@ -70,6 +73,7 @@ public final class HexHelper {
      * @param bytesOffset the offset of the first element in the byte array.
      * @param bytesLength the number of elements in the byte array.
      * @param upperCase   true to use upper case characters for the hex representation, false otherwise.
+     *
      * @return the hex string.
      */
     public static String toHex(final byte[] bytes, final int bytesOffset, final int bytesLength, final boolean upperCase) {
@@ -119,6 +123,7 @@ public final class HexHelper {
      *
      * @param hex   the hex string.
      * @param bytes the byte array to write the result.
+     *
      * @return the number of bytes affected in the byte array.
      */
     public static int toBytes(final String hex, final byte[] bytes) {
@@ -132,6 +137,7 @@ public final class HexHelper {
      * @param hexOffset the offset of the first element in the hex string.
      * @param hexLength the number of elements in the hex string.
      * @param bytes     the byte array to write the result.
+     *
      * @return the number of bytes affected in the byte array.
      */
     public static int toBytes(final String hex, final int hexOffset, final int hexLength, final byte[] bytes) {
@@ -144,6 +150,7 @@ public final class HexHelper {
      * @param hex         the hex string.
      * @param bytes       the byte array to write the result.
      * @param bytesOffset the offset of the first element in the byte array.
+     *
      * @return the number of bytes affected in the byte array.
      */
     public static int toBytes(final String hex, final byte[] bytes, final int bytesOffset) {
@@ -158,6 +165,7 @@ public final class HexHelper {
      * @param hexLength   the number of elements in the hex string.
      * @param bytes       the byte array to write the result.
      * @param bytesOffset the offset of the first element in the byte array.
+     *
      * @return the number of bytes affected in the byte array.
      */
     public static int toBytes(final String hex, final int hexOffset, final int hexLength, final byte[] bytes, final int bytesOffset) {
@@ -192,6 +200,7 @@ public final class HexHelper {
      * Convert the hex string to the byte array.
      *
      * @param hex the hex string.
+     *
      * @return the byte array with the result.
      */
     public static byte[] toBytes(final String hex) {
@@ -204,6 +213,7 @@ public final class HexHelper {
      * @param hex       the hex string.
      * @param hexOffset the offset of the first element in the hex string.
      * @param hexLength the number of elements in the hex string.
+     *
      * @return the byte array with the result.
      */
     public static byte[] toBytes(final String hex, final int hexOffset, final int hexLength) {
@@ -260,6 +270,7 @@ public final class HexHelper {
      * Define, whether the hex string contains only the hex characters or not. The string must contain an even number of characters.
      *
      * @param hex the hex string.
+     *
      * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex) {
@@ -272,6 +283,7 @@ public final class HexHelper {
      * @param hex       the hex string.
      * @param hexOffset the offset of the first element in the hex string.
      * @param hexLength the number of elements in the hex string.
+     *
      * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final int hexOffset, final int hexLength) {
@@ -283,6 +295,7 @@ public final class HexHelper {
      *
      * @param hex       the hex string.
      * @param evenCheck true if the hex string contains should contain an even number of characters, false otherwise.
+     *
      * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final boolean evenCheck) {
@@ -296,6 +309,7 @@ public final class HexHelper {
      * @param hexOffset the offset of the first element in the hex string.
      * @param hexLength the number of elements in the hex string.
      * @param evenCheck true if the hex string contains should contain an even number of characters, false otherwise.
+     *
      * @return true, if the hex string contains only the hex characters.
      */
     public static boolean isHexString(final String hex, final int hexOffset, final int hexLength, final boolean evenCheck) {
