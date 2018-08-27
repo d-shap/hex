@@ -5,7 +5,7 @@
       <option name="USE_CUSTOM_SETTINGS" value="true" />
     </AndroidXmlCodeStyleSettings>
     <JavaCodeStyleSettings>
-      <option name="CLASS_NAMES_IN_JAVADOC" value="2" />
+      <option name="CLASS_NAMES_IN_JAVADOC" value="3" />
       <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
       <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
       <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
@@ -33,6 +33,9 @@
           <emptyLine />
         </value>
       </option>
+      <option name="JD_ADD_BLANK_AFTER_PARM_COMMENTS" value="true" />
+      <option name="JD_ADD_BLANK_AFTER_RETURN" value="true" />
+      <option name="JD_KEEP_INVALID_TAGS" value="false" />
     </JavaCodeStyleSettings>
     <Objective-C-extensions>
       <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
