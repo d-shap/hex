@@ -306,7 +306,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <keyname>maven signature - hex</keyname>
+                            <keyname>(maven signature - hex)</keyname>
                         </configuration>
                     </plugin>
                 </plugins>
