@@ -138,6 +138,11 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <includes>
+                                <include>ru/d_shap/**/*</include>
+                            </includes>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>report-jacoco</id>
