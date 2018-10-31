@@ -42,6 +42,12 @@ try (FileInputStream inputStream = new FileInputStream("input file");
 Each byte is represented with two hex characters.
 The hex representation of bytes increases the original size twice.
 
+Maven artifact
+==============
+* **groupId**: ru.d-shap
+* **artifactId**: hex
+* **version**: 1.2
+
 Donation
 ========
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
