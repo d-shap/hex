@@ -1,5 +1,4 @@
-Hex library
-===========
+# Hex library
 Hex library converts bytes to the hex representation and vice versa.
 
 `HexHelper` class contains methods to convert the byte array to the hex string, to convert the hex string to the byte array and to check, whether the string is a hex representation of bytes or not.
@@ -42,12 +41,10 @@ try (FileInputStream inputStream = new FileInputStream("input file");
 Each byte is represented with two hex characters.
 The hex representation of bytes increases the original size twice.
 
-Latest release
-==============
+# Latest release
 * **&lt;groupId&gt;**: ru.d-shap
 * **&lt;artifactId&gt;**: hex
 * **&lt;version&gt;**: 1.2
 
-Donation
-========
+# Donation
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
