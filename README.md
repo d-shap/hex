@@ -42,6 +42,7 @@ Each byte is represented with two hex characters.
 The hex representation of bytes increases the original size twice.
 
 # Latest release
+Hex library:
 * **&lt;groupId&gt;**: ru.d-shap
 * **&lt;artifactId&gt;**: hex
 * **&lt;version&gt;**: 1.2
