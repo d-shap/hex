@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
     <property name="charset" value="UTF-8" />
 
@@ -8,6 +8,7 @@
         <property name="headerFile" value="style-header-java.txt" />
         <property name="fileExtensions" value="java" />
     </module>
+    <!--<module name="RegexpHeader"/>-->
 
     <!-- Javadoc Comments -->
     <module name="JavadocPackage" />
@@ -34,6 +35,7 @@
     <module name="TreeWalker">
         <!-- Annotations -->
         <module name="AnnotationLocation" />
+        <!--<module name="AnnotationOnSameLine" />-->
         <module name="AnnotationUseStyle" />
         <module name="MissingDeprecated" />
         <module name="MissingOverride" />
@@ -45,7 +47,9 @@
         <module name="EmptyBlock">
             <property name="option" value="text" />
         </module>
-        <module name="EmptyCatchBlock" />
+        <module name="EmptyCatchBlock">
+            <property name="commentFormat" value="Ignore" />
+        </module>
         <module name="LeftCurly" />
         <module name="NeedBraces" />
         <module name="RightCurly" />
@@ -63,7 +67,6 @@
         </module>
         <module name="VisibilityModifier">
             <property name="packageAllowed" value="true" />
-            <property name="immutableClassCanonicalNames" value="true" />
         </module>
 
         <!-- Coding -->
@@ -77,17 +80,13 @@
         <module name="EqualsHashCode" />
         <module name="ExplicitInitialization" />
         <module name="FallThrough" />
-        <!--<module name="FinalLocalVariable">
-            <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
-        </module>-->
+        <!--<module name="FinalLocalVariable" />-->
         <module name="HiddenField" />
         <!--<module name="IllegalCatch"/>-->
         <module name="IllegalInstantiation">
             <property name="classes" value="java.lang.Boolean" />
         </module>
-        <module name="IllegalThrows">
-            <property name="illegalClassNames" value="java.lang.Error,java.lang.RuntimeException" />
-        </module>
+        <module name="IllegalThrows" />
         <module name="IllegalToken">
             <property name="tokens" value="LITERAL_NATIVE" />
         </module>
@@ -104,9 +103,7 @@
         <module name="MissingCtor" />
         <module name="MissingSwitchDefault" />
         <module name="ModifiedControlVariable" />
-        <!--<modul name="MultipleStringLiterals">
-            <property name="allowedDuplicates" value="1"/>
-        </modul>-->
+        <!--<module name="MultipleStringLiterals" />-->
         <module name="MultipleVariableDeclarations" />
         <module name="NestedForDepth">
             <property name="max" value="2" />
@@ -124,18 +121,14 @@
         <module name="PackageDeclaration" />
         <module name="ParameterAssignment" />
         <!--<module name="RequireThis"/>-->
-        <!--<module name="ReturnCount">
-            <property name="max" value="3"/>
-        </module>-->
+        <!--<module name="ReturnCount"/>-->
         <module name="SimplifyBooleanExpression" />
         <module name="SimplifyBooleanReturn" />
         <module name="StringLiteralEquality" />
         <module name="SuperClone" />
         <module name="SuperFinalize" />
         <module name="UnnecessaryParentheses" />
-        <!--<module name="VariableDeclarationUsageDistance">
-            <property name="allowedDistance" value="5"/>
-        </module>-->
+        <!--<module name="VariableDeclarationUsageDistance" />-->
 
         <!-- Imports -->
         <module name="AvoidStarImport" />
@@ -147,14 +140,13 @@
             <property name="groups" value="java,javax,android,com,net,org,ru" />
             <property name="ordered" value="true" />
             <property name="separated" value="true" />
-            <property name="option" value="above" />
         </module>
         <module name="RedundantImport" />
         <module name="UnusedImports" />
 
         <!-- Javadoc Comments -->
         <module name="AtclauseOrder">
-            <property name="tagOrder" value="@param, @return, @throws, @exception, @see, @since, @author, @version, @deprecated" />
+            <property name="tagOrder" value="@param, @return, @throws, @exception, @author, @version, @see, @since, @serial, @serialField, @serialData, @deprecated" />
         </module>
         <module name="JavadocMethod">
             <property name="scope" value="protected" />
@@ -166,21 +158,13 @@
         <module name="JavadocTagContinuationIndentation" />
         <module name="JavadocType">
             <property name="authorFormat" value="\S" />
-            <property name="allowUnknownTags" value="true" />
             <property name="scope" value="anoninner" />
         </module>
-        <!--<module name="JavadocVariable">
-            <property name="scope" value="anoninner"/>
-        </module>-->
+        <!--<module name="JavadocVariable" />-->
         <module name="NonEmptyAtclauseDescription" />
         <module name="SingleLineJavadoc" />
-        <module name="SummaryJavadocCheck" />
-        <module name="WriteTag">
-            <property name="tag" value="@incomplete" />
-            <property name="tagFormat" value="\S" />
-            <property name="severity" value="ignore" />
-            <property name="tagSeverity" value="warning" />
-        </module>
+        <module name="SummaryJavadoc" />
+        <!--<module name="WriteTag"/>-->
 
         <!-- Metrics -->
         <module name="BooleanExpressionComplexity">
@@ -200,9 +184,7 @@
             <property name="classMaximum" value="10000" />
             <property name="fileMaximum" value="10000" />
         </module>
-        <!--<module name="NPathComplexity">
-            <property name="max" value="50000000" />
-        </module>-->
+        <!--<module name="NPathComplexity" />-->
 
         <!-- Miscellaneous -->
         <module name="ArrayTypeStyle" />
@@ -219,6 +201,11 @@
             <property name="maximumNumber" value="0" />
             <property name="minimumDepth" value="1" />
         </module>
+        <module name="DescendantToken">
+            <property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY" />
+            <property name="limitedTokens" value="LITERAL_TRY" />
+            <property name="maximumNumber" value="0" />
+        </module>
         <module name="FinalParameters" />
         <module name="Indentation">
             <property name="forceStrictCondition" value="true" />
@@ -230,14 +217,16 @@
         <module name="UpperEll" />
 
         <!-- Modifiers -->
+        <!--<module name="ClassMemberImpliedModifier" />-->
+        <!--<module name="InterfaceMemberImpliedModifier"/>-->
         <module name="ModifierOrder" />
         <module name="RedundantModifier" />
 
         <!-- Naming Conventions -->
         <module name="AbbreviationAsWordInName" />
         <module name="AbstractClassName">
-            <property name="ignoreName" value="true" />
             <property name="ignoreModifier" value="true" />
+            <property name="ignoreName" value="true" />
         </module>
         <module name="CatchParameterName">
             <property name="format" value="^ex$" />
@@ -245,6 +234,7 @@
         <module name="ClassTypeParameterName" />
         <module name="ConstantName" />
         <module name="InterfaceTypeParameterName" />
+        <module name="LambdaParameterName" />
         <module name="LocalFinalVariableName" />
         <module name="LocalVariableName" />
         <module name="MemberName">
@@ -295,8 +285,11 @@
             <property name="max" value="2000" />
         </module>
         <module name="MethodCount">
-            <property name="maxPublic" value="1000" />
             <property name="maxTotal" value="1000" />
+            <property name="maxPrivate" value="1000" />
+            <property name="maxPackage" value="1000" />
+            <property name="maxProtected" value="1000" />
+            <property name="maxPublic" value="1000" />
         </module>
         <module name="MethodLength">
             <property name="max" value="2000" />
@@ -323,6 +316,7 @@
         <module name="OperatorWrap" />
         <module name="ParenPad" />
         <module name="SeparatorWrap" />
+        <module name="SingleSpaceSeparator" />
         <module name="TypecastParenPad" />
         <module name="WhitespaceAfter" />
         <module name="WhitespaceAround" />

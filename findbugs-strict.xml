@@ -207,9 +207,9 @@
     <Match>
         <Bug pattern="RR_NOT_CHECKED" />
     </Match>
-    <Match>
+    <!--<Match>
         <Bug pattern="SR_NOT_CHECKED" />
-    </Match>
+    </Match>-->
     <Match>
         <Bug pattern="RV_NEGATING_RESULT_OF_COMPARETO" />
     </Match>
@@ -261,9 +261,9 @@
     <Match>
         <Bug pattern="SE_NO_SERIALVERSIONID" />
     </Match>
-    <Match>
+    <!--<Match>
         <Bug pattern="UI_INHERITANCE_UNSAFE_GETRESOURCE" />
-    </Match>
+    </Match>-->
     <Match>
         <Bug pattern="BC_IMPOSSIBLE_CAST" />
     </Match>
@@ -450,9 +450,9 @@
     <Match>
         <Bug pattern="IJU_BAD_SUITE_METHOD" />
     </Match>
-    <Match>
+    <!--<Match>
         <Bug pattern="IJU_NO_TESTS" />
-    </Match>
+    </Match>-->
     <Match>
         <Bug pattern="IJU_SETUP_NO_SUPER" />
     </Match>
@@ -1164,9 +1164,9 @@
     <Match>
         <Bug pattern="NS_NON_SHORT_CIRCUIT" />
     </Match>
-    <!--Match>
+    <!--<Match>
         <Bug pattern="PZLA_PREFER_ZERO_LENGTH_ARRAYS" />
-    </Match-->
+    </Match>-->
     <Match>
         <Bug pattern="QF_QUESTIONABLE_FOR_LOOP" />
     </Match>
