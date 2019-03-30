@@ -35,6 +35,17 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
+        <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
+        <checkstyle.version>8.18</checkstyle.version>
+        <pmd.plugin.version>3.11.0</pmd.plugin.version>
+        <pmd.version>6.12.0</pmd.version>
+        <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
+        <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
+        <jdepend.plugin.version>2.0</jdepend.plugin.version>
+        <pitest.plugin.version>1.4.6</pitest.plugin.version>
+        <source.plugin.version>3.0.1</source.plugin.version>
+        <javadoc.plugin.version>3.1.0</javadoc.plugin.version>
+        <gpg.plugin.version>1.6</gpg.plugin.version>
     </properties>
 
     <dependencies>
@@ -57,12 +68,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
+                <version>${checkstyle.plugin.version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>6.15</version>
+                        <version>${checkstyle.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>
@@ -85,7 +96,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.7</version>
+                <version>${pmd.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-core</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-java</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>check-pmd</id>
@@ -103,6 +126,7 @@
                     <rulesets>
                         <ruleset>pmd-strict.xml</ruleset>
                     </rulesets>
+                    <ignoreAnnotations>false</ignoreAnnotations>
                     <ignoreIdentifiers>false</ignoreIdentifiers>
                     <ignoreLiterals>true</ignoreLiterals>
                     <minimumTokens>1000</minimumTokens>
@@ -111,7 +135,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
+                <version>${findbugs.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>check-findbugs</id>
@@ -131,7 +155,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.7.201606060606</version>
+                <version>${jacoco.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>prepare-agent-jacoco</id>
@@ -158,30 +182,30 @@
                         <configuration>
                             <haltOnFailure>true</haltOnFailure>
                             <rules>
-                                <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                <rule>
                                     <element>BUNDLE</element>
                                     <limits>
-                                        <limit implementation="org.jacoco.report.check.Limit">
+                                        <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
                                             <minimum>1.0</minimum>
                                         </limit>
-                                        <limit implementation="org.jacoco.report.check.Limit">
+                                        <limit>
                                             <counter>BRANCH</counter>
-                                            <value>MISSEDRATIO</value>
-                                            <maximum>0.0</maximum>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>1.0</minimum>
                                         </limit>
-                                        <limit implementation="org.jacoco.report.check.Limit">
+                                        <limit>
                                             <counter>COMPLEXITY</counter>
-                                            <value>MISSEDCOUNT</value>
-                                            <maximum>0</maximum>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>1.0</minimum>
                                         </limit>
-                                        <limit implementation="org.jacoco.report.check.Limit">
+                                        <limit>
                                             <counter>CLASS</counter>
                                             <value>MISSEDCOUNT</value>
                                             <maximum>0</maximum>
                                         </limit>
-                                        <limit implementation="org.jacoco.report.check.Limit">
+                                        <limit>
                                             <counter>METHOD</counter>
                                             <value>MISSEDCOUNT</value>
                                             <maximum>0</maximum>
@@ -204,7 +228,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>jdepend-maven-plugin</artifactId>
-                        <version>2.0</version>
+                        <version>${jdepend.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>generate-jdepend</id>
@@ -225,7 +249,7 @@
                     <plugin>
                         <groupId>org.pitest</groupId>
                         <artifactId>pitest-maven</artifactId>
-                        <version>1.2.4</version>
+                        <version>${pitest.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>mutationCoverage-pitest</id>
@@ -235,25 +259,27 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <threads>4</threads>
+                            <threads>1</threads>
                             <mutateStaticInitializers>false</mutateStaticInitializers>
                             <mutators>
                                 <mutator>CONDITIONALS_BOUNDARY</mutator>
-                                <mutator>NEGATE_CONDITIONALS</mutator>
-                                <mutator>REMOVE_CONDITIONALS</mutator>
-                                <mutator>MATH</mutator>
                                 <mutator>INCREMENTS</mutator>
                                 <mutator>INVERT_NEGS</mutator>
-                                <mutator>INLINE_CONSTS</mutator>
+                                <mutator>MATH</mutator>
+                                <mutator>NEGATE_CONDITIONALS</mutator>
                                 <mutator>RETURN_VALS</mutator>
                                 <mutator>VOID_METHOD_CALLS</mutator>
-                                <mutator>NON_VOID_METHOD_CALLS</mutator>
                                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                                <mutator>EMPTY_RETURNS</mutator>
+                                <mutator>FALSE_RETURNS</mutator>
+                                <mutator>INLINE_CONSTS</mutator>
+                                <mutator>NULL_RETURNS</mutator>
+                                <mutator>NON_VOID_METHOD_CALLS</mutator>
+                                <mutator>PRIMITIVE_RETURNS</mutator>
+                                <mutator>REMOVE_CONDITIONALS</mutator>
+                                <mutator>REMOVE_INCREMENTS</mutator>
+                                <mutator>TRUE_RETURNS</mutator>
                             </mutators>
-                            <jvmArgs>
-                                <value>-Xms256M</value>
-                                <value>-Xmx256M</value>
-                            </jvmArgs>
                             <failWhenNoMutations>true</failWhenNoMutations>
                             <exportLineCoverage>false</exportLineCoverage>
                             <detectInlinedCode>true</detectInlinedCode>
@@ -270,7 +296,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.0</version>
+                        <version>${source.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>jar-source</id>
@@ -283,7 +309,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.10.4</version>
+                        <version>${javadoc.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>jar-javadoc</id>
@@ -300,7 +326,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>${gpg.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
