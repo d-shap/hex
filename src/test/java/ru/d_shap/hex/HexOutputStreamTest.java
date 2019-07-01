@@ -46,10 +46,10 @@ public final class HexOutputStreamTest {
     /**
      * {@link HexOutputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void writeUpperCaseTest() throws IOException {
+    public void writeUpperCaseTest() throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         HexOutputStream hos = new HexOutputStream(baos, true);
 
@@ -120,10 +120,10 @@ public final class HexOutputStreamTest {
     /**
      * {@link HexOutputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void writeLowerCaseTest() throws IOException {
+    public void writeLowerCaseTest() throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         HexOutputStream hos = new HexOutputStream(baos, false);
 
@@ -194,10 +194,10 @@ public final class HexOutputStreamTest {
     /**
      * {@link HexOutputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void writeDefaultCaseTest() throws IOException {
+    public void writeDefaultCaseTest() throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         HexOutputStream hos = new HexOutputStream(baos);
 
@@ -268,10 +268,10 @@ public final class HexOutputStreamTest {
     /**
      * {@link HexOutputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void flushTest() throws IOException {
+    public void flushTest() throws Exception {
         FlushStream flushStream = new FlushStream();
         HexOutputStream hos = new HexOutputStream(flushStream);
         hos.write(123);
@@ -283,10 +283,10 @@ public final class HexOutputStreamTest {
     /**
      * {@link HexOutputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void closeTest() throws IOException {
+    public void closeTest() throws Exception {
         CloseStream closeStream = new CloseStream();
         HexOutputStream hos = new HexOutputStream(closeStream);
         hos.write(123);

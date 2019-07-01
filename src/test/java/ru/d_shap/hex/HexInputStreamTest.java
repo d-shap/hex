@@ -46,10 +46,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void readEmptyTest() throws IOException {
+    public void readEmptyTest() throws Exception {
         String hex = "";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -59,10 +59,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void readUpperCaseTest() throws IOException {
+    public void readUpperCaseTest() throws Exception {
         String hex = "0F21DA471CF2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -72,10 +72,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void readLowerCaseTest() throws IOException {
+    public void readLowerCaseTest() throws Exception {
         String hex = "0f21da471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -85,10 +85,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void readBothCaseTest() throws IOException {
+    public void readBothCaseTest() throws Exception {
         String hex = "0F21dA471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -98,10 +98,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void readOddCharacterCountTest() throws IOException {
+    public void readOddCharacterCountTest() throws Exception {
         try {
             String hex = "0f21da471cf";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -117,10 +117,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void readWrongCharacterTest() throws IOException {
+    public void readWrongCharacterTest() throws Exception {
         try {
             String hex = "000x12";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -194,10 +194,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void skipTest() throws IOException {
+    public void skipTest() throws Exception {
         String hex = "0f21da471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -213,10 +213,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void skipNonPositiveCountTest() throws IOException {
+    public void skipNonPositiveCountTest() throws Exception {
         String hex = "0f21da471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -229,10 +229,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void skipMoreThenAvailableCountTest() throws IOException {
+    public void skipMoreThenAvailableCountTest() throws Exception {
         String hex = "0f21da471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -244,10 +244,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void skipOddCharacterCountMoreThenAvailableTest() throws IOException {
+    public void skipOddCharacterCountMoreThenAvailableTest() throws Exception {
         String hex = "0f21da471cf";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -259,10 +259,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void skipOddCharacterCountReadTest() throws IOException {
+    public void skipOddCharacterCountReadTest() throws Exception {
         try {
             String hex = "0f21da471cf";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -279,10 +279,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void skipWrongCharacterTest() throws IOException {
+    public void skipWrongCharacterTest() throws Exception {
         String hex = "0f21xxZZ1Qf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -295,10 +295,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void skipWrongCharacterReadTest() throws IOException {
+    public void skipWrongCharacterReadTest() throws Exception {
         try {
             String hex = "0f21xxZZ1QfW";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -315,10 +315,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void availableTest() throws IOException {
+    public void availableTest() throws Exception {
         String hex = "0f21da471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
         HexInputStream his = new HexInputStream(bais);
@@ -335,10 +335,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void availableOddCharacterCountTest() throws IOException {
+    public void availableOddCharacterCountTest() throws Exception {
         try {
             String hex = "0f21da471cf";
             ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
@@ -358,10 +358,10 @@ public final class HexInputStreamTest {
     /**
      * {@link HexInputStream} class test.
      *
-     * @throws IOException IO exception.
+     * @throws Exception exception in test.
      */
     @Test
-    public void closeTest() throws IOException {
+    public void closeTest() throws Exception {
         CloseStream closeStream = new CloseStream();
         HexInputStream his = new HexInputStream(closeStream);
         Assertions.assertThat(his).isCompleted();
