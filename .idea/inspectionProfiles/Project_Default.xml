@@ -6,6 +6,8 @@
     <inspection_tool class="Anonymous2MethodRef" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="AnonymousInnerClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AnonymousInnerClassMayBeStatic" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="ArgNamesErrorsInspection" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ArgNamesWarningsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ArrayEquals" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ArrayHashCode" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ArraysAsListWithZeroOrOneArgument" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -21,6 +23,7 @@
       <option name="REPORT_METHODS" value="false" />
       <option name="REPORT_FIELDS" value="true" />
     </inspection_tool>
+    <inspection_tool class="CatchMayIgnoreException" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CaughtExceptionImmediatelyRethrown" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassInitializer" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassInitializerMayBeStatic" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -61,6 +64,7 @@
       <option name="ignoreSideEffectConditions" value="true" />
     </inspection_tool>
     <inspection_tool class="DuplicateThrows" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Duplicates" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="EmptyCatchBlock" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="m_includeComments" value="true" />
       <option name="m_ignoreTestCases" value="true" />
@@ -308,6 +312,7 @@
       <option name="processLiterals" value="true" />
       <option name="processComments" value="true" />
     </inspection_tool>
+    <inspection_tool class="SpringAopErrorsInspection" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="StaticInheritance" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringBufferReplaceableByString" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="StringBufferReplaceableByStringBuilder" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -318,6 +323,7 @@
       <option name="ignoreSubstringArguments" value="false" />
     </inspection_tool>
     <inspection_tool class="StringEquality" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="StringOperationCanBeSimplified" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringToString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SubstringZero" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SuspiciousMethodCalls" enabled="true" level="ERROR" enabled_by_default="true">
