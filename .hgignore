@@ -2,6 +2,7 @@ glob:*.class
 glob:*.iml
 glob:*~
 
+.idea/artifacts/
 .idea/copyright/
 .idea/dictionaries/
 .idea/libraries/
