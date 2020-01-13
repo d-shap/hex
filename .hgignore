@@ -12,6 +12,7 @@ glob:**/target/
 .idea/dictionaries/
 .idea/libraries/
 .idea/compiler.xml
+.idea/jarRepositories.xml
 .idea/misc.xml
 .idea/modules.xml
 .idea/runConfigurations.xml
