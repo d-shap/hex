@@ -2,6 +2,11 @@ glob:*.class
 glob:*.iml
 glob:*~
 
+glob:**/build/
+glob:**/bin/
+glob:**/gen/
+glob:**/target/
+
 .idea/artifacts/
 .idea/copyright/
 .idea/dictionaries/
@@ -14,8 +19,3 @@ glob:*~
 .idea/vcs.xml
 .idea/workspace.xml
 .idea/tasks.xml
-
-**/build/
-**/bin/
-**/gen/
-**/target/

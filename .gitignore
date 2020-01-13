@@ -2,6 +2,11 @@
 *.iml
 *~
 
+**/build/
+**/bin/
+**/gen/
+**/target/
+
 .idea/artifacts/
 .idea/copyright/
 .idea/dictionaries/
@@ -14,8 +19,3 @@
 .idea/vcs.xml
 .idea/workspace.xml
 .idea/tasks.xml
-
-**/build/
-**/bin/
-**/gen/
-**/target/
