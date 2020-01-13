@@ -85,6 +85,7 @@
     <inspection_tool class="EqualsWhichDoesntCheckParameterClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EqualsWithItself" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ErrorRethrown" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ExplicitArrayFilling" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ExtendsAnnotation" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExtendsObject" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExternalizableWithoutPublicNoArgConstructor" enabled="false" level="WARNING" enabled_by_default="false" />
