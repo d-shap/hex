@@ -12,6 +12,7 @@
 .idea/dictionaries/
 .idea/libraries/
 .idea/compiler.xml
+.idea/dataSources.xml
 .idea/jarRepositories.xml
 .idea/misc.xml
 .idea/modules.xml
