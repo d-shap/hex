@@ -37,9 +37,13 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
         <checkstyle.version>8.18</checkstyle.version>
+        <checkstyle.file>${basedir}/style-strict.xml</checkstyle.file>
+        <checkstyle.header.file>${basedir}/style-header-java.txt</checkstyle.header.file>
         <pmd.plugin.version>3.11.0</pmd.plugin.version>
         <pmd.version>6.12.0</pmd.version>
+        <pmd.file>${basedir}/pmd-strict.xml</pmd.file>
         <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
+        <findbugs.file>${basedir}/findbugs-strict.xml</findbugs.file>
         <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
         <jdepend.plugin.version>2.0</jdepend.plugin.version>
         <pitest.plugin.version>1.4.6</pitest.plugin.version>
@@ -86,11 +90,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <configLocation>style-strict.xml</configLocation>
+                    <configLocation>${checkstyle.file}</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <includeResources>true</includeResources>
                     <includeTestResources>true</includeTestResources>
+                    <sourceDirectories>
+                        <sourceDirectory>${project.basedir}/src</sourceDirectory>
+                    </sourceDirectories>
                 </configuration>
             </plugin>
             <plugin>
@@ -124,12 +131,15 @@
                     <linkXRef>false</linkXRef>
                     <verbose>true</verbose>
                     <rulesets>
-                        <ruleset>pmd-strict.xml</ruleset>
+                        <ruleset>${pmd.file}</ruleset>
                     </rulesets>
                     <ignoreAnnotations>false</ignoreAnnotations>
                     <ignoreIdentifiers>false</ignoreIdentifiers>
                     <ignoreLiterals>true</ignoreLiterals>
                     <minimumTokens>1000</minimumTokens>
+                    <excludeRoots>
+                        <excludeRoot>${project.build.directory}</excludeRoot>
+                    </excludeRoots>
                 </configuration>
             </plugin>
             <plugin>
@@ -146,7 +156,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <includeFilterFile>findbugs-strict.xml</includeFilterFile>
+                    <includeFilterFile>${findbugs.file}</includeFilterFile>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
                     <xmlOutput>true</xmlOutput>
