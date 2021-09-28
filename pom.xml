@@ -35,28 +35,28 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
-        <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
-        <checkstyle.version>8.18</checkstyle.version>
+        <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
+        <checkstyle.version>8.45.1</checkstyle.version>
         <checkstyle.file>${basedir}/style-strict.xml</checkstyle.file>
         <checkstyle.header.file>${basedir}/style-header-java.txt</checkstyle.header.file>
-        <pmd.plugin.version>3.11.0</pmd.plugin.version>
-        <pmd.version>6.12.0</pmd.version>
+        <pmd.plugin.version>3.15.0</pmd.plugin.version>
+        <pmd.version>6.39.0</pmd.version>
         <pmd.file>${basedir}/pmd-strict.xml</pmd.file>
         <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
         <findbugs.file>${basedir}/findbugs-strict.xml</findbugs.file>
-        <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
+        <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
         <jdepend.plugin.version>2.0</jdepend.plugin.version>
-        <pitest.plugin.version>1.4.6</pitest.plugin.version>
-        <source.plugin.version>3.0.1</source.plugin.version>
-        <javadoc.plugin.version>3.1.0</javadoc.plugin.version>
-        <gpg.plugin.version>1.6</gpg.plugin.version>
+        <pitest.plugin.version>1.7.0</pitest.plugin.version>
+        <source.plugin.version>3.2.1</source.plugin.version>
+        <javadoc.plugin.version>3.3.1</javadoc.plugin.version>
+        <gpg.plugin.version>3.0.1</gpg.plugin.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -279,16 +279,28 @@
                                 <mutator>NEGATE_CONDITIONALS</mutator>
                                 <mutator>RETURN_VALS</mutator>
                                 <mutator>VOID_METHOD_CALLS</mutator>
-                                <mutator>CONSTRUCTOR_CALLS</mutator>
                                 <mutator>EMPTY_RETURNS</mutator>
                                 <mutator>FALSE_RETURNS</mutator>
-                                <mutator>INLINE_CONSTS</mutator>
+                                <mutator>TRUE_RETURNS</mutator>
                                 <mutator>NULL_RETURNS</mutator>
-                                <mutator>NON_VOID_METHOD_CALLS</mutator>
                                 <mutator>PRIMITIVE_RETURNS</mutator>
                                 <mutator>REMOVE_CONDITIONALS</mutator>
+                                <mutator>EXPERIMENTAL_SWITCH</mutator>
+                                <mutator>INLINE_CONSTS</mutator>
+                                <mutator>CONSTRUCTOR_CALLS</mutator>
+                                <mutator>NON_VOID_METHOD_CALLS</mutator>
                                 <mutator>REMOVE_INCREMENTS</mutator>
-                                <mutator>TRUE_RETURNS</mutator>
+                                <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
+                                <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
+                                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                                <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
+                                <mutator>ABS</mutator>
+                                <mutator>AOR</mutator>
+                                <mutator>AOD</mutator>
+                                <mutator>CRCR</mutator>
+                                <mutator>OBBN</mutator>
+                                <mutator>ROR</mutator>
+                                <mutator>UOI</mutator>
                             </mutators>
                             <failWhenNoMutations>true</failWhenNoMutations>
                             <exportLineCoverage>false</exportLineCoverage>

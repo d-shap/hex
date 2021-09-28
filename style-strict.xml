@@ -8,7 +8,7 @@
         <property name="headerFile" value="${checkstyle.header.file}" />
         <property name="fileExtensions" value="java" />
     </module>
-    <!--<module name="RegexpHeader"/>-->
+    <!--<module name="RegexpHeader" />-->
 
     <!-- Javadoc Comments -->
     <module name="JavadocPackage" />
@@ -17,6 +17,7 @@
     <module name="NewlineAtEndOfFile">
         <property name="lineSeparator" value="lf" />
     </module>
+    <module name="OrderedProperties" />
     <module name="Translation" />
     <module name="UniqueProperties" />
 
@@ -29,6 +30,9 @@
     <!-- Size Violations -->
     <module name="FileLength">
         <property name="max" value="15000" />
+    </module>
+    <module name="LineLength">
+        <property name="max" value="2000" />
     </module>
 
     <!-- Whitespace -->
@@ -72,8 +76,10 @@
         </module>
 
         <!-- Coding -->
-        <!--<module name="ArrayTrailingComma" />-->
-        <!--<module name="AvoidInlineConditionals" />-->
+        <module name="ArrayTrailingComma" />
+        <module name="AvoidDoubleBraceInitialization" />
+        <module name="AvoidInlineConditionals" />
+        <!--<module name="AvoidNoArgumentSuperConstructorCall" />-->
         <module name="CovariantEquals" />
         <module name="DeclarationOrder" />
         <module name="DefaultComesLast" />
@@ -84,7 +90,7 @@
         <module name="FallThrough" />
         <!--<module name="FinalLocalVariable" />-->
         <module name="HiddenField" />
-        <!--<module name="IllegalCatch"/>-->
+        <!--<module name="IllegalCatch" />-->
         <module name="IllegalInstantiation">
             <property name="classes" value="java.lang.Boolean" />
         </module>
@@ -101,7 +107,7 @@
             <property name="ignoredMethodNames" value="getInstance" />
         </module>
         <!--<module name="InnerAssignment" />-->
-        <!--<module name="MagicNumber"/>-->
+        <!--<module name="MagicNumber" />-->
         <module name="MissingCtor" />
         <module name="MissingSwitchDefault" />
         <module name="ModifiedControlVariable" />
@@ -116,28 +122,34 @@
         <module name="NestedTryDepth">
             <property name="max" value="2" />
         </module>
+        <!--<module name="NoArrayTrailingComma" />-->
         <module name="NoClone" />
+        <module name="NoEnumTrailingComma" />
         <module name="NoFinalizer" />
         <module name="OneStatementPerLine" />
         <module name="OverloadMethodsDeclarationOrder" />
         <module name="PackageDeclaration" />
         <module name="ParameterAssignment" />
-        <!--<module name="RequireThis"/>-->
-        <!--<module name="ReturnCount"/>-->
+        <!--<module name="RequireThis" />-->
+        <!--<module name="ReturnCount" />-->
         <module name="SimplifyBooleanExpression" />
         <module name="SimplifyBooleanReturn" />
         <module name="StringLiteralEquality" />
         <module name="SuperClone" />
         <module name="SuperFinalize" />
         <module name="UnnecessaryParentheses" />
+        <module name="UnnecessarySemicolonAfterOuterTypeDeclaration" />
+        <module name="UnnecessarySemicolonAfterTypeMemberDeclaration" />
+        <module name="UnnecessarySemicolonInEnumeration" />
+        <module name="UnnecessarySemicolonInTryWithResources" />
         <!--<module name="VariableDeclarationUsageDistance" />-->
 
         <!-- Imports -->
         <module name="AvoidStarImport" />
         <module name="AvoidStaticImport" />
-        <!--<module name="CustomImportOrder"/>-->
+        <!--<module name="CustomImportOrder" />-->
         <module name="IllegalImport" />
-        <!--<module name="ImportControl"/>-->
+        <!--<module name="ImportControl" />-->
         <module name="ImportOrder">
             <property name="groups" value="java,javax,android,com,net,org,ru" />
             <property name="ordered" value="true" />
@@ -148,25 +160,55 @@
 
         <!-- Javadoc Comments -->
         <module name="AtclauseOrder">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
             <property name="tagOrder" value="@param, @return, @throws, @exception, @author, @version, @see, @since, @serial, @serialField, @serialData, @deprecated" />
         </module>
-        <module name="JavadocMethod">
-            <property name="scope" value="protected" />
+        <module name="InvalidJavadocPosition" />
+        <module name="JavadocBlockTagLocation">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
         </module>
-        <module name="JavadocParagraph" />
+        <module name="JavadocContentLocationCheck" />
+        <module name="JavadocMethod">
+            <property name="accessModifiers" value="public,protected" />
+        </module>
+        <module name="JavadocMissingLeadingAsterisk">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
+        </module>
+        <module name="JavadocMissingWhitespaceAfterAsterisk">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
+        </module>
+        <module name="JavadocParagraph">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
+        </module>
         <module name="JavadocStyle">
             <property name="checkEmptyJavadoc" value="true" />
         </module>
-        <module name="JavadocTagContinuationIndentation" />
-        <module name="JavadocType">
-            <property name="authorFormat" value="\S" />
-            <property name="scope" value="anoninner" />
+        <module name="JavadocTagContinuationIndentation">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
         </module>
-        <!--<module name="JavadocVariable" />-->
-        <module name="NonEmptyAtclauseDescription" />
-        <module name="SingleLineJavadoc" />
-        <module name="SummaryJavadoc" />
-        <!--<module name="WriteTag"/>-->
+        <module name="JavadocType">
+            <property name="scope" value="anoninner" />
+            <property name="authorFormat" value="\S" />
+        </module>
+        <!--<module name="JavadocVariable">
+            <property name="scope" value="public" />
+        </module>-->
+        <module name="MissingJavadocMethod" />
+        <module name="MissingJavadocPackage" />
+        <module name="MissingJavadocType" />
+        <module name="NonEmptyAtclauseDescription">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
+        </module>
+        <module name="RequireEmptyLineBeforeBlockTagGroup">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
+        </module>
+        <module name="SingleLineJavadoc">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
+        </module>
+        <module name="SummaryJavadoc">
+            <property name="violateExecutionOnNonTightHtml" value="true" />
+        </module>
+        <!--<module name="WriteTag" />-->
 
         <!-- Metrics -->
         <module name="BooleanExpressionComplexity">
@@ -190,7 +232,7 @@
 
         <!-- Miscellaneous -->
         <module name="ArrayTypeStyle" />
-        <!--<module name="AvoidEscapedUnicodeCharacters"/>-->
+        <!--<module name="AvoidEscapedUnicodeCharacters" />-->
         <module name="CommentsIndentation" />
         <module name="DescendantToken">
             <property name="tokens" value="LITERAL_ASSERT" />
@@ -212,15 +254,16 @@
         <module name="Indentation">
             <property name="forceStrictCondition" value="true" />
         </module>
+        <module name="NoCodeInFile" />
         <module name="OuterTypeFilename" />
         <module name="TodoComment" />
         <module name="TrailingComment" />
-        <!--<module name="UncommentedMain"/>-->
+        <!--<module name="UncommentedMain" />-->
         <module name="UpperEll" />
 
         <!-- Modifiers -->
         <!--<module name="ClassMemberImpliedModifier" />-->
-        <!--<module name="InterfaceMemberImpliedModifier"/>-->
+        <!--<module name="InterfaceMemberImpliedModifier" />-->
         <module name="ModifierOrder" />
         <module name="RedundantModifier" />
 
@@ -235,6 +278,7 @@
         </module>
         <module name="ClassTypeParameterName" />
         <module name="ConstantName" />
+        <module name="IllegalIdentifierName" />
         <module name="InterfaceTypeParameterName" />
         <module name="LambdaParameterName" />
         <module name="LocalFinalVariableName" />
@@ -246,6 +290,9 @@
         <module name="MethodTypeParameterName" />
         <module name="PackageName" />
         <module name="ParameterName" />
+        <module name="PatternVariableName" />
+        <module name="RecordComponentName" />
+        <module name="RecordTypeParameterName" />
         <module name="StaticVariableName" />
         <module name="TypeName" />
 
@@ -283,8 +330,8 @@
         <module name="ExecutableStatementCount">
             <property name="max" value="500" />
         </module>
-        <module name="LineLength">
-            <property name="max" value="2000" />
+        <module name="LambdaBodyLength">
+            <property name="max" value="40" />
         </module>
         <module name="MethodCount">
             <property name="maxTotal" value="1000" />
@@ -301,6 +348,9 @@
         <module name="ParameterNumber">
             <property name="max" value="15" />
         </module>
+        <module name="RecordComponentNumber">
+            <property name="max" value="40" />
+        </module>
 
         <!-- Whitespace -->
         <module name="EmptyForInitializerPad" />
@@ -315,6 +365,7 @@
         <module name="NoLineWrap" />
         <module name="NoWhitespaceAfter" />
         <module name="NoWhitespaceBefore" />
+        <module name="NoWhitespaceBeforeCaseDefaultColon" />
         <module name="OperatorWrap" />
         <module name="ParenPad" />
         <module name="SeparatorWrap" />
