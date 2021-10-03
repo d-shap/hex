@@ -46,7 +46,7 @@
         <findbugs.file>${basedir}/findbugs-strict.xml</findbugs.file>
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
         <jdepend.plugin.version>2.0</jdepend.plugin.version>
-        <pitest.plugin.version>1.7.0</pitest.plugin.version>
+        <pitest.plugin.version>1.4.11</pitest.plugin.version>
         <source.plugin.version>3.2.1</source.plugin.version>
         <javadoc.plugin.version>3.3.1</javadoc.plugin.version>
         <gpg.plugin.version>3.0.1</gpg.plugin.version>
