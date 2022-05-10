@@ -294,6 +294,7 @@ public final class HexOutputStreamTest {
         FlushStream flushStream = new FlushStream();
         HexOutputStream hos = new HexOutputStream(flushStream);
         hos.write(123);
+
         Assertions.assertThat(flushStream.isFlushed()).isFalse();
         hos.flush();
         Assertions.assertThat(flushStream.isFlushed()).isTrue();
