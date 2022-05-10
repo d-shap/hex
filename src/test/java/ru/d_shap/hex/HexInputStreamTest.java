@@ -77,6 +77,40 @@ public final class HexInputStreamTest {
      * @throws Exception exception in test.
      */
     @Test
+    public void readUpperCaseByteTest() throws Exception {
+        String hex = "0F21DA471CF2";
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+        HexInputStream his = new HexInputStream(bais);
+        Assertions.assertThat(his.read()).isEqualTo(15);
+        Assertions.assertThat(his.read()).isEqualTo(33);
+        Assertions.assertThat(his.read()).isEqualTo(218);
+        Assertions.assertThat(his.read()).isEqualTo(71);
+        Assertions.assertThat(his.read()).isEqualTo(28);
+        Assertions.assertThat(his.read()).isEqualTo(242);
+        Assertions.assertThat(his.read()).isEqualTo(-1);
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws Exception exception in test.
+     */
+    @Test
+    public void readUpperCaseBytesTest() throws Exception {
+        String hex = "0F21DA471CF2";
+        ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
+        HexInputStream his = new HexInputStream(bais);
+        byte[] bytes = new byte[10];
+        Assertions.assertThat(his.read(bytes)).isEqualTo(6);
+        Assertions.assertThat(bytes).containsExactlyInOrder(15, 33, -38, 71, 28, -14, 0, 0, 0, 0);
+    }
+
+    /**
+     * {@link HexInputStream} class test.
+     *
+     * @throws Exception exception in test.
+     */
+    @Test
     public void readLowerCaseTest() throws Exception {
         String hex = "0f21da471cf2";
         ByteArrayInputStream bais = new ByteArrayInputStream(hex.getBytes(ENCODING));
