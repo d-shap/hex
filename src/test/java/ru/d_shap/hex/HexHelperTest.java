@@ -1296,6 +1296,8 @@ public final class HexHelperTest {
         Assertions.assertThat(HexHelper.isHexString("AacD2f", 6, 0)).isFalse();
 
         Assertions.assertThat(HexHelper.isHexString("xxcD2f", 2, 4)).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("xxcDxx", 2, 2)).isTrue();
+        Assertions.assertThat(HexHelper.isHexString("xxcDxx", 2, 4)).isFalse();
     }
 
     /**
