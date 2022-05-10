@@ -39,6 +39,7 @@
     <module name="FileTabCharacter" />
 
     <module name="TreeWalker">
+
         <!-- Annotations -->
         <module name="AnnotationLocation" />
         <!--<module name="AnnotationOnSameLine" />-->
@@ -373,5 +374,7 @@
         <module name="TypecastParenPad" />
         <module name="WhitespaceAfter" />
         <module name="WhitespaceAround" />
+
     </module>
+
 </module>
