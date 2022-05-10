@@ -125,6 +125,23 @@ public final class HexOutputStreamTest {
      * @throws Exception exception in test.
      */
     @Test
+    public void writeUpperCaseBytesTest() throws Exception {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        HexOutputStream hos = new HexOutputStream(baos, true);
+
+        hos.write(new byte[]{15, -17, 127, 0, -98});
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("0FEF7F009E");
+
+        hos.close();
+        Assertions.assertThat(new String(baos.toByteArray(), ENCODING)).isEqualTo("0FEF7F009E");
+    }
+
+    /**
+     * {@link HexOutputStream} class test.
+     *
+     * @throws Exception exception in test.
+     */
+    @Test
     public void writeLowerCaseTest() throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         HexOutputStream hos = new HexOutputStream(baos, false);
