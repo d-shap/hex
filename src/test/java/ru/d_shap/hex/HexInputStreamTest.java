@@ -26,6 +26,8 @@ import java.io.InputStream;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.assertions.mock.IsCloseable;
+import ru.d_shap.assertions.util.DataHelper;
 
 /**
  * Tests for {@link HexInputStream}.
@@ -362,44 +364,13 @@ public final class HexInputStreamTest {
      */
     @Test
     public void closeTest() throws Exception {
-        CloseStream closeStream = new CloseStream();
-        HexInputStream his = new HexInputStream(closeStream);
+        InputStream inputStream = DataHelper.createInputStreamBuilder().buildInputStream();
+        HexInputStream his = new HexInputStream(inputStream);
         Assertions.assertThat(his).isCompleted();
 
-        Assertions.assertThat(closeStream.isClosed()).isFalse();
+        Assertions.assertThat(((IsCloseable) inputStream).isClosed()).isFalse();
         his.close();
-        Assertions.assertThat(closeStream.isClosed()).isTrue();
-    }
-
-    /**
-     * Test class.
-     *
-     * @author Dmitry Shapovalov
-     */
-    private static final class CloseStream extends InputStream {
-
-        private boolean _closed;
-
-        CloseStream() {
-            super();
-            _closed = false;
-        }
-
-        @Override
-        public int read() throws IOException {
-            return -1;
-        }
-
-        boolean isClosed() {
-            return _closed;
-        }
-
-        @Override
-        public void close() throws IOException {
-            super.close();
-            _closed = true;
-        }
-
+        Assertions.assertThat(((IsCloseable) inputStream).isClosed()).isTrue();
     }
 
 }

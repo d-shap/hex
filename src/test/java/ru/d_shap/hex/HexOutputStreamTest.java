@@ -26,6 +26,8 @@ import java.io.OutputStream;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.assertions.mock.IsCloseable;
+import ru.d_shap.assertions.util.DataHelper;
 
 /**
  * Tests for {@link HexOutputStream}.
@@ -287,12 +289,13 @@ public final class HexOutputStreamTest {
      */
     @Test
     public void closeTest() throws Exception {
-        CloseStream closeStream = new CloseStream();
-        HexOutputStream hos = new HexOutputStream(closeStream);
+        OutputStream outputStream = DataHelper.createOutputStreamBuilder().buildOutputStream();
+        HexOutputStream hos = new HexOutputStream(outputStream);
         hos.write(123);
-        Assertions.assertThat(closeStream.isClosed()).isFalse();
+
+        Assertions.assertThat(((IsCloseable) outputStream).isClosed()).isFalse();
         hos.close();
-        Assertions.assertThat(closeStream.isClosed()).isTrue();
+        Assertions.assertThat(((IsCloseable) outputStream).isClosed()).isTrue();
     }
 
     /**
@@ -322,37 +325,6 @@ public final class HexOutputStreamTest {
         public void flush() throws IOException {
             super.flush();
             _flushed = true;
-        }
-
-    }
-
-    /**
-     * Test class.
-     *
-     * @author Dmitry Shapovalov
-     */
-    private static final class CloseStream extends OutputStream {
-
-        private boolean _closed;
-
-        CloseStream() {
-            super();
-            _closed = false;
-        }
-
-        @Override
-        public void write(final int value) throws IOException {
-            // Ignore
-        }
-
-        boolean isClosed() {
-            return _closed;
-        }
-
-        @Override
-        public void close() throws IOException {
-            super.close();
-            _closed = true;
         }
 
     }
