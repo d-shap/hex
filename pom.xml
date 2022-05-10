@@ -33,22 +33,27 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.module.name>ru.d_shap.hex</project.module.name>
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
+
+        <!-- Plugins' properties -->
         <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
         <checkstyle.version>8.45.1</checkstyle.version>
-        <checkstyle.file>${basedir}/style-strict.xml</checkstyle.file>
-        <checkstyle.header.file>${basedir}/style-header-java.txt</checkstyle.header.file>
+        <checkstyle.file>${basedir}/checks/style-strict.xml</checkstyle.file>
+        <checkstyle.header.file>${basedir}/checks/style-header-java.txt</checkstyle.header.file>
         <pmd.plugin.version>3.15.0</pmd.plugin.version>
         <pmd.version>6.39.0</pmd.version>
-        <pmd.file>${basedir}/pmd-strict.xml</pmd.file>
-        <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
-        <findbugs.file>${basedir}/findbugs-strict.xml</findbugs.file>
+        <pmd.file>${basedir}/checks/pmd-strict.xml</pmd.file>
+        <spotbugs.plugin.version>4.5.3.0</spotbugs.plugin.version>
+        <spotbugs.version>4.6.0</spotbugs.version>
+        <spotbugs.findsecbugs.plugin.version>1.11.0</spotbugs.findsecbugs.plugin.version>
+        <spotbugs.file>${basedir}/checks/spotbugs-strict.xml</spotbugs.file>
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
-        <jdepend.plugin.version>2.0</jdepend.plugin.version>
+        <jar.plugin.version>3.2.2</jar.plugin.version>
         <pitest.plugin.version>1.4.11</pitest.plugin.version>
         <source.plugin.version>3.2.1</source.plugin.version>
-        <javadoc.plugin.version>3.3.1</javadoc.plugin.version>
+        <javadoc.plugin.version>3.3.2</javadoc.plugin.version>
         <gpg.plugin.version>3.0.1</gpg.plugin.version>
     </properties>
 
@@ -62,7 +67,7 @@
         <dependency>
             <groupId>ru.d-shap</groupId>
             <artifactId>assertions</artifactId>
-            <version>2.0</version>
+            <version>2.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -143,12 +148,19 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs.plugin.version}</version>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${spotbugs.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs</artifactId>
+                        <version>${spotbugs.version}</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
-                        <id>check-findbugs</id>
+                        <id>check-spotbugs</id>
                         <phase>process-classes</phase>
                         <goals>
                             <goal>check</goal>
@@ -156,7 +168,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <includeFilterFile>${findbugs.file}</includeFilterFile>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>${spotbugs.findsecbugs.plugin.version}</version>
+                        </plugin>
+                    </plugins>
+                    <includeFilterFile>${spotbugs.file}</includeFilterFile>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
                     <xmlOutput>true</xmlOutput>
@@ -227,31 +246,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${jar.plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>${project.module.name}</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <profiles>
-        <profile>
-            <id>build-jdepend</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>jdepend-maven-plugin</artifactId>
-                        <version>${jdepend.plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>generate-jdepend</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <profile>
             <id>build-pitest</id>
             <build>
@@ -285,22 +295,13 @@
                                 <mutator>NULL_RETURNS</mutator>
                                 <mutator>PRIMITIVE_RETURNS</mutator>
                                 <mutator>REMOVE_CONDITIONALS</mutator>
-                                <mutator>EXPERIMENTAL_SWITCH</mutator>
                                 <mutator>INLINE_CONSTS</mutator>
                                 <mutator>CONSTRUCTOR_CALLS</mutator>
                                 <mutator>NON_VOID_METHOD_CALLS</mutator>
                                 <mutator>REMOVE_INCREMENTS</mutator>
-                                <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
-                                <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
-                                <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
-                                <mutator>ABS</mutator>
                                 <mutator>AOR</mutator>
                                 <mutator>AOD</mutator>
-                                <mutator>CRCR</mutator>
                                 <mutator>OBBN</mutator>
-                                <mutator>ROR</mutator>
-                                <mutator>UOI</mutator>
                             </mutators>
                             <failWhenNoMutations>true</failWhenNoMutations>
                             <exportLineCoverage>false</exportLineCoverage>
