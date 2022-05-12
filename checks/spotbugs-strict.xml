@@ -1798,9 +1798,9 @@
     <Match>
         <Bug pattern="REQUESTDISPATCHER_FILE_DISCLOSURE" />
     </Match>
-    <Match>
+    <!--<Match>
         <Bug pattern="FORMAT_STRING_MANIPULATION" />
-    </Match>
+    </Match>-->
     <Match>
         <Bug pattern="HTTP_PARAMETER_POLLUTION" />
     </Match>
