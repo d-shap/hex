@@ -1444,12 +1444,12 @@
     <Match>
         <Bug pattern="COOKIE_USAGE" />
     </Match>
-    <Match>
+    <!--<Match>
         <Bug pattern="PATH_TRAVERSAL_IN" />
-    </Match>
-    <Match>
+    </Match>-->
+    <!--<Match>
         <Bug pattern="PATH_TRAVERSAL_OUT" />
-    </Match>
+    </Match>-->
     <!--<Match>
         <Bug pattern="SCALA_PATH_TRAVERSAL_IN" />
     </Match>-->
