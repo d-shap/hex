@@ -1522,9 +1522,9 @@
     <!--<Match>
         <Bug pattern="XXE_XSLT_TRANSFORM_FACTORY" />
     </Match>-->
-    <Match>
+    <!--<Match>
         <Bug pattern="XPATH_INJECTION" />
-    </Match>
+    </Match>-->
     <!--<Match>
         <Bug pattern="STRUTS1_ENDPOINT" />
     </Match>-->
