@@ -4,8 +4,8 @@
     <inspection_tool class="AbstractMethodOverridesConcreteMethod" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AndroidLintUnusedAttribute" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="Anonymous2MethodRef" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="AnonymousInnerClass" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="AnonymousInnerClassMayBeStatic" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AnonymousInnerClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AnonymousInnerClassMayBeStatic" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ArgNamesErrorsInspection" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ArgNamesWarningsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ArrayEquals" enabled="true" level="ERROR" enabled_by_default="true" />
