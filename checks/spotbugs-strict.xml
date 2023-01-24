@@ -918,9 +918,9 @@
     <Match>
         <Bug pattern="TLW_TWO_LOCK_WAIT" />
     </Match>
-    <Match>
+    <!--<Match>
         <Bug pattern="UW_UNCOND_WAIT" />
-    </Match>
+    </Match>-->
     <Match>
         <Bug pattern="UG_SYNC_SET_UNSYNC_GET" />
     </Match>
@@ -942,9 +942,9 @@
     <Match>
         <Bug pattern="SC_START_IN_CTOR" />
     </Match>
-    <Match>
+    <!--<Match>
         <Bug pattern="WA_NOT_IN_LOOP" />
-    </Match>
+    </Match>-->
     <Match>
         <Bug pattern="WA_AWAIT_NOT_IN_LOOP" />
     </Match>

@@ -108,6 +108,7 @@
       <option name="REPORT_INDEXED_LOOP" value="false" />
       <option name="ignoreUntypedCollections" value="false" />
     </inspection_tool>
+    <inspection_tool class="GrazieInspection" enabled="false" level="TYPO" enabled_by_default="false" />
     <inspection_tool class="GroovyAssignabilityCheck" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="IfCanBeSwitch" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="minimumBranches" value="3" />
@@ -169,6 +170,7 @@
     <inspection_tool class="JavaLangImport" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JavacQuirks" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="KeySetIterationMayUseEntrySet" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="LanguageDetectionInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ListIndexOfReplaceableByContains" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LiteralAsArgToStringEquals" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LocalCanBeFinal" enabled="true" level="ERROR" enabled_by_default="true">
