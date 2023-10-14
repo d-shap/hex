@@ -49,7 +49,7 @@
         <spotbugs.version>4.6.0</spotbugs.version>
         <spotbugs.findsecbugs.plugin.version>1.11.0</spotbugs.findsecbugs.plugin.version>
         <spotbugs.file>${basedir}/checks/spotbugs-strict.xml</spotbugs.file>
-        <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
+        <jacoco.plugin.version>0.8.10</jacoco.plugin.version>
         <jar.plugin.version>3.2.2</jar.plugin.version>
         <pitest.plugin.version>1.4.11</pitest.plugin.version>
         <source.plugin.version>3.2.1</source.plugin.version>
