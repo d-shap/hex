@@ -40,12 +40,3 @@ try (FileInputStream inputStream = new FileInputStream("input file");
 
 Each byte is represented with two hex characters.
 The hex representation of bytes increases the original size twice.
-
-# The latest release
-Hex library:
-* **&lt;groupId&gt;**: ru.d-shap
-* **&lt;artifactId&gt;**: hex
-* **&lt;version&gt;**: 1.2
-
-# Donation
-If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
