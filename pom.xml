@@ -43,7 +43,7 @@
         <checkstyle.file>${basedir}/checks/style-strict.xml</checkstyle.file>
         <checkstyle.header.file>${basedir}/checks/style-header-java.txt</checkstyle.header.file>
         <pmd.plugin.version>3.15.0</pmd.plugin.version>
-        <pmd.version>6.39.0</pmd.version>
+        <pmd.version>7.10.0</pmd.version>
         <pmd.file>${basedir}/checks/pmd-strict.xml</pmd.file>
         <spotbugs.plugin.version>4.5.3.0</spotbugs.plugin.version>
         <spotbugs.version>4.6.0</spotbugs.version>
