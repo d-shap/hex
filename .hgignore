@@ -7,16 +7,20 @@ glob:**/bin/
 glob:**/gen/
 glob:**/target/
 
+.gigaide/
+.idea/.gigateam/
 .idea/artifacts/
 .idea/copyright/
 .idea/dictionaries/
 .idea/libraries/
+.idea/checkstyle-idea.xml
 .idea/compiler.xml
 .idea/dataSources.xml
 .idea/jarRepositories.xml
 .idea/misc.xml
 .idea/modules.xml
 .idea/runConfigurations.xml
+.idea/TestModelPromoPluginState.xml
 .idea/uiDesigner.xml
 .idea/vcs.xml
 .idea/workspace.xml
